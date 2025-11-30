@@ -1,20 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("characters.json")
-        .then(res => res.json())
-        .then(chars => {
-            const container = document.getElementById("card-list");
-            chars.forEach(c => {
-                const a = document.createElement("a");
-                a.href = `character.html?code=${c.code}`;
-                a.className = "card";
-                a.innerHTML = `
-          <img src="${c.imageUrl}">
-          <div class="card-meta">
-            <div>${c.code}</div>
-            <div>${c.title}</div>
+  fetch("characters.json")
+    .then(res => res.json())
+    .then(chars => {
+      const container = document.getElementById("card-list");
+      console.log("loaded chars:", chars); // デバッグ用
+
+      chars.forEach(c => {
+        const a = document.createElement("a");
+        a.href = `character.html?code=${c.code}`;
+        a.className = "card";
+        a.innerHTML = `
+          <div class="card-inner">
+            <div class="card-image">
+              <img src="${c.imageUrl}" alt="${c.title}">
+            </div>
+            <div class="card-meta">
+              <div class="card-code">${c.code}</div>
+              <div class="card-title">${c.title}</div>
+            </div>
           </div>
         `;
-                container.appendChild(a);
-            });
-        });
+        container.appendChild(a);
+      });
+    })
+    .catch(e => {
+      console.error("読み込みエラー:", e);
+    });
 });
