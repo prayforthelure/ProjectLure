@@ -1,14 +1,112 @@
 [
   {
-    "code": "000",
-    "title": "彩に蕩れる",
-    "imageUrl": "images/characters/000.png",
+    "code": "001",
+    "title": "",
     "arc": {
-      "ex": "G",
-      "core": "P"
+      "ex": "",
+      "core": ""
     },
-    "theme": "無職",
-    "mainColorLabel": "透明",
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "002",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "003",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "004",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "005",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "006",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "007",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "008",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "009",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
+    "colors": []
+  },
+  {
+    "code": "010",
+    "title": "",
+    "arc": {
+      "ex": "",
+      "core": ""
+    },
+    "theme": "",
+    "mainColorLabel": "",
     "colors": []
   }
 ]
