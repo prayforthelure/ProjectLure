@@ -1,4 +1,6 @@
-/* ヘッダー全体 */
+/* =========================
+   ヘッダー全体
+   ========================= */
 .site-header {
   display: flex;
   align-items: center;
@@ -11,7 +13,7 @@
   z-index: 10;
 }
 
-/* 左・中央・右 */
+/* 左・中央・右ブロック */
 .header-left,
 .header-right {
   display: flex;
@@ -23,7 +25,11 @@
   text-align: center;
 }
 
-/* 丸ロゴ */
+/* =========================
+   ロゴまわり
+   ========================= */
+
+/* 丸ロゴ（左端） */
 .brand-link {
   display: inline-flex;
   align-items: center;
@@ -37,27 +43,33 @@
 
 /* 横長ロゴ（PC・タブレット） */
 .header-logo {
-  max-height: 100px;
+  max-height: 100px;   /* ←ここを変えれば中央ロゴの大きさが変わる（PC側） */
   height: 100px;
   width: auto;
 }
+
+/* =========================
+   ナビゲーション・ボタン類
+   ========================= */
 
 /* PC用ナビ（左） */
 .header-nav {
   margin-left: 12px;
 }
+
 .header-nav a {
   margin-right: 12px;
   text-decoration: none;
   color: inherit;
 }
 
-/* 検索ボタン */
+/* 検索ボタン（一覧ページだけ表示・右端） */
 .header-search-btn {
   padding: 4px 10px;
   cursor: pointer;
   display: none;
 }
+
 .page-index .header-search-btn {
   display: inline-block;
 }
@@ -69,15 +81,17 @@
   cursor: pointer;
 }
 
-/* スマホ用 — ここからここまでが 1 つの @media */
+/* =========================
+   スマホ用（max-width: 768px）
+   ========================= */
 @media (max-width: 768px) {
-  /* ロゴ小さめ */
+  /* 中央ロゴを少し小さくする（スマホ側のサイズ） */
   .header-logo {
     max-height: 50px;
     height: 50px;
   }
 
-  /* 左に縦メニューを出す */
+  /* 左に縦メニューを出す（ハンバーガーで開閉） */
   .header-nav {
     display: none;
     position: absolute;
@@ -91,25 +105,31 @@
 
   .header-nav a {
     margin: 4px 0;
+    margin-right: 0;
   }
 
-  /* PC時のみ表示にしていたナビはスマホでは非表示 */
+  /* スマホではハンバーガーを表示 */
   .header-menu-btn {
     display: inline-block;
   }
 }
 
-/* PC表示 */
+/* =========================
+   PC表示（769px以上）
+   ========================= */
 @media (min-width: 769px) {
   .header-nav {
     display: flex;
   }
+
   .header-menu-btn {
     display: none;
   }
 }
 
-/* アーク表示 */
+/* =========================
+   アーク表示
+   ========================= */
 .arc-section {
   margin-top: 16px;
 }
@@ -134,7 +154,9 @@
   opacity: 0.8;
 }
 
-/* カード一覧まわり */
+/* =========================
+   カード一覧まわり
+   ========================= */
 #card-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
