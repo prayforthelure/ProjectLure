@@ -1,28 +1,31 @@
 <header class="site-header">
-  <!-- 左：丸ロゴ（ホームリンク） -->
+  <!-- 左：丸ロゴ + ページリンク + ハンバーガー -->
   <div class="header-left">
     <a href="index.html" class="brand-link">
       <img src="images/ui/logo-circle.png"
            alt="Project Lure"
            class="brand-icon">
     </a>
-  </div>
 
-  <!-- 中央：横長ロゴ -->
-  <div class="header-center">
-    <img src="images/ui/logo-horizontal.png"
-         alt="ぎじえPRJ Project Lure"
-         class="header-logo">
-  </div>
-
-  <!-- 右：ナビ＋検索＋ハンバーガー -->
-  <div class="header-right">
     <nav class="header-nav" id="header-nav">
       <a href="about.html">About</a>
       <a href="links.html">Links</a>
     </nav>
 
-    <button id="search-open" class="header-search-btn">検索</button>
     <button id="menu-toggle" class="header-menu-btn">☰</button>
+  </div>
+
+  <!-- 中央：横長ロゴ（indexへのリンク） -->
+  <div class="header-center">
+    <a href="index.html" class="header-logo-link">
+      <img src="images/ui/logo-horizontal.png"
+           alt="Project Lure"
+           class="header-logo">
+    </a>
+  </div>
+
+  <!-- 右：検索（一覧ページだけ表示） -->
+  <div class="header-right">
+    <button id="search-open" class="header-search-btn">検索</button>
   </div>
 </header>
