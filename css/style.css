@@ -43,8 +43,7 @@
 
 /* 横長ロゴ（PC・タブレット） */
 .header-logo {
-  max-height: 100px;   /* ←ここを変えれば中央ロゴの大きさが変わる（PC側） */
-  height: 100px;
+  height: clamp(40px, 10vw, 120px);
   width: auto;
 }
 
@@ -85,12 +84,6 @@
    スマホ用（max-width: 768px）
    ========================= */
 @media (max-width: 768px) {
-  /* 中央ロゴを少し小さくする（スマホ側のサイズ） */
-  .header-logo {
-    max-height: 50px;
-    height: 50px;
-  }
-
   /* 左に縦メニューを出す（ハンバーガーで開閉） */
   .header-nav {
     display: none;
