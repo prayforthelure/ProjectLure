@@ -11,28 +11,81 @@
   z-index: 10;
 }
 
+/* 左・中央・右のレイアウト */
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-center {
+  flex: 1;                 /* 中央が伸びて真ん中に来る */
+  text-align: center;
+}
+
+/* 丸ロゴ */
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* 横長ロゴ */
+.header-logo {
+  max-height: 32px;        /* 大きさはここで調整 */
+  height: 32px;
+  width: auto;
+}
+
+/* PC用ナビ */
 .header-nav a {
   margin-left: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 検索ボタン：デフォルト非表示、一覧だけ表示 */
+.header-search-btn {
+  margin-left: 12px;
+  padding: 4px 10px;
+  cursor: pointer;
+  display: none;
+}
+.page-index .header-search-btn {
+  display: inline-block;
 }
 
 /* ハンバーガー */
 .header-menu-btn {
+  margin-left: 8px;
   font-size: 20px;
+  cursor: pointer;
 }
 
-/* PC */
+/* PC表示 */
 @media (min-width: 769px) {
   .header-nav {
     display: flex;
   }
-
   .header-menu-btn {
-    display: none;
+    display: none;   /* PCではハンバーガー隠す */
   }
 }
 
-/* スマホ */
+/* スマホ表示 */
 @media (max-width: 768px) {
+  /* 中央ロゴを少し小さくして余裕を作る */
+  .header-logo {
+    max-height: 28px;
+    height: 28px;
+  }
+
+  /* 右側スペースが狭くなるので、リンクはドロップダウンに */
   .header-nav {
     display: none;
     position: absolute;
@@ -41,6 +94,11 @@
     background: #fff;
     border: 1px solid #ddd;
     flex-direction: column;
+    padding: 8px 12px;
+  }
+
+  .header-nav a {
+    margin: 4px 0;
   }
 }
 
