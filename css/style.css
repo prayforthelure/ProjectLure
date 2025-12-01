@@ -429,3 +429,29 @@ main {
     width: 100%;
   }
 }
+
+.search-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.search-decide-btn {
+  flex: 1;
+  padding: 10px;
+  background: #222;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.search-reset-btn {
+  flex: 1;
+  padding: 10px;
+  background: #ccc;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
