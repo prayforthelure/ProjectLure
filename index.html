@@ -31,33 +31,38 @@
       <button id="search-close">×</button>
     </div>
 
-    <!-- ポケスリっぽい 1本の検索バー -->
+    <!-- テキスト検索バー -->
     <div class="search-bar">
       <span class="search-icon">🔍</span>
-
       <input
         id="search-input"
         type="text"
         placeholder="タイトル / コード / 色名"
       >
-
-      <select id="filter-series" class="search-select">
-        <option value="">全シリーズ</option>
-      </select>
-
-      <select id="filter-arc" class="search-select">
-        <option value="">全アーク</option>
-      </select>
     </div>
 
-    <!-- ★ ここに「検索結果」ではなく “ボタン行” を置く -->
+    <!-- シリーズ＆アークのチェックボックス -->
+    <div class="search-filter-group">
+      <div class="filter-block">
+        <div class="filter-label">シリーズ</div>
+        <div class="filter-options" id="filter-series-options">
+          <!-- JS で追加 -->
+        </div>
+      </div>
+
+      <div class="filter-block">
+        <div class="filter-label">アーク</div>
+        <div class="filter-options" id="filter-arc-options">
+          <!-- JS で追加 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ボタン -->
     <div class="search-btn-row">
       <button id="search-reset" class="search-reset-btn">リセット</button>
-      <button id="search-apply" class="search-decide-btn">絞り込む</button>
+      <button id="search-decide" class="search-decide-btn">絞り込む</button>
     </div>
-
-    <!-- 旧：これはもう使わない想定（削除OK） -->
-    <!-- <div id="search-results"></div> -->
   </div>
 </div>
 </body>
