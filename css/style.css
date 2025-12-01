@@ -43,9 +43,8 @@
 
 /* 横長ロゴ（PC・タブレット） */
 .header-logo {
-  height: 80px;      /* まずはこのくらい */
-  width: auto;
-  outline: 3px solid red;   /* ← 一時的に枠を付ける（テスト用） */
+  width: 40%;   /* 画面幅の40% */
+  height: auto; /* アスペクト比維持 */
 }
 
 /* =========================
