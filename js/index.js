@@ -49,16 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
             a.dataset.series = c.series;
           }
 
-          a.innerHTML = `
-            <div class="card-inner">
-              <div class="card-image">
-                <img src="${imgPath}" alt="${c.title}">
-              </div>
-              <div class="card-meta">
-                <div class="card-title">${c.title || c.code}</div>
-              </div>
-            </div>
-          `;
+					 a.innerHTML = `
+  					<div class="card-inner">
+    					<div class="card-image">
+      					<img src="${imgPath}" alt="${c.title}">
+    					</div>
+    					<div class="card-meta">
+      					<div class="card-title">${c.title || c.code}</div>
+    					</div>
+  					</div>
+					`;
           container.appendChild(a);
         });
       }
