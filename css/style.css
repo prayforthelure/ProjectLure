@@ -3,12 +3,25 @@
    ========================= */
 :root {
   --header-height: 120px;
+
+　 /* ヘッダーの海グラデ */
+  --header-grad-left:  #12c2e9;  /* 明るいシアン */
+  --header-grad-right: #0073ff;  /* 深めのブルー */
 }
 
 /* 本文をヘッダー高さ分押し下げ */
 body {
   margin: 0;
   padding-top: var(--header-height);
+
+  font-family: 'M PLUS Rounded 1c',
+               system-ui, -apple-system, BlinkMacSystemFont,
+               'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  color: #05334a;
+
+  /* 一覧の背景：ほんのり青みの白 */
+  background: #f5fbff;
+}
 }
 
 /* ヘッダー本体 */
@@ -26,11 +39,16 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  background: #fff;
-  border-bottom: 1px solid #ddd;
+  /* ここをグラデーションに変更 */
+  background: linear-gradient(
+    90deg,
+    var(--header-grad-left),
+    var(--header-grad-right)
+  );
+
+  border-bottom: none;          /* 線は消してOK */
   z-index: 10;
 }
-
 /* =========================
    ロゴまわり
    ========================= */
