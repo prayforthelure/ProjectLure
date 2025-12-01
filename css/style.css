@@ -166,7 +166,11 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 16px;
+
   padding: 16px;
+
+  max-width: 1200px;   /* ← ここ！画面の最大幅を制限 */
+  margin: 0 auto;      /* ← 中央寄せ */
 }
 
 .card {
