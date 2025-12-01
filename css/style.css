@@ -1,14 +1,19 @@
 /* =========================
-   ヘッダー全体（固定＆高さ一定）
+   基本設定（ヘッダー固定・高さ一定）
    ========================= */
+:root {
+  --header-height: 80px;
+}
+
+/* ヘッダー本体 */
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
-  height: 80px;           /* ヘッダーの高さ */
-  padding: 0 10px;        /* 上下は 0 にして高さを一定に */
+  height: var(--header-height);
+  padding: 0 10px;
   box-sizing: border-box;
 
   display: flex;
@@ -20,13 +25,17 @@
   z-index: 10;
 }
 
-/* コンテンツがヘッダー裏に隠れないように */
+/* 本文をヘッダー高さ分押し下げ */
 body {
   margin: 0;
-  padding-top: 80px;      /* ヘッダー高さと同じにする */
+  padding-top: var(--header-height);
 }
 
-/* 中央ロゴ：ヘッダー内で中央寄せ */
+/* =========================
+   ロゴまわり
+   ========================= */
+
+/* 中央ロゴ */
 .header-center {
   flex: 1;
   display: flex;
@@ -34,14 +43,13 @@ body {
   align-items: center;
 }
 
-/* 横長ロゴ：高さ優先で制御（※二重定義はやめる） */
 .header-logo {
-  max-height: 56px;   /* 80px の中に余裕を持って収まるサイズ */
+  max-height: 56px;   /* 80pxの中に自然に収まる */
   height: auto;
-  width: auto;        /* 画像比率に任せる */
+  width: auto;
 }
 
-/* 丸ロゴ（左端） */
+/* 丸ロゴ（左上） */
 .brand-link {
   display: inline-flex;
   align-items: center;
@@ -57,7 +65,6 @@ body {
    ナビゲーション・ボタン類
    ========================= */
 
-/* PC用ナビ（左） */
 .header-nav {
   margin-left: 12px;
 }
@@ -68,7 +75,7 @@ body {
   color: inherit;
 }
 
-/* 検索ボタン（一覧ページだけ表示・右端） */
+/* 検索ボタン（一覧ページのみ表示） */
 .header-search-btn {
   padding: 4px 10px;
   cursor: pointer;
@@ -87,14 +94,14 @@ body {
 }
 
 /* =========================
-   スマホ用（max-width: 768px）
+   スマホ表示（〜768px）
    ========================= */
 @media (max-width: 768px) {
-  /* 左に縦メニューを出す（ハンバーガーで開閉） */
+  /* ドロップダウンメニュー */
   .header-nav {
     display: none;
     position: absolute;
-    top: 48px;
+    top: var(--header-height);
     left: 16px;
     background: #fff;
     border: 1px solid #ddd;
@@ -107,14 +114,13 @@ body {
     margin-right: 0;
   }
 
-  /* スマホではハンバーガーを表示 */
   .header-menu-btn {
     display: inline-block;
   }
 }
 
 /* =========================
-   PC表示（769px以上）
+   PC表示（769px〜）
    ========================= */
 @media (min-width: 769px) {
   .header-nav {
@@ -125,15 +131,6 @@ body {
     display: none;
   }
 }
-
-/* =========================
-   body
-   ========================= */
-body {
-  margin: 0;
-  padding-top: 64px;  /* ヘッダーの高さと同じ値にする */
-}
-
 
 /* =========================
    アーク表示
@@ -163,7 +160,7 @@ body {
 }
 
 /* =========================
-   カード一覧まわり
+   カード一覧
    ========================= */
 #card-list {
   display: grid;
@@ -183,7 +180,7 @@ body {
   padding-bottom: 8px;
 }
 
-/* 画像の縦横比はそのまま、横幅だけ揃える */
+/* カード画像（縦横比維持） */
 .card-image img {
   width: 100%;
   height: auto;
@@ -193,24 +190,20 @@ body {
 /* =========================
    検索ポップアップ
    ========================= */
-
-/* オーバーレイ全体（最初は非表示） */
 #search-overlay {
-  display: none;                  /* ← これがないと常に見える */
+  display: none;
   position: fixed;
-  inset: 0;                       /* top:0; right:0; bottom:0; left:0; と同じ */
-  background: rgba(0, 0, 0, 0.4); /* 半透明の黒 */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
   justify-content: center;
   align-items: center;
   z-index: 100;
 }
 
-/* 開いているとき用のクラス */
 #search-overlay.is-open {
   display: flex;
 }
 
-/* モーダル本体 */
 #search-modal {
   background: #fff;
   border-radius: 8px;
@@ -220,7 +213,6 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* モーダルヘッダー */
 #search-header {
   display: flex;
   justify-content: space-between;
