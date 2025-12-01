@@ -35,6 +35,14 @@ body {
    ロゴまわり
    ========================= */
 
+/* 左ブロック（丸ロゴ + ハンバーガー） */
+.header-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
 /* 中央ロゴ */
 .header-center {
   flex: 1;
@@ -43,8 +51,9 @@ body {
   align-items: center;
 }
 
+/* 横長ロゴ（PCデフォルト） */
 .header-logo {
-  max-height: 100px;   /* 80pxの中に自然に収まる */
+  max-height: 100px;
   height: auto;
   width: auto;
 }
@@ -97,6 +106,23 @@ body {
    スマホ表示（〜768px）
    ========================= */
 @media (max-width: 768px) {
+
+  /* ヘッダー自体も少し低めにする */
+  :root {
+    --header-height: 96px;
+  }
+
+  .site-header {
+    padding: 0 8px;
+  }
+
+  /* スマホ時はロゴを幅ベースで縮小 */
+  .header-logo {
+    width: 60vw;
+    max-height: none;
+    height: auto;
+  }
+
   /* ドロップダウンメニュー */
   .header-nav {
     display: none;
@@ -162,27 +188,28 @@ body {
 /* =========================
    カード一覧
    ========================= */
-/* カード一覧：基本はスマホ基準でパディング 0 */
+
+/* スマホ（デフォルト）は 3列固定・余白なし */
 #card-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* スマホは3列固定 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 
-  padding: 0;     /* ← スマホは余白なし */
+  padding: 0;
   margin: 0 auto;
 
   max-width: 1200px;
 }
 
-/* PC時のみ余白とレイアウト変更 */
+/* PC / タブレットのみ余白をつける */
 @media (min-width: 481px) {
   #card-list {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    padding: 64px;     /* ← 好きな値（72 / 80 / 96 / 100pxなど） */
+    padding: 64px;
   }
 }
 
-/* スマホのときは 3列固定 */
+/* 強制：スマホは 3列 */
 @media (max-width: 480px) {
   #card-list {
     grid-template-columns: repeat(3, 1fr);
@@ -207,6 +234,7 @@ body {
   display: block;
 }
 
+/* コードは非表示 */
 .card-code {
   display: none !important;
 }
