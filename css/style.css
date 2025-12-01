@@ -191,6 +191,10 @@ body {
   display: block;
 }
 
+.card-code {
+  display: none !important;
+}
+
 /* =========================
    検索ポップアップ
    ========================= */
