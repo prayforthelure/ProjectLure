@@ -260,17 +260,18 @@ body {
 
 /* タイトルの見た目 */
 .card-meta {
+  width: 100%;
   padding: 8px 10px;
 }
 
 .card-title {
-  font-size: 13px;
-  line-height: 1.4;
-  font-weight: 500;
-  /* 長いタイトルを1行で切る場合 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal !important;   /* 折り返し許可 */
+  overflow: visible !important;     /* はみ出しを許可 */
+  text-overflow: unset !important;  /* … を出さない */
+  display: block;
+  font-size: 14px;
+  line-height: 1.3;
+  padding: 4px 6px;
 }
 
 /* =========================
