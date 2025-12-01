@@ -2,30 +2,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
 
-  // characters.json / arcList.json / series.json を読み込む
+  // characters.json / arcList.json / series.json / link.json を読み込む
   Promise.all([
     fetch("data/characters.json").then(r => r.json()),
     fetch("data/arcList.json").then(r => r.json()),
-    fetch("data/series.json").then(r => r.json())
-  ]).then(([chars, arcList, seriesMap]) => {
+    fetch("data/series.json").then(r => r.json()),
+    fetch("data/links.json").then(r => r.json())
+  ]).then(([chars, arcList, seriesMap, linkMap]) => {
 
     // code に一致するキャラ
     const c = chars.find(ch => ch.code === code);
     if (!c) return;
 
-    // 画像パスをコードから自動生成
+    // 画像パス
     const imgPath = `images/characters/${c.code}.png`;
 
     // アーク情報
     const exArc = c.arc?.ex ? arcList[c.arc.ex] : null;
     const coreArc = c.arc?.core ? arcList[c.arc.core] : null;
 
-    // シリーズ名
+    // シリーズ
     const series = seriesMap[c.series];
+
+    // リンク情報
+    const links = linkMap[c.code] || {};
+    const yt = links.youtube || "";
+    const note = links.note || "";
+    const x = links.x || "";
+
+    // リンクブロック生成
+    let linkHtml = "";
+    if (yt || note || x) {
+      linkHtml = `
+        <div class="character-links">
+          ${yt ? `<a href="${yt}" target="_blank">YouTube</a>` : ""}
+          ${note ? `<a href="${note}" target="_blank">note</a>` : ""}
+          ${x ? `<a href="${x}" target="_blank">X</a>` : ""}
+        </div>
+      `;
+    }
 
     const container = document.getElementById("character-content");
 
-    // ===== HTML描画（PCでは横並び / スマホでは縦並び） =====
     container.innerHTML = `
       <div class="character-layout">
 
@@ -73,6 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
           </section>
+
+          <!-- SNSリンク -->
+          ${linkHtml}
 
         </div>
       </div>
