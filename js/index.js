@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ===== キャラクターデータ読み込み =====
   Promise.all([
-    fetch("characters.json").then(r => {
+    fetch("data/characters.json").then(r => {
       if (!r.ok) {
         throw new Error("characters.json が読み込めませんでした");
       }
       return r.json();
     }),
     // series.json は失敗しても空オブジェクトで続行する
-    fetch("series.json")
+    fetch("data/series.json")
       .then(r => {
         if (!r.ok) {
           console.warn("series.json が読み込めませんでした (status:", r.status, ")");
