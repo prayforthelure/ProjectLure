@@ -94,9 +94,9 @@ body {
 }
 
 /* =========================
-   スマホ表示（〜768px）
+   スマホ表示（〜480px）
    ========================= */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   /* ドロップダウンメニュー */
   .header-nav {
     display: none;
@@ -120,9 +120,9 @@ body {
 }
 
 /* =========================
-   PC表示（769px〜）
+   PC表示（481px〜）
    ========================= */
-@media (min-width: 769px) {
+@media (min-width: 481px) {
   .header-nav {
     display: flex;
   }
@@ -175,7 +175,7 @@ body {
 }
 
 /* PC時のみ余白とレイアウト変更 */
-@media (min-width: 769px) {
+@media (min-width: 481px) {
   #card-list {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     padding: 64px;     /* ← 好きな値（72 / 80 / 96 / 100pxなど） */
@@ -183,7 +183,7 @@ body {
 }
 
 /* スマホのときは 3列固定 */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   #card-list {
     grid-template-columns: repeat(3, 1fr);
   }
