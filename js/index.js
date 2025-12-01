@@ -1,16 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ===== キャラクターデータ読み込み =====
   Promise.all([
-    fetch("characters.json").then(r => r.json()),
-    fetch("series.json").then(r => r.json())
+    fetch("characters.json").then(r => {
+      if (!r.ok) {
+        throw new Error("characters.json が読み込めませんでした");
+      }
+      return r.json();
+    }),
+    // series.json は失敗しても空オブジェクトで続行する
+    fetch("series.json")
+      .then(r => {
+        if (!r.ok) {
+          console.warn("series.json が読み込めませんでした (status:", r.status, ")");
+          return {}; // からのマップとして扱う
+        }
+        return r.json();
+      })
+      .catch(e => {
+        console.warn("series.json 読み込みエラー:", e);
+        return {}; // 例外時もからで続行
+      })
   ])
     .then(([chars, seriesMap]) => {
+      console.log("chars:", chars);
+      console.log("seriesMap:", seriesMap);
+
       const container = document.getElementById("card-list");
 
-      // 元の順番を保持しておく（コード順＝JSONに書いた順）
+      // 元の順番を保持（コード順＝JSON に書いた順）
       const originalOrder = [...chars];
-      let currentList = [...originalOrder]; // 今表示しているリスト
-      let sortMode = "code";                // "code" or "title"
+      let currentList = [...originalOrder];
+      let sortMode = "code"; // "code" or "title"
 
       // 一覧描画用の関数
       function renderList(list) {
@@ -18,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         list.forEach(c => {
           const imgPath = `images/characters/${c.code}.png`;
-          const series = seriesMap[c.series]; // "0"〜"9"
+          const series = seriesMap[c.series]; // "0"〜"9" → series.json のキー
 
           const a = document.createElement("a");
           a.href = `character.html?code=${c.code}`;
@@ -41,14 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // 初期表示：コード順（＝JSONの順番）
+      // 初期表示：コード順（JSON の順番）
       renderList(currentList);
 
-      // ===== 並び替えボタン（ヘッダー右の1個だけ） =====
+      // ===== 並び替えボタン（ヘッダー右の1個） =====
       const sortToggleBtn = document.getElementById("sort-open");
 
       if (sortToggleBtn) {
-        // 初期表示のラベル（お好みで調整）
+        // 最初のラベル
         sortToggleBtn.textContent = "タイトル順";
 
         sortToggleBtn.addEventListener("click", () => {
@@ -60,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
               return ay.localeCompare(by, "ja");
             });
             sortMode = "title";
-            sortToggleBtn.textContent = "コード順";  // 押すとコード順に戻せるようにラベル変更
+            sortToggleBtn.textContent = "コード順";
           } else {
             // コード順（元の順番に戻す）
             currentList = [...originalOrder];
@@ -70,12 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
           renderList(currentList);
         });
       }
-
-      // ===== （検索機能を実装するなら、ここで currentList / originalOrder を使う） =====
-      // 例：検索は originalOrder を基準にフィルタして renderList(filtered) を呼ぶ
     })
     .catch(e => {
-      console.error("読み込みエラー:", e);
+      console.error("characters.json 側の読み込みエラー:", e);
     });
 
   // ===== ここから検索ポップアップ用 =====
