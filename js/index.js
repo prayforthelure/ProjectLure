@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const cb = document.createElement("input");
       cb.type = "checkbox";
       cb.value = key;
-      cb.checked = true;
+      cb.checked = false;
       label.appendChild(cb);
       label.append(data.nameJa);   // 和名だけでOK
       seriesOptions.appendChild(label);
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const cb = document.createElement("input");
       cb.type = "checkbox";
       cb.value = code;
-      cb.checked = true;
+      cb.checked = false;
       label.appendChild(cb);
       // icon + name（和名）
       label.append(`${data.icon} ${data.name}`);
