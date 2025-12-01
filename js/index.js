@@ -1,42 +1,74 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== キャラクター一覧の読み込み =====
+  // ===== キャラクターデータ読み込み =====
   Promise.all([
     fetch("characters.json").then(r => r.json()),
     fetch("series.json").then(r => r.json())
   ])
     .then(([chars, seriesMap]) => {
-      // タイトル読みでソート
-      chars.sort((a, b) => {
-        const ay = (a.titleYomi || a.title || "").toString();
-        const by = (b.titleYomi || b.title || "").toString();
-        return ay.localeCompare(by, "ja");
-      });
-
       const container = document.getElementById("card-list");
 
-      chars.forEach(c => {
-        const imgPath = `images/characters/${c.code}.png`;
-        const series = seriesMap[c.series]; // "0"〜"9" から取得
+      // 元の順番を保持しておく（コード順＝JSONに書いた順）
+      const originalOrder = [...chars];
+      let currentList = [...originalOrder]; // 今表示しているリスト
 
-        const a = document.createElement("a");
-        a.href = `character.html?code=${c.code}`;
-        a.className = "card";
-        a.innerHTML = `
-          <div class="card-inner">
-            <div class="card-image">
-              <img src="${imgPath}" alt="${c.title}">
-            </div>
-            <div class="card-meta">
-              <div class="card-code">${c.code}</div>
-              <div class="card-title">${c.title}</div>
-              <div class="card-series">
-                ${series ? series.nameJa : ""}
+      // 一覧描画用の関数
+      function renderList(list) {
+        container.innerHTML = ""; // 一旦クリア
+
+        list.forEach(c => {
+          const imgPath = `images/characters/${c.code}.png`;
+          const series = seriesMap[c.series]; // "0"〜"9"
+
+          const a = document.createElement("a");
+          a.href = `character.html?code=${c.code}`;
+          a.className = "card";
+          a.innerHTML = `
+            <div class="card-inner">
+              <div class="card-image">
+                <img src="${imgPath}" alt="${c.title}">
+              </div>
+              <div class="card-meta">
+                <div class="card-code">${c.code}</div>
+                <div class="card-title">${c.title}</div>
+                <div class="card-series">
+                  ${series ? series.nameJa : ""}
+                </div>
               </div>
             </div>
-          </div>
-        `;
-        container.appendChild(a);
-      });
+          `;
+          container.appendChild(a);
+        });
+      }
+
+      // 初期表示：コード順（＝JSONの順番）
+      renderList(currentList);
+
+      // ===== ソートボタン =====
+      const sortCodeBtn = document.getElementById("sort-code");
+      const sortTitleBtn = document.getElementById("sort-title");
+
+      if (sortCodeBtn) {
+        sortCodeBtn.addEventListener("click", () => {
+          // 元の順番に戻す
+          currentList = [...originalOrder];
+          renderList(currentList);
+        });
+      }
+
+      if (sortTitleBtn) {
+        sortTitleBtn.addEventListener("click", () => {
+          // タイトル読みでソート（読みがないときは title）
+          currentList = [...originalOrder].sort((a, b) => {
+            const ay = (a.titleYomi || a.title || "").toString();
+            const by = (b.titleYomi || b.title || "").toString();
+            return ay.localeCompare(by, "ja");
+          });
+          renderList(currentList);
+        });
+      }
+
+      // ===== （検索機能を実装するなら、ここで currentList / originalOrder を使う） =====
+      // 例：検索時は originalOrder からフィルタして renderList(filtered) を呼ぶ感じにする
     })
     .catch(e => {
       console.error("読み込みエラー:", e);
