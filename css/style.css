@@ -238,6 +238,40 @@ body {
 .card-code {
   display: none !important;
 }
+/* カード装飾の強化 */
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  padding-bottom: 8px;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* タイトルの見た目 */
+.card-meta {
+  padding: 8px 10px;
+}
+
+.card-title {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  /* 長いタイトルを1行で切る場合 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* =========================
    検索ポップアップ
@@ -290,4 +324,88 @@ body {
 #search-results {
   max-height: 300px;
   overflow-y: auto;
+}
+
+/* =========================
+   全ページ共通レイアウト
+   ========================= */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 16px 48px;
+  box-sizing: border-box;
+}
+
+/* =========================
+   個別キャラページ用
+   ========================= */
+#character-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 8px 48px;
+  box-sizing: border-box;
+}
+
+/* 画像＋テキストの横並び（PC）を想定 */
+.character-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* キャラ画像 */
+.char-image {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+/* テキスト側 */
+.character-info {
+  flex: 1;
+}
+
+/* 見出しなど */
+.character-info h1 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.character-meta-row {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.character-meta-label {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* アーク表示（既存の .arc-section を流用） */
+.arc-section {
+  margin-top: 16px;
+}
+
+/* スマホでは縦並びにする */
+@media (max-width: 768px) {
+  .character-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #character-content {
+    padding: 16px 8px 32px;
+  }
+
+  .char-image {
+    max-width: 260px;
+  }
+
+  .character-info {
+    width: 100%;
+  }
 }
