@@ -2,39 +2,44 @@
    ヘッダー全体（固定＆高さ一定）
    ========================= */
 .site-header {
-  position: fixed;          /* 画面上に固定 */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
-  height: 64px;             /* ← ヘッダーの“高さ”を固定 */
-  padding: 0 10px;          /* 上下のpaddingは0にして高さを一定にする */
-  box-sizing: border-box;   /* padding込みで64pxに収まるようにする */
+  height: 80px;           /* ヘッダーの高さ */
+  padding: 0 10px;        /* 上下は 0 にして高さを一定に */
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  border-bottom: 1px solid #ddd;
   background: #fff;
+  border-bottom: 1px solid #ddd;
   z-index: 10;
 }
 
-/* 左・中央・右ブロック */
-.header-left,
-.header-right {
+/* コンテンツがヘッダー裏に隠れないように */
+body {
+  margin: 0;
+  padding-top: 80px;      /* ヘッダー高さと同じにする */
+}
+
+/* 中央ロゴ：ヘッダー内で中央寄せ */
+.header-center {
+  flex: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.header-center {
-  flex: 1;
-  text-align: center;
+/* 横長ロゴ：高さ優先で制御（※二重定義はやめる） */
+.header-logo {
+  max-height: 56px;   /* 80px の中に余裕を持って収まるサイズ */
+  height: auto;
+  width: auto;        /* 画像比率に任せる */
 }
-
-/* =========================
-   ロゴまわり
-   ========================= */
 
 /* 丸ロゴ（左端） */
 .brand-link {
@@ -46,12 +51,6 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-}
-
-/* 横長ロゴ（PC・タブレット） */
-.header-logo {
-  width: 40%;   /* 画面幅の40% */
-  height: auto; /* アスペクト比維持 */
 }
 
 /* =========================
