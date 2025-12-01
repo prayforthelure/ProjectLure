@@ -274,56 +274,78 @@ body {
 }
 
 /* =========================
-   検索ポップアップ
+   検索ポップアップ（中央ドン）
    ========================= */
-/* ======== 検索バー（ポケスリ風） ======== */
-.search-bar {
-  display: flex;
+
+/* 画面全体の黒幕 */
+#search-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); /* やや濃いめ */
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  backdrop-filter: blur(4px); /* ポケスリ風の奥行き */
+  z-index: 200;
+}
 
-  padding: 6px 10px;
-  border-radius: 999px;          /* カプセル形 */
+/* 開くとき */
+#search-overlay.is-open {
+  display: flex;
+}
+
+/* 中央の検索ボックス（ドンッ） */
+#search-modal {
+  background: #fff;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 16px;
+  padding: 20px 18px;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.25);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  transform: scale(0.9);
+  opacity: 0;
+  transition: 0.18s ease;
+}
+
+/* 開いた瞬間のアニメ */
+#search-overlay.is-open #search-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* 上のヘッダー */
+#search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#search-close {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 入力欄（ポケスリ風） */
+#search-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  background: #f9f9f9;
+  border-radius: 8px;
 }
 
-/* 虫眼鏡アイコン */
-.search-icon {
-  font-size: 14px;
+/* 結果一覧 */
+#search-results {
+  max-height: 300px;
+  overflow-y: auto;
 }
-
-/* テキスト入力はバーの中で一番伸びる */
-.search-bar #search-input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 14px;
-}
-
-/* セレクトもバー内に収まるように */
-.search-select {
-  border: none;
-  background: transparent;
-  font-size: 12px;
-  padding: 2px 4px;
-  outline: none;
-}
-
-/* モバイルではセレクトを少し小さく＆折り返し防止 */
-@media (max-width: 768px) {
-  .search-bar {
-    gap: 4px;
-    padding: 4px 8px;
-  }
-
-  .search-select {
-    font-size: 11px;
-    max-width: 90px;
-  }
-}
-
 /* =========================
    全ページ共通レイアウト
    ========================= */
