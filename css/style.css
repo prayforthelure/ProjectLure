@@ -118,7 +118,7 @@ body {
 
   /* スマホ時はロゴを幅ベースで縮小 */
   .header-logo {
-    width: 60vw;
+    width: 40vw;
     max-height: none;
     height: auto;
   }
