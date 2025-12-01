@@ -1,0 +1,19 @@
+{
+  "000": {
+    "youtube": "https://youtu.be/xxxx",
+    "note": "https://note.com/xxxx",
+    "x": "https://x.com/xxxx",
+    "novel": ""
+  },
+  "001": {
+    "youtube": "",
+    "note": "",
+    "x": "",
+    "novel": ""
+  },
+  "011": {
+    "youtube": "https://youtu.be/abc123",
+    "note": "https://note.com/abc123",
+    "novel": "https://note.com/story/hogehoge"
+  }
+}
