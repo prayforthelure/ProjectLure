@@ -793,6 +793,18 @@ main {
     width: 100%;
   }
 }
+
+/* スマホでは INFORMATION を1カラムにする */
+@media (max-width: 768px) {
+  .char-info-grid {
+    grid-template-columns: 1fr;  /* 1列 */
+    column-gap: 0;
+  }
+
+  .char-info-col {
+    margin-bottom: 8px;  /* 色ブロックとアークブロックの間に少し余白 */
+  }
+}
 /* =========================
    泡エフェクト
    ========================= */
