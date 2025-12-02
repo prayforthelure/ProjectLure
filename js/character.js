@@ -112,7 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     // ===== INFORMATION の4項目を生成 =====
-    const infoRows = [
+    // ===== INFORMATION の4項目を生成（左：色／右：アーク） =====
+    const colorRows = [
       {
         label: "メインカラー",
         value: c.mainColorLabel || "―",
@@ -120,7 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         label: "カラーコード",
         value: (c.colors && c.colors.filter(Boolean).join(" / ")) || "―",
-      },
+      }
+    ];
+
+    const arcRows = [
       {
         label: "エクスアーク",
         value: exArc ? `${exArc.icon} ${exArc.name}` : "未設定",
@@ -133,12 +137,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const infoGrid = container.querySelector(".char-info-grid");
     if (infoGrid) {
-      infoGrid.innerHTML = infoRows.map(row => `
+      const colHtml = (rows) => rows.map(row => `
         <div class="char-info-row">
-          <div class="char-info-label">${row.label}：</div>
+          <div class="char-info-label">${row.label}</div>
           <div class="char-info-value">${row.value}</div>
         </div>
       `).join("");
+
+      infoGrid.innerHTML = `
+        <div class="char-info-col">
+          ${colHtml(colorRows)}
+        </div>
+        <div class="char-info-col">
+          ${colHtml(arcRows)}
+        </div>
+      `;
     }
   });
 });
