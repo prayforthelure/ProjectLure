@@ -1,11 +1,11 @@
 <header class="site-header">
 
-　 <div class="bubbles">
+  <div class="bubbles">
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span>
   </div>
 	
-  <!-- 左：丸ロゴ + ページリンク + ハンバーガー -->
+  <!-- 左：丸ロゴ + ハンバーガー + ナビ -->
   <div class="header-left">
     <a href="index.html" class="brand-link">
       <img src="images/ui/logo-circle.png"
@@ -13,17 +13,17 @@
            class="brand-icon">
     </a>
 
+    <button id="menu-toggle" class="header-menu-btn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
     <nav class="header-nav" id="header-nav">
       <a href="about.html">About</a>
       <a href="links.html">Links</a>
     </nav>
-
-    <div class="header-menu-btn">
-  		<i class="fa-solid fa-bars"></i>
-		</div>
   </div>
 
-  <!-- 中央：横長ロゴ（indexへのリンク） -->
+  <!-- 中央：横長ロゴ -->
   <div class="header-center">
     <a href="index.html" class="header-logo-link">
       <img src="images/ui/logo-horizontal.png"
@@ -32,10 +32,16 @@
     </a>
   </div>
 
-  <!-- 右：検索（一覧ページだけ表示） -->
+  <!-- 右：検索ボタン（＋並び替えがあれば一緒に） -->
   <div class="header-right">
-		<div id="search-open" class="header-search-btn">
-  		<i class="fa-solid fa-magnifying-glass"></i>
-		</div>
+    <button id="search-open" class="header-icon-btn header-search-btn">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <!-- 並び替えボタンを使うならここに -->
+    <!--
+    <button id="sort-open" class="header-icon-btn header-sort-btn">
+      <i class="fa-solid fa-arrow-down-a-z"></i>
+    </button>
+    -->
   </div>
 </header>
