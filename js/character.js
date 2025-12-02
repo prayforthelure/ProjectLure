@@ -71,8 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("character-content");
     if (!container) return;
 
-    container.innerHTML = `
-      <article class="char-page">
+container.innerHTML = `
+  <article class="char-page">
+
+    <!-- 一覧に戻る -->
+    <a href="index.html" class="char-back-link">← 一覧に戻る</a>
 
         <!-- 上段：カード ＋ 基本情報 -->
         <section class="char-hero">
