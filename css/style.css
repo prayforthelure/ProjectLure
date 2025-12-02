@@ -221,15 +221,28 @@ body {
 /* =========================
    PC表示（769px〜）
    ========================= */
-@media (min-width: 769px) {
-  .header-nav {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+@media (min-width: 769px) and (hover:hover) and (pointer:fine) {
+  .header-nav a {
+    padding: 6px 12px;
+    border-radius: 999px;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      box-shadow 0.15s ease,
+      transform 0.12s ease-out;
   }
 
-  .header-menu-btn {
-    display: none;
+  .header-nav a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
+    transform: translateY(-1px);
+  }
+
+  .header-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    transform: translateY(-1px);
   }
 }
 
@@ -259,7 +272,70 @@ body {
   font-size: 14px;
   opacity: 0.8;
 }
+/* =========================
+   フッター
+   ========================= */
+.site-footer {
+  margin-top: 40px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(0, 40, 80, 0.08);
+  box-shadow: 0 -2px 6px rgba(0, 40, 80, 0.03);
+  font-size: 12px;
+  color: var(--text-main);
+}
 
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 8px;
+}
+
+.footer-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 80, 140, 0.18);
+  background: #ffffff;
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--text-main);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.12s ease-out;
+}
+
+.footer-link-btn:hover {
+  background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 40, 80, 0.25);
+  transform: translateY(-1px);
+}
+
+.footer-copy {
+  opacity: 0.8;
+}
+
+/* スマホ時は縦並びに */
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}
 /* =========================
    カード一覧
    ========================= */
