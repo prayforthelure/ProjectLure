@@ -492,27 +492,6 @@ body {
   gap: 6px;
 }
 
-.filter-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid #ddd;
-  background: #f7f7f7;
-
-  font-size: 13px;
-  cursor: pointer;
-  box-sizing: border-box;
-
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
 /* チップ（シリーズ／アーク） */
 .filter-chip {
   display: inline-flex;
@@ -588,8 +567,9 @@ main {
 }
 
 /* =========================
-   個別キャラページ用
+   個別キャラページ（図鑑レイアウト）
    ========================= */
+
 #character-content {
   max-width: 960px;
   margin: 0 auto;
@@ -597,63 +577,175 @@ main {
   box-sizing: border-box;
 }
 
-.character-layout {
+.char-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---- 上段：カード＋基本情報 ---- */
+
+.char-hero {
   display: flex;
   gap: 24px;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-.char-image {
-  max-width: 320px;
+.char-hero-card {
+  flex: 0 0 320px;
+  max-width: 100%;
+}
+
+.char-hero-image {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid #ddd;
   background: #fff;
 }
 
-.character-info {
+.char-hero-meta {
   flex: 1;
+  min-width: 260px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #ffffffd9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
-.character-info h1 {
-  font-size: 20px;
-  margin: 0 0 8px;
-  color: var(--text-main);
-}
-
-
-.character-meta-row {
-  font-size: 14px;
+.char-hero-code {
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
   margin-bottom: 4px;
 }
 
-.character-meta-label {
-  font-weight: 600;
-  margin-right: 4px;
-  color: var(--text-muted);
+.char-hero-title {
+  font-size: 22px;
+  margin: 0 0 4px;
 }
 
-@media (max-width: 768px) {
-  .character-layout {
-    flex-direction: column;
-    align-items: center;
-  }
+.char-hero-yomi {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
 
+.char-hero-catch {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 8px 0 12px;
+}
+
+.char-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.char-tag {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e5f3ff;
+  font-size: 11px;
+}
+
+/* ---- 共通セクション ---- */
+
+.char-section {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #ffffffd9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.char-section-title {
+  font-size: 16px;
+  margin: 0 0 12px;
+  letter-spacing: 0.12em;
+}
+
+/* ---- INFORMATION の中身（2カラムグリッド） ---- */
+
+.char-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  column-gap: 24px;
+  row-gap: 8px;
+}
+
+.char-info-row {
+  display: flex;
+  font-size: 13px;
+}
+
+.char-info-label {
+  width: 90px;
+  font-weight: 600;
+}
+
+.char-info-value {
+  flex: 1;
+}
+
+/* ---- GALLERY ---- */
+
+.char-gallery-group {
+  margin-bottom: 12px;
+}
+
+.char-gallery-heading {
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.char-gallery-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.char-gallery-item + .char-gallery-item {
+  margin-top: 2px;
+}
+
+.char-gallery-item a {
+  font-size: 13px;
+  text-decoration: none;
+  color: #005a9c;
+}
+
+.char-gallery-item a:hover {
+  text-decoration: underline;
+}
+
+.char-gallery-empty {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* スマホでは縦並びに寄せる */
+@media (max-width: 768px) {
   #character-content {
     padding: 16px 8px 32px;
   }
 
-  .char-image {
-    max-width: 260px;
+  .char-hero {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .character-info {
+  .char-hero-card {
+    width: 80%;
+    max-width: 320px;
+  }
+
+  .char-hero-meta {
     width: 100%;
   }
 }
-
 /* =========================
    泡エフェクト
    ========================= */
