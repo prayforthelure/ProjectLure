@@ -45,7 +45,6 @@ body {
   border-bottom: 1px solid rgba(0,0,0,0.06);
   z-index: 10;
   overflow: hidden;
-  position: fixed;
 }
 
 /* 左ブロックは絶対配置にする（左上固定） */
@@ -70,7 +69,7 @@ body {
 .header-center {
   display: flex;
   justify-content: center;
-  flex: none;  /* flex:1 を削除 */
+  flex: none;  /* flex:1 を削除して中央基準に */
 }
 
 /* 横長ロゴ（PCデフォルト） */
@@ -163,15 +162,16 @@ body {
     z-index: 200;
   }
 
+  /* ★ is-open が付いたときに表示 */
   .header-nav.is-open {
     display: flex;
   }
 
- .header-nav a {
+  .header-nav a {
     margin: 4px 0;
     margin-right: 0;
+    color: #05334a;  /* ドロップダウン内は濃い文字色で */
   }
-
 
   .header-menu-btn {
     display: inline-block;
@@ -182,7 +182,7 @@ body {
    PC表示（769px〜）
    ========================= */
 @media (min-width: 769px) {
-   .header-nav {
+  .header-nav {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -297,7 +297,7 @@ body {
   display: block;
   font-size: 14px;
   line-height: 1.3;
-  padding: 4px 8px 4px 10px; /* 左を1〜2px広めに */
+  padding: 4px 8px 4px 10px; /* 左を少し広めにしてバランス調整 */
 }
 
 /* =========================
