@@ -7,8 +7,28 @@
   /* ヘッダーの海グラデ */
   --header-grad-left:  #12c2e9;  /* 明るいシアン */
   --header-grad-right: #0073ff;  /* 深めのブルー */
-}
 
+  /* ページ全体のベースカラー */
+  --bg-page-top:    #f5fbff;     /* ほぼ白に近い青 */
+  --bg-page-mid:    #e8f4ff;     /* 少しだけ青を強く */
+  --bg-page-bottom: #f3f9ff;
+
+  /* カードなどの共通 */
+  --card-bg:       #ffffff;
+  --card-border:   rgba(0, 40, 80, 0.08);
+  --card-shadow:   rgba(0, 40, 80, 0.06);
+  --card-shadow-h: rgba(0, 40, 80, 0.12);
+
+  /* テキスト／アクセント */
+  --text-main:   #05334a;
+  --text-muted:  #5c7a92;
+  --accent:      #0088ff;
+  --accent-soft: #d3ecff;
+
+  /* モーダル系 */
+  --modal-bg:    #ffffff;
+  --modal-shadow: 0 4px 16px rgba(0, 40, 80, 0.18);
+}
 /* 本文をヘッダー高さ分押し下げ ＋ 全体フォント・背景 */
 body {
   margin: 0;
@@ -17,10 +37,16 @@ body {
   font-family: 'M PLUS Rounded 1c',
                system-ui, -apple-system, BlinkMacSystemFont,
                'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
-  color: #05334a;
 
-  /* 一覧の背景：ほんのり青みの白 */
-  background: #f5fbff;
+  color: var(--text-main);
+
+  /* ページ全体をごく薄い海グラデに */
+  background: linear-gradient(
+    180deg,
+    var(--bg-page-top) 0%,
+    var(--bg-page-mid) 40%,
+    var(--bg-page-bottom) 100%
+  );
 }
 
 /* =========================
@@ -270,37 +296,25 @@ body {
   display: block;
   text-decoration: none;
   color: inherit;
-  border: 1px solid #ddd;
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
+  background: var(--card-bg);
   padding-bottom: 8px;
 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 4px var(--card-shadow);
   transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-}
-
-/* カード画像（縦横比維持） */
-.card-image img {
-  width: 100%;
-  height: auto;
-  display: block;
+  box-shadow: 0 4px 10px var(--card-shadow-h);
 }
 
 /* メタ情報部分 */
 .card-meta {
   width: 100%;
   padding: 8px 10px;
-}
-
-/* コードは非表示（内部データ用） */
-.card-code {
-  display: none !important;
 }
 
 /* タイトル：折り返し優先で全部見せる */
@@ -311,7 +325,8 @@ body {
   display: block;
   font-size: 14px;
   line-height: 1.3;
-  padding: 4px 8px 4px 10px; /* 左を少し広めに */
+  padding: 4px 8px 4px 10px;
+  color: var(--text-main);
 }
 
 /* =========================
@@ -334,12 +349,12 @@ body {
 }
 
 #search-modal {
-  background: #fff;
+  background: var(--modal-bg);
   width: 90%;
   max-width: 480px;
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--modal-shadow);
   box-sizing: border-box;
 
   display: flex;
@@ -379,10 +394,11 @@ body {
   padding: 6px 10px;
 
   border-radius: 999px;
-  border: 1px solid #ddd;
-  background: #f7f7f7;
+  border: 1px solid rgba(0, 80, 140, 0.15);
+  background: rgba(255, 255, 255, 0.9);
   box-sizing: border-box;
 }
+
 
 /* 🔍 アイコン */
 .search-icon {
@@ -440,19 +456,35 @@ body {
     box-shadow 0.15s ease;
 }
 
-.filter-chip input[type="checkbox"] {
-  margin: 0;
-  width: 14px;
-  height: 14px;
-  accent-color: #222;
+/* チップ（シリーズ／アーク） */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 80, 140, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+
+  font-size: 13px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
+/* 選択状態 */
 @supports (selector(:has(*))) {
   .filter-chip:has(input[type="checkbox"]:checked) {
-    background: #222;
+    background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
     color: #fff;
-    border-color: #222;
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+    border-color: transparent;
+    box-shadow: 0 0 0 2px rgba(0, 80, 160, 0.15);
   }
 }
 
@@ -466,7 +498,7 @@ body {
 .search-decide-btn {
   flex: 1;
   padding: 10px;
-  background: #222;
+  background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -476,8 +508,8 @@ body {
 .search-reset-btn {
   flex: 1;
   padding: 10px;
-  background: #ccc;
-  color: #000;
+  background: #d7e6f5;
+  color: var(--text-main);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -531,7 +563,9 @@ main {
 .character-info h1 {
   font-size: 20px;
   margin: 0 0 8px;
+  color: var(--text-main);
 }
+
 
 .character-meta-row {
   font-size: 14px;
@@ -541,6 +575,7 @@ main {
 .character-meta-label {
   font-weight: 600;
   margin-right: 4px;
+  color: var(--text-muted);
 }
 
 @media (max-width: 768px) {
