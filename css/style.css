@@ -543,3 +543,44 @@ main {
     width: 100%;
   }
 }
+/* =========================
+   泡エフェクト
+   ========================= */
+.bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1; /* ロゴより後ろ */
+}
+
+.bubbles span {
+  position: absolute;
+  bottom: -50px;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: bubble 6s linear infinite;
+  filter: blur(1px);
+}
+
+/* 泡のゆっくり上昇アニメーション */
+@keyframes bubble {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-180px) scale(1.8);
+    opacity: 0;
+  }
+}
+.bubbles span:nth-child(1)  { left: 10%;  animation-duration: 6s; width:12px; height:12px; }
+.bubbles span:nth-child(2)  { left: 30%;  animation-duration: 7s; width:14px; height:14px; }
+.bubbles span:nth-child(3)  { left: 50%;  animation-duration: 5.5s; width:10px; height:10px; }
+.bubbles span:nth-child(4)  { left: 70%;  animation-duration: 6.8s; width:16px; height:16px; }
+.bubbles span:nth-child(5)  { left: 90%;  animation-duration: 7.5s; width:12px; height:12px; }
+.bubbles span:nth-child(6)  { left: 20%;  animation-duration: 5.8s; width:11px; height:11px; }
+.bubbles span:nth-child(7)  { left: 40%;  animation-duration: 7.2s; width:15px; height:15px; }
+.bubbles span:nth-child(8)  { left: 60%;  animation-duration: 6.1s; width:9px;  height:9px;  }
+.bubbles span:nth-child(9)  { left: 80%;  animation-duration: 8s;   width:13px; height:13px; }
