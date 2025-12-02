@@ -1194,15 +1194,19 @@ main {
   font-size: 18px;
 }
 
-/* アカウントカード一覧 */
+/* アカウントカード一覧：大枠の中に四角を横並びで配置 */
 .links-account-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: 4px;
 }
 
+/* 小さい四角のカード */
 .links-account-card {
   display: block;
+  width: 220px;              /* 横幅を固定気味に（必要なら調整） */
+  min-height: 90px;          /* ある程度“四角”に見える高さ */
   padding: 10px 12px;
   border-radius: 12px;
   background: #f5fbff;
@@ -1210,6 +1214,7 @@ main {
   text-decoration: none;
   color: var(--text-main);
   font-size: 13px;
+  box-sizing: border-box;
   transition:
     background-color 0.15s ease,
     box-shadow 0.15s ease,
@@ -1247,13 +1252,14 @@ main {
   line-height: 1.6;
 }
 
-/* スマホのときはちょい詰める */
+/* スマホ時は1列にする */
 @media (max-width: 768px) {
-  .links-title {
-    font-size: 20px;
+  .links-account-list {
+    flex-direction: column;
   }
 
-  .links-platform-section {
-    padding: 14px 14px;
+  .links-account-card {
+    width: 100%;
+    min-height: auto;
   }
 }
