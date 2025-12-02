@@ -99,6 +99,17 @@
     "catchcopy": "生かすも殺すも私次第"
   },
   {
+    "code": "009",
+    "title": "ヌクレオチド",
+    "titleYomi": "ぬくれおちど",
+    "series": "0",
+    "arc": { "ex": "R", "core": "K" },
+    "theme": "ベーシスト",
+    "mainColorLabel": "赤色",
+    "colors": [""],
+    "catchcopy": ""
+  },
+  {
     "code": "010",
     "title": "る縋に去過",
     "titleYomi": "かこにすがる",
