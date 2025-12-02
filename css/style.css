@@ -581,7 +581,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  align-items: flex-start;  /* ★これを追加 */
 }
 
 /* ---- 上段：カード＋基本情報 ---- */
@@ -835,6 +834,9 @@ main {
   font-weight: 600;
   text-decoration: none;
   margin-bottom: 20px;
+
+  /* ★ これを追加：ボタン“だけ”左寄せ＆幅は中身だけ */
+  align-self: flex-start;
 }
 
 .char-back-btn.bottom {
