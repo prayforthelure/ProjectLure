@@ -126,6 +126,7 @@ body {
   cursor: pointer;
   border: none;
   background: transparent;
+  z-index: 20;
   color: inherit;
 }
 
