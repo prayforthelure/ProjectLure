@@ -792,6 +792,11 @@ main {
   .char-hero-meta {
     width: 70%;
   }
+   
+  .char-section {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 /* スマホでは INFORMATION を1カラムにする */
