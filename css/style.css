@@ -160,16 +160,11 @@ body {
     border: 1px solid #ddd;
     flex-direction: column;
     padding: 8px 12px;
+    z-index: 20;
   }
 
-  /* ★ これを追加：開いたときは表示する */
   .header-nav.is-open {
     display: flex;
-  }
-
-  .header-nav a {
-    margin: 4px 0;
-    margin-right: 0;
   }
 
   .header-menu-btn {
@@ -181,8 +176,10 @@ body {
    PC表示（769px〜）
    ========================= */
 @media (min-width: 769px) {
-  .header-nav {
+   .header-nav {
     display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
   .header-menu-btn {
