@@ -810,6 +810,18 @@ main {
     margin-bottom: 8px;  /* 色ブロックとアークブロックの間に少し余白 */
   }
 }
+
+.char-back-link {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #005a9c;
+  text-decoration: none;
+}
+
+.char-back-link:hover {
+  text-decoration: underline;
+}
 /* =========================
    泡エフェクト
    ========================= */
