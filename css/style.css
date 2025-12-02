@@ -167,6 +167,12 @@ body {
     display: flex;
   }
 
+ .header-nav a {
+    margin: 4px 0;
+    margin-right: 0;
+  }
+
+
   .header-menu-btn {
     display: inline-block;
   }
