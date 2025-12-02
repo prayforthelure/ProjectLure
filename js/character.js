@@ -96,84 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </section>
 
-        <!-- 中段：INFORMATION -->
+        <!-- 中段：INFORMATION（中身は後で JS で埋める） -->
         <section class="char-section">
           <h2 class="char-section-title">INFORMATION</h2>
-
-          <div class="char-info-grid">
-            <div class="char-info-row">
-              <div class="char-info-label">コード</div>
-              <div class="char-info-value">${c.code}</div>
-            </div>
-
-            <div class="char-info-row">
-              <div class="char-info-label">タイトル</div>
-              <div class="char-info-value">${c.title}</div>
-            </div>
-
-            ${c.titleYomi ? `
-            <div class="char-info-row">
-              <div class="char-info-label">よみ</div>
-              <div class="char-info-value">${c.titleYomi}</div>
-            </div>
-            ` : ""}
-
-            ${series ? `
-            <div class="char-info-row">
-              <div class="char-info-label">シリーズ</div>
-              <div class="char-info-value">${series.nameJa}</div>
-            </div>
-            ` : ""}
-
-            ${c.theme ? `
-            <div class="char-info-row">
-              <div class="char-info-label">テーマ</div>
-              <div class="char-info-value">${c.theme}</div>
-            </div>
-            ` : ""}
-
-            ${c.mainColorLabel ? `
-            <div class="char-info-row">
-              <div class="char-info-label">メインカラー</div>
-              <div class="char-info-value">${c.mainColorLabel}</div>
-            </div>
-            ` : ""}
-
-            ${(c.colors && c.colors.length) ? `
-            <div class="char-info-row">
-              <div class="char-info-label">サブカラー</div>
-              <div class="char-info-value">
-                ${c.colors.join(" / ")}
-              </div>
-            </div>
-            ` : ""}
-
-            ${c.catchcopy ? `
-            <div class="char-info-row">
-              <div class="char-info-label">キャッチコピー</div>
-              <div class="char-info-value">${c.catchcopy}</div>
-            </div>
-            ` : ""}
-
-            <div class="char-info-row">
-              <div class="char-info-label">エクスアーク</div>
-              <div class="char-info-value">
-                ${exArc
-                  ? `<span class="arc-icon">${exArc.icon}</span> ${exArc.name}`
-                  : "未設定"}
-              </div>
-            </div>
-
-            <div class="char-info-row">
-              <div class="char-info-label">コアアーク</div>
-              <div class="char-info-value">
-                ${coreArc
-                  ? `<span class="arc-icon">${coreArc.icon}</span> ${coreArc.name}`
-                  : "未設定"}
-              </div>
-            </div>
-
-          </div>
+          <div class="char-info-grid"></div>
         </section>
 
         <!-- 下段：GALLERY -->
@@ -184,5 +110,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
       </article>
     `;
+
+    // ===== INFORMATION の4項目を生成 =====
+    const infoRows = [
+      {
+        label: "メインカラー",
+        value: c.mainColorLabel || "―",
+      },
+      {
+        label: "カラーコード",
+        value: (c.colors && c.colors.filter(Boolean).join(" / ")) || "―",
+      },
+      {
+        label: "エクスアーク",
+        value: exArc ? `${exArc.icon} ${exArc.name}` : "未設定",
+      },
+      {
+        label: "コアアーク",
+        value: coreArc ? `${coreArc.icon} ${coreArc.name}` : "未設定",
+      }
+    ];
+
+    const infoGrid = container.querySelector(".char-info-grid");
+    if (infoGrid) {
+      infoGrid.innerHTML = infoRows.map(row => `
+        <div class="char-info-row">
+          <div class="char-info-label">${row.label}：</div>
+          <div class="char-info-value">${row.value}</div>
+        </div>
+      `).join("");
+    }
   });
 });
