@@ -632,7 +632,7 @@ main {
   }
 
   .char-hero-meta {
-    width: 100%;
+    width: 80%;
   }
 }
 
@@ -714,14 +714,10 @@ main {
   font-size: 13px;
 }
 
-/* ★コロン揃え用のラベル */
 .char-info-label {
-  width: 90px;
+  width: 96px;           /* コロン位置をきっちり揃える */
   font-weight: 600;
-  position: relative;
-  padding-right: 0.6em;   /* コロン分の余白 */
-  text-align: right;
-}
+  color: var(--text-main);
 
 /* ラベルの右端に必ず「：」を出す */
 .char-info-label::after {
@@ -730,10 +726,9 @@ main {
   right: 0;
 }
 
-/* 値は少しだけ左に余白 */
 .char-info-value {
   flex: 1;
-  padding-left: 0.6em;
+  color: var(--text-main);
 }
 
 /* ---- GALLERY ---- */
