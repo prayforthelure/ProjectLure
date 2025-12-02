@@ -9,16 +9,24 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body class="page-detail">
 
+  <!-- ヘッダー -->
   <div id="header-container"></div>
-  <script src="js/loadHeader.js"></script>
-  <script src="js/loadFooter.js"></script>
 
+  <!-- 本文 -->
   <main>
     <div id="character-content"></div>
   </main>
 
+  <!-- フッター：★必ず追加する -->
+  <div id="footer-container"></div>
+
+  <!-- JS を最後にまとめて読み込み -->
+  <script src="js/loadHeader.js"></script>
+  <script src="js/loadFooter.js"></script>
   <script src="js/character.js"></script>
+
 </body>
 </html>
