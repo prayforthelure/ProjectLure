@@ -990,65 +990,65 @@ main {
   box-sizing: border-box;
 }
 
-.about-container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+/* --- 導入（フラット） --- */
+
+.about-intro {
+  margin-bottom: 20px;
 }
 
-/* ページタイトル周り */
-.about-header {
-  margin-bottom: 8px;
+.about-intro h1 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  letter-spacing: 0.12em;
 }
 
-.about-title {
-  font-size: 24px;
-  margin: 0 0 8px;
-}
-
-.about-lead {
+.about-intro p {
+  margin: 4px 0;
   font-size: 14px;
   line-height: 1.8;
-  color: var(--text-muted);
-  margin: 0;
 }
 
-/* 目次 */
+/* --- 目次（フラット）--- */
+
 .about-toc {
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: #ffffffdd;
-  box-shadow: 0 2px 6px rgba(0, 40, 80, 0.05);
-  border: 1px solid rgba(0, 80, 140, 0.06);
+  margin: 0 0 24px;
 }
 
-.about-toc-title {
-  font-size: 13px;
-  letter-spacing: 0.16em;
+.about-toc h2 {
   margin: 0 0 8px;
-  color: var(--text-main);
+  font-size: 18px;
+  letter-spacing: 0.12em;
 }
 
-.about-toc ol {
+/* 目次リスト */
+
+.about-toc-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  padding-left: 18px;
-  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.about-toc li + li {
-  margin-top: 2px;
-}
-
-.about-toc a {
-  color: #005a9c;
+.about-toc-list a {
   text-decoration: none;
+  font-size: 13px;
+  color: #005a9c;
+  padding: 3px 4px;
+  border-radius: 4px;
+  transition:
+    background-color 0.15s ease,
+    transform 0.12s ease-out;
 }
 
-.about-toc a:hover {
-  text-decoration: underline;
+.about-toc-list a:hover {
+  background: #e5f3ff;
+  transform: translateX(2px);
 }
 
-/* セクション共通 */
+/* --- セクション共通（カード風ブロック） --- */
+
 .about-section {
   padding: 16px 18px;
   border-radius: 16px;
@@ -1067,7 +1067,7 @@ main {
   margin-top: 4px;
 }
 
-.about-section-title {
+.about-section h2 {
   font-size: 16px;
   margin: 0 0 10px;
   letter-spacing: 0.12em;
@@ -1079,7 +1079,8 @@ main {
   margin: 0 0 8px;
 }
 
-/* アーク一覧 */
+/* --- アーク一覧 --- */
+
 .about-arc-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -1090,9 +1091,13 @@ main {
 
 .about-arc-item {
   padding-left: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;  /* 絵文字と文字の間 */
 }
 
-/* 大テーマ一覧 */
+/* --- 大テーマ一覧 --- */
+
 .about-theme-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1118,66 +1123,14 @@ main {
   color: var(--text-muted);
 }
 
-/* スマホ時の微調整 */
+/* --- スマホ時の微調整 --- */
+
 @media (max-width: 768px) {
-  .about-title {
+  .about-intro h1 {
     font-size: 20px;
   }
 
   .about-section {
     padding: 14px 14px;
   }
-}
-/* 導入（フラット） */
-.about-intro {
-  margin-bottom: 20px;
-}
-
-.about-intro h1 {
-  margin: 0 0 12px;
-  font-size: 22px;
-  letter-spacing: 0.12em;
-}
-
-.about-intro p {
-  margin: 4px 0;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-/* 目次（フラット） */
-.about-toc {
-  margin: 0 0 24px;
-}
-
-.about-toc h2 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  letter-spacing: 0.12em;
-}
-
-/* 目次リスト */
-.about-toc-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.about-toc-list a {
-  text-decoration: none;
-  font-size: 13px;
-  color: #005a9c;
-  padding: 3px 4px;
-  border-radius: 4px;
-  transition:
-    background-color 0.15s ease,
-    transform 0.12s ease-out;
-}
-
-.about-toc-list a:hover {
-  background: #e5f3ff;
-  transform: translateX(2px);
 }
