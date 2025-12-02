@@ -114,6 +114,8 @@ container.innerHTML = `
           ${galleryHtml}
         </section>
 
+        <!-- 下部：一覧に戻るボタン -->
+          <a href="index.html" class="char-back-btn bottom">一覧に戻る</a>
       </article>
     `;
 
