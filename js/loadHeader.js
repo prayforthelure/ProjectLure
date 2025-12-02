@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
       container.innerHTML = html;
     })
     .then(() => {
-      // ハンバーガー開閉処理
+      // --- ハンバーガー開閉 ---
       const menuBtn = document.getElementById("menu-toggle");
       const nav = document.getElementById("header-nav");
 
@@ -15,6 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
         menuBtn.addEventListener("click", () => {
           nav.classList.toggle("is-open");
         });
+      }
+
+      // --- 検索ボタンの表示制御 ---
+      const searchBtn = document.getElementById("search-open");
+      const isIndex = document.body.classList.contains("page-index");
+
+      // index.html 以外では強制で非表示
+      if (searchBtn && !isIndex) {
+        searchBtn.style.display = "none";
       }
     })
     .catch(err => {
