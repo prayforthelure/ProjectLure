@@ -157,10 +157,14 @@ body {
     top: var(--header-height);
     left: 16px;
     background: #fff;
-    color: #05334a;
     border: 1px solid #ddd;
     flex-direction: column;
     padding: 8px 12px;
+  }
+
+  /* ★ これを追加：開いたときは表示する */
+  .header-nav.is-open {
+    display: flex;
   }
 
   .header-nav a {
