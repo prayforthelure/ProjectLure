@@ -4,12 +4,12 @@
 :root {
   --header-height: 120px;
 
-　 /* ヘッダーの海グラデ */
+  /* ヘッダーの海グラデ */
   --header-grad-left:  #12c2e9;  /* 明るいシアン */
   --header-grad-right: #0073ff;  /* 深めのブルー */
 }
 
-/* 本文をヘッダー高さ分押し下げ */
+/* 本文をヘッダー高さ分押し下げ ＋ 全体フォント・背景 */
 body {
   margin: 0;
   padding-top: var(--header-height);
@@ -22,9 +22,10 @@ body {
   /* 一覧の背景：ほんのり青みの白 */
   background: #f5fbff;
 }
-}
 
-/* ヘッダー本体 */
+/* =========================
+   ヘッダー本体：左右3ブロックを並べる
+   ========================= */
 .site-header {
   position: fixed;
   top: 0;
@@ -37,18 +38,21 @@ body {
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 
-  /* ここをグラデーションに変更 */
   background: linear-gradient(
     90deg,
     var(--header-grad-left),
     var(--header-grad-right)
   );
-
-  border-bottom: none;          /* 線は消してOK */
+  color: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   z-index: 10;
+
+  position: fixed;
+  overflow: hidden;      /* 泡をヘッダー内に閉じ込める */
 }
+
 /* =========================
    ロゴまわり
    ========================= */
@@ -57,16 +61,23 @@ body {
 .header-left {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 8px;
 }
 
-/* 中央ロゴ */
+/* 中央ロゴ（間に挟まって真ん中へ） */
 .header-center {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* 右ブロック：右端へ押し込む */
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* 横長ロゴ（PCデフォルト） */
@@ -107,6 +118,9 @@ body {
   padding: 4px 10px;
   cursor: pointer;
   display: none;
+  border: none;
+  background: transparent;
+  color: inherit;
 }
 .page-index .header-search-btn {
   display: inline-block;
@@ -117,6 +131,9 @@ body {
   margin-left: 8px;
   font-size: 20px;
   cursor: pointer;
+  border: none;
+  background: transparent;
+  color: inherit;
 }
 
 /* =========================
@@ -146,6 +163,7 @@ body {
     top: var(--header-height);
     left: 16px;
     background: #fff;
+    color: #05334a;
     border: 1px solid #ddd;
     flex-direction: column;
     padding: 8px 12px;
@@ -419,7 +437,7 @@ body {
   margin: 0;
   width: 14px;
   height: 14px;
-  accent-color: #222; /* 対応ブラウザならチェック色が変わる */
+  accent-color: #222;
 }
 
 /* チップが選択状態の見た目（対応ブラウザ向け） */
@@ -459,7 +477,7 @@ body {
   cursor: pointer;
 }
 
-/* 検索結果（テキスト表示が必要ならここを使う） */
+/* 検索結果（テキストで使うなら） */
 #search-results {
   max-height: 300px;
   overflow-y: auto;
@@ -543,6 +561,7 @@ main {
     width: 100%;
   }
 }
+
 /* =========================
    泡エフェクト
    ========================= */
@@ -575,12 +594,13 @@ main {
     opacity: 0;
   }
 }
-.bubbles span:nth-child(1)  { left: 10%;  animation-duration: 6s; width:12px; height:12px; }
-.bubbles span:nth-child(2)  { left: 30%;  animation-duration: 7s; width:14px; height:14px; }
-.bubbles span:nth-child(3)  { left: 50%;  animation-duration: 5.5s; width:10px; height:10px; }
-.bubbles span:nth-child(4)  { left: 70%;  animation-duration: 6.8s; width:16px; height:16px; }
-.bubbles span:nth-child(5)  { left: 90%;  animation-duration: 7.5s; width:12px; height:12px; }
-.bubbles span:nth-child(6)  { left: 20%;  animation-duration: 5.8s; width:11px; height:11px; }
-.bubbles span:nth-child(7)  { left: 40%;  animation-duration: 7.2s; width:15px; height:15px; }
-.bubbles span:nth-child(8)  { left: 60%;  animation-duration: 6.1s; width:9px;  height:9px;  }
-.bubbles span:nth-child(9)  { left: 80%;  animation-duration: 8s;   width:13px; height:13px; }
+
+.bubbles span:nth-child(1)  { left: 10%;  animation-duration: 6s;  width:12px; height:12px; }
+.bubbles span:nth-child(2)  { left: 30%;  animation-duration: 7s;  width:14px; height:14px; }
+.bubbles span:nth-child(3)  { left: 50%;  animation-duration: 5.5s;width:10px; height:10px; }
+.bubbles span:nth-child(4)  { left: 70%;  animation-duration: 6.8s;width:16px; height:16px; }
+.bubbles span:nth-child(5)  { left: 90%;  animation-duration: 7.5s;width:12px; height:12px; }
+.bubbles span:nth-child(6)  { left: 20%;  animation-duration: 5.8s;width:11px; height:11px; }
+.bubbles span:nth-child(7)  { left: 40%;  animation-duration: 7.2s;width:15px; height:15px; }
+.bubbles span:nth-child(8)  { left: 60%;  animation-duration: 6.1s;width:9px;  height:9px;  }
+.bubbles span:nth-child(9)  { left: 80%;  animation-duration: 8s; width:13px; height:13px; }
