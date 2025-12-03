@@ -1,3 +1,4 @@
+// js/character.js
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
@@ -19,8 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!c) return;
 
     // ★ メインカラー（基本1色だけ使う想定）
+    //   colors が ["#xxxxxx", "#yyyyyy", ...] だとして、
+    //   最初に見つかった truthy な値を1つ使う
     const mainColorHex = Array.isArray(c.colors)
-      ? c.colors.find(Boolean)   // 先頭の truthy な色を1つ取る
+      ? c.colors.find(Boolean)
       : null;
 
     // ★ ここで title を書き換える
@@ -54,6 +57,40 @@ document.addEventListener("DOMContentLoaded", () => {
       : "";
 
     const hasStoryBlock = summaryHtml || keywordsHtml;
+
+    // ===== GALLERY HTMLを組み立て =====
+    const buildGalleryGroup = (key, labelJa) => {
+      const arr = linkData[key];
+      if (!arr || !arr.length) return "";
+
+      const items = arr.map(item => `
+        <li class="char-gallery-item">
+          <a href="${item.url}"
+             target="_blank"
+             rel="noopener noreferrer">
+            ${item.label}
+          </a>
+        </li>
+      `).join("");
+
+      return `
+        <section class="char-gallery-group">
+          <h3 class="char-gallery-heading">${labelJa}</h3>
+          <ul class="char-gallery-list">
+            ${items}
+          </ul>
+        </section>
+      `;
+    };
+
+    let galleryHtml =
+      buildGalleryGroup("music", "Music") +
+      buildGalleryGroup("novel", "Novel / Text") +
+      buildGalleryGroup("video", "Movie / PV");
+
+    if (!galleryHtml) {
+      galleryHtml = `<p class="char-gallery-empty">関連コンテンツは準備中です。</p>`;
+    }
 
     // ===== ページ全体を描画 =====
     const container = document.getElementById("character-content");
@@ -125,9 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </article>
     `;
 
-    // ★ 泡の色をキャラ色にする（ここだけでOK）
+    // ★ 泡＆円エフェクト用の CSS 変数をここで1回だけ設定
     if (mainColorHex) {
-      // 例: "#ff6699" みたいな値が入る想定
       document.documentElement.style.setProperty("--char-main-color", mainColorHex);
     } else {
       // カラーコード無し → デフォルト（:root のアクセント色のまま）
