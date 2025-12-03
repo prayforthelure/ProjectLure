@@ -22,20 +22,37 @@ document.addEventListener("DOMContentLoaded", () => {
           a[0].localeCompare(b[0])
         );
 
-        const arcHtml = entries.map(([code, arc]) => {
-          const icon     = arc.icon || "";
-          const name     = arc.name || "";
-          const keywords = Array.isArray(arc.keywords) ? arc.keywords : [];
-          const kwText   = keywords.length ? keywords.join(" / ") : "";
+const arcHtml = entries
+  .map(([code, arc]) => {
+    if (!arc) return "";
 
-          return `
-            <div class="about-arc-item">
-              <span class="arc-icon">${icon}</span>
-              <span class="arc-main">${name}</span>
-              ${kwText ? `<span class="arc-keywords">… ${kwText}</span>` : ""}
-            </div>
-          `;
-        }).join("");
+    const icon = arc.icon || "";
+    const name = arc.name || "";
+
+    // keywords: ["情熱","衝動","率直","短慮","焦燥","暴走"] の想定
+    const kws = Array.isArray(arc.keywords) ? arc.keywords : [];
+
+    // 6個以外が来ても一応安全処理
+    const padded = [...kws, "", "", "", "", ""].slice(0, 6);
+
+    // HTML化
+    const kwHtml = padded
+      .map(kw => `<div class="kw-cell">${kw}</div>`)
+      .join("");
+
+    return `
+      <div class="about-arc-item">
+        <div class="about-arc-item-header">
+          <span class="arc-icon">${icon}</span>
+          <span class="arc-name">${name}</span>
+        </div>
+        <div class="about-arc-keywords">
+          ${kwHtml}
+        </div>
+      </div>
+    `;
+  })
+  .join("");
 
         arcListContainer.innerHTML = arcHtml;
       }
