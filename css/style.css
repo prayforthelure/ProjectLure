@@ -34,6 +34,7 @@
 }
 /* 本文をヘッダー高さ分押し下げ ＋ 全体フォント・背景 */
 body {
+  position: relative;
   margin: 0;
   padding-top: var(--header-height);
 
@@ -987,10 +988,10 @@ main {
    泡エフェクト
    ========================= */
 .bubbles {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  overflow: hidden;
-  z-index: -1;
+  pointer-events: none;  /* クリックを邪魔しない */
+  z-index: 0;
 }
 
 .bubbles span {
@@ -1020,6 +1021,14 @@ main {
     transform: translateY(-180px) scale(1.8);
     opacity: 0;
   }
+}
+
+/* 泡が背面、コンテンツはその上に乗る構造にする */
+.page-detail main,
+.page-detail #header-container,
+.page-detail #footer-container {
+  position: relative;
+  z-index: 1;
 }
 
 .bubbles span:nth-child(1)  { left: 10%;  animation-duration: 6s;  width:12px; height:12px; }
