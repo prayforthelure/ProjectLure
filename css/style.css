@@ -676,10 +676,59 @@ main {
 /* ---- 上段：カード＋基本情報 ---- */
 
 .char-hero {
+  position: relative;
   display: flex;
   gap: 24px;
   align-items: flex-start;
   flex-wrap: wrap;
+  overflow: hidden; /* 円がはみ出し過ぎないように */
+}
+
+/* ★ メインカラーの円エフェクト */
+.char-hero::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  top: -40px;
+  left: -60px;
+  z-index: -1;
+
+  /* --char-main-color があればそれを、なければアクセント色 */
+  background:
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--char-main-color, var(--accent)) 35%, transparent),
+      transparent 70%
+    );
+
+  opacity: 0.9;
+  animation: charColorFloat 14s ease-in-out infinite alternate;
+}
+
+/* ゆっくり揺れるアニメーション */
+@keyframes charColorFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10px, 16px, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(-6px, 4px, 0) scale(1.02);
+  }
+}
+
+/* スマホでは少し控えめに */
+@media (max-width: 768px) {
+  .char-hero::before {
+    width: 200px;
+    height: 200px;
+    top: -30px;
+    left: -40px;
+    opacity: 0.7;
+  }
 }
 
 /* ★ここを小さめにする */
