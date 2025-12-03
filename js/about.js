@@ -22,37 +22,40 @@ document.addEventListener("DOMContentLoaded", () => {
           a[0].localeCompare(b[0])
         );
 
-const arcHtml = entries
-  .map(([code, arc]) => {
-    if (!arc) return "";
+        const arcHtml = entries
+          .map(([code, arc]) => {
+            if (!arc) return "";
 
-    const icon = arc.icon || "";
-    const name = arc.name || "";
+            const icon = arc.icon || "";
+            const name = arc.name || "";
 
-    // keywords: ["情熱","衝動","率直","短慮","焦燥","暴走"] の想定
-    const kws = Array.isArray(arc.keywords) ? arc.keywords : [];
+            // keywords: ["情熱","衝動","率直","短慮","焦燥","暴走"] の想定
+            const kws = Array.isArray(arc.keywords) ? arc.keywords : [];
 
-    // 6個以外が来ても一応安全処理
-    const padded = [...kws, "", "", "", "", ""].slice(0, 6);
+            // 6個にそろえておく（足りない分は空タグ）
+            const padded = [...kws, "", "", "", "", ""].slice(0, 6);
 
-    // HTML化
-    const kwHtml = padded
-      .map(kw => `<div class="kw-cell">${kw}</div>`)
-      .join("");
+            const kwHtml = padded
+              .map(kw =>
+                kw
+                  ? `<span class="about-arc-tag">${kw}</span>`
+                  : `<span class="about-arc-tag"></span>`
+              )
+              .join("");
 
-    return `
-      <div class="about-arc-item">
-        <div class="about-arc-item-header">
-          <span class="arc-icon">${icon}</span>
-          <span class="arc-name">${name}</span>
-        </div>
-        <div class="about-arc-keywords">
-          ${kwHtml}
-        </div>
-      </div>
-    `;
-  })
-  .join("");
+            return `
+              <div class="about-arc-item">
+                <div class="about-arc-item-header">
+                  <span class="arc-icon">${icon}</span>
+                  <span class="arc-name">${name}</span>
+                </div>
+                <div class="about-arc-keywords">
+                  ${kwHtml}
+                </div>
+              </div>
+            `;
+          })
+          .join("");
 
         arcListContainer.innerHTML = arcHtml;
       }
@@ -63,23 +66,25 @@ const arcHtml = entries
           (a, b) => Number(a[0]) - Number(b[0])
         );
 
-        const themeHtml = entries.map(([rawId, s]) => {
-          const id          = s.id ?? rawId;
-          const key         = s.key || "";
-          const nameJa      = s.nameJa || "";
-          const description = s.description || "";
-          const heading     = `${id}_${key}`;
+        const themeHtml = entries
+          .map(([rawId, s]) => {
+            const id          = s.id ?? rawId;
+            const key         = s.key || "";
+            const nameJa      = s.nameJa || "";
+            const description = s.description || "";
+            const heading     = `${id}_${key}`;
 
-          return `
-            <div class="about-theme-item">
-              <h3>
-                ${heading}<br>
-                <span class="about-theme-sub">${nameJa}</span>
-              </h3>
-              <p>${description}</p>
-            </div>
-          `;
-        }).join("");
+            return `
+              <div class="about-theme-item">
+                <h3>
+                  ${heading}<br>
+                  <span class="about-theme-sub">${nameJa}</span>
+                </h3>
+                <p>${description}</p>
+              </div>
+            `;
+          })
+          .join("");
 
         themeGridContainer.innerHTML = themeHtml;
       }
