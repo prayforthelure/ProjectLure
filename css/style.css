@@ -28,6 +28,9 @@
   /* モーダル系 */
   --modal-bg:    #ffffff;
   --modal-shadow: 0 4px 16px rgba(0, 40, 80, 0.18);
+
+  /* 追加：キャラページ用のメインカラー（デフォはアクセント） */
+  --char-main-color: var(--accent);
 }
 /* 本文をヘッダー高さ分押し下げ ＋ 全体フォント・背景 */
 body {
