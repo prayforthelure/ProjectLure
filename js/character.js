@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const c = chars.find(ch => ch.code === code);
     if (!c) return;
 
-    // ★ ここで title を書き換える
+    // ★ ページタイトル
     document.title = `${c.title} | ぎじえプロジェクト`;
 
     // 画像パス（立ち絵カード）
@@ -49,17 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
          </ul>`
       : "";
 
-    const hasStoryBlock = summaryHtml || keywordsHtml;
-
-    const storySectionHtml = hasStoryBlock
-      ? `
-        <section class="char-section" id="char-story">
-          <h2 class="char-section-title">STORY</h2>
-          ${summaryHtml ? `<p class="char-story-text">${summaryHtml}</p>` : ""}
-          ${keywordsHtml}
-        </section>
-      `
-      : "";
+    const hasStoryBlock = !!(summaryHtml || keywordsHtml);
 
     // ===== GALLERY HTMLを組み立て =====
     const buildGalleryGroup = (key, labelJa) => {
@@ -127,11 +117,16 @@ document.addEventListener("DOMContentLoaded", () => {
               ${c.theme ? `<span class="char-tag">テーマ：${c.theme}</span>` : ""}
               ${c.mainColorLabel ? `<span class="char-tag">メインカラー：${c.mainColorLabel}</span>` : ""}
             </div>
+
+            ${hasStoryBlock ? `
+              <div class="char-story-block">
+                <h3 class="char-story-title">STORY</h3>
+                ${summaryHtml ? `<p class="char-story-text">${summaryHtml}</p>` : ""}
+                ${keywordsHtml}
+              </div>
+            ` : ""}
           </div>
         </section>
-
-        <!-- 中段：STORY（あらすじ＋キーワード） -->
-        ${storySectionHtml}
 
         <!-- 中段：INFORMATION -->
         <section class="char-section">
