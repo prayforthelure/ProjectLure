@@ -937,6 +937,24 @@ main {
   filter: brightness(1.1);
   transform: translateY(-1px);
 }
+/* STORY内のキーワードタグ */
+.char-keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.char-keywords-list li {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e5f3ff;
+  font-size: 11px;
+  color: var(--text-main);
+  white-space: nowrap; /* 高さを出さない */
+}
 /* =========================
    泡エフェクト
    ========================= */
