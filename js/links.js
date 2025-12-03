@@ -8,34 +8,61 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error("officialLinks.json の読み込みに失敗しました");
       return res.json();
     })
-    .then(platforms => {
-      platforms.forEach(platform => {
+    .then(data => {
+      // 各カテゴリの見出し名・アイコンをここで定義
+      const platformMeta = {
+        SNS: {
+          label: "SNS / 配信",
+          icon: "fa-solid fa-share-nodes"
+        },
+        PORTFOLIO: {
+          label: "Portfolio",
+          icon: "fa-regular fa-id-card"
+        },
+        SHOP: {
+          label: "Shop / 支援",
+          icon: "fa-solid fa-bag-shopping"
+        },
+        CONTACT: {
+          label: "Contact",
+          icon: "fa-regular fa-envelope"
+        }
+      };
+
+      // data は { SNS: [...], PORTFOLIO: [...], ... } というオブジェクト
+      Object.entries(data).forEach(([platformId, accounts]) => {
+        if (!Array.isArray(accounts) || accounts.length === 0) return;
+
+        const meta = platformMeta[platformId] || {
+          label: platformId,
+          icon: "fa-solid fa-link"
+        };
+
+        // ---- セクション ----
         const section = document.createElement("section");
         section.className = "links-platform-section";
 
-        // プラットフォームの見出し
         const heading = document.createElement("h2");
         heading.className = "links-platform-title";
 
         const iconSpan = document.createElement("span");
         iconSpan.className = "links-platform-icon";
-        if (platform.icon) {
-          const i = document.createElement("i");
-          i.className = platform.icon;
-          iconSpan.appendChild(i);
-        }
+
+        const i = document.createElement("i");
+        i.className = meta.icon;
+        iconSpan.appendChild(i);
 
         const labelSpan = document.createElement("span");
-        labelSpan.textContent = platform.platformLabel || platform.platformId;
+        labelSpan.textContent = meta.label;
 
         heading.appendChild(iconSpan);
         heading.appendChild(labelSpan);
 
-        // アカウント一覧
+        // ---- アカウント一覧 ----
         const list = document.createElement("div");
         list.className = "links-account-list";
 
-        (platform.accounts || []).forEach(acc => {
+        accounts.forEach(acc => {
           const card = document.createElement("a");
           card.className = "links-account-card";
           card.href = acc.url;
@@ -54,21 +81,18 @@ document.addEventListener("DOMContentLoaded", () => {
           handleSpan.className = "links-account-handle";
           if (acc.handle) {
             handleSpan.textContent = acc.handle;
-          }
-
-          top.appendChild(nameSpan);
-          if (acc.handle) {
             top.appendChild(handleSpan);
           }
 
-          // 下段：説明
+          top.insertBefore(nameSpan, top.firstChild);
+
+          // 下段：説明（JSON のキー名は desc）
           const desc = document.createElement("p");
           desc.className = "links-account-desc";
-          desc.textContent = acc.description || "";
+          desc.textContent = acc.desc || "";
 
           card.appendChild(top);
           card.appendChild(desc);
-
           list.appendChild(card);
         });
 
