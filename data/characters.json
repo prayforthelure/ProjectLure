@@ -29,7 +29,7 @@
     "arc": { "ex": "R", "core": "S" },
     "theme": "墓守",
     "mainColorLabel": "鈍色",
-    "colors": [""],
+    "colors": ["#747a81"],
     "catchcopy": "死んでも忘れない"
   },
   {
@@ -40,7 +40,7 @@
     "arc": { "ex": "P", "core": "V" },
     "theme": "気象予報士",
     "mainColorLabel": "水色",
-    "colors": [""],
+    "colors": ["#a4ddff"],
     "catchcopy": "読めない雨はない"
   },
   {
@@ -51,7 +51,7 @@
     "arc": { "ex": "P", "core": "F" },
     "theme": "占い師",
     "mainColorLabel": "紫苑",
-    "colors": [""],
+    "colors": ["#cf66ff"],
     "catchcopy": "見えるのに触れられない"
   },
   {
@@ -62,7 +62,7 @@
     "arc": { "ex": "M", "core": "V" },
     "theme": "錬金術師",
     "mainColorLabel": "金色",
-    "colors": [""],
+    "colors": ["#ffcb58"],
     "catchcopy": "存在か損害か、後悔か崩壊か"
   },
   {
@@ -73,7 +73,7 @@
     "arc": { "ex": "M", "core": "B" },
     "theme": "ギタリスト",
     "mainColorLabel": "緑",
-    "colors": [""],
+    "colors": ["#11e60a"],
     "catchcopy": "届け、歌声"
   },
   {
@@ -84,7 +84,7 @@
     "arc": { "ex": "B", "core": "V" },
     "theme": "吸血鬼",
     "mainColorLabel": "真紅",
-    "colors": [""],
+    "colors": ["#e6384e"],
     "catchcopy": "燃え盛り、踊り狂う"
   },
   {
@@ -95,7 +95,7 @@
     "arc": { "ex": "P", "core": "S" },
     "theme": "華道家",
     "mainColorLabel": "縹色",
-    "colors": [""],
+    "colors": ["#4a7ee6"],
     "catchcopy": "生かすも殺すも私次第"
   },
   {
@@ -117,7 +117,7 @@
     "arc": { "ex": "R", "core": "K" },
     "theme": "考古学者",
     "mainColorLabel": "鴇色",
-    "colors": [""],
+    "colors": ["#e6a7dc"],
     "catchcopy": "失ったものを、まだ探してる"
   },
   {
