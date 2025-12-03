@@ -1131,21 +1131,41 @@ main {
   margin: 0 0 8px;
 }
 
-/* --- アーク一覧 --- */
+/* =========================
+   ABOUT：アーク（3×2 キーワード表）
+   ========================= */
 
 .about-arc-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 6px 12px;
-  margin-top: 8px;
-  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
+/* アーク全体のカード */
 .about-arc-item {
-  padding-left: 2px;
+  padding: 10px 6px 14px;
+  border-bottom: 1px solid rgba(0, 80, 140, 0.1);
+}
+
+/* 上段：アイコン＋名前 */
+.about-arc-item-header {
   display: flex;
   align-items: center;
-  gap: 4px;  /* 絵文字と文字の間 */
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+/* --- キーワード表（3列×2行） --- */
+.about-arc-keywords {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列固定 */
+  row-gap: 4px;
+  column-gap: 8px;
+  font-size: 13px;
+  opacity: 0.85;
+  margin-left: 28px; /* アイコン位置に合わせて少し右へ */
 }
 
 /* --- 大テーマ一覧 --- */
