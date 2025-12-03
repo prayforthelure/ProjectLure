@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("data/arcList.json").then(r => r.json()),
     fetch("data/series.json").then(r => r.json()),
     // links.json は無くても動くようにしておく
-    fetch("data/links.json").then(r => r.json()).catch(() => ({}))
-  ]).then(([chars, arcList, seriesMap, linksMap]) => {
+    fetch("data/links.json").then(r => r.json()).catch(() => ({})),
+    // synopsis.json も無くても落ちないように
+    fetch("data/synopsis.json").then(r => r.json()).catch(() => ({}))
+  ]).then(([chars, arcList, seriesMap, linksMap, synopsisMap]) => {
 
     // 対象キャラ
     const c = chars.find(ch => ch.code === code);
@@ -30,8 +32,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // シリーズ
     const series = seriesMap[c.series];
 
-    // ギャラリー用リンク
+    // GALLERY 用リンク
     const linkData = linksMap[c.code] || {};
+
+    // ===== STORY（あらすじ＋キーワード） =====
+    const syn = synopsisMap[c.code] || {};
+    const summaryRaw = syn.summary || "";
+    const summaryHtml = summaryRaw
+      ? summaryRaw.replace(/\n/g, "<br>")
+      : "";
+
+    const keywords = Array.isArray(syn.keywords) ? syn.keywords : [];
+    const keywordsHtml = keywords.length
+      ? `<ul class="char-keywords-list">
+           ${keywords.map(w => `<li>${w}</li>`).join("")}
+         </ul>`
+      : "";
+
+    const hasStoryBlock = summaryHtml || keywordsHtml;
+
+    const storySectionHtml = hasStoryBlock
+      ? `
+        <section class="char-section" id="char-story">
+          <h2 class="char-section-title">STORY</h2>
+          ${summaryHtml ? `<p class="char-story-text">${summaryHtml}</p>` : ""}
+          ${keywordsHtml}
+        </section>
+      `
+      : "";
 
     // ===== GALLERY HTMLを組み立て =====
     const buildGalleryGroup = (key, labelJa) => {
@@ -71,11 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("character-content");
     if (!container) return;
 
-container.innerHTML = `
-  <article class="char-page">
+    container.innerHTML = `
+      <article class="char-page">
 
-    <!-- 上部：一覧に戻るボタン -->
-    <a href="index.html" class="char-back-btn">一覧に戻る</a>
+        <!-- 上部：一覧に戻るボタン -->
+        <a href="index.html" class="char-back-btn">一覧に戻る</a>
 
         <!-- 上段：カード ＋ 基本情報 -->
         <section class="char-hero">
@@ -102,7 +130,10 @@ container.innerHTML = `
           </div>
         </section>
 
-        <!-- 中段：INFORMATION（中身は後で JS で埋める） -->
+        <!-- 中段：STORY（あらすじ＋キーワード） -->
+        ${storySectionHtml}
+
+        <!-- 中段：INFORMATION -->
         <section class="char-section">
           <h2 class="char-section-title">INFORMATION</h2>
           <div class="char-info-grid"></div>
@@ -115,11 +146,11 @@ container.innerHTML = `
         </section>
 
         <!-- 下部：一覧に戻るボタン -->
-          <a href="index.html" class="char-back-btn bottom">一覧に戻る</a>
+        <a href="index.html" class="char-back-btn bottom">一覧に戻る</a>
+
       </article>
     `;
 
-    // ===== INFORMATION の4項目を生成 =====
     // ===== INFORMATION の4項目を生成（左：色／右：アーク） =====
     const colorRows = [
       {
