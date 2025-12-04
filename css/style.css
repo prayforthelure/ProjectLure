@@ -1,64 +1,5 @@
 /* =========================
-   基本設定（ヘッダー固定・高さ一定）
-   ========================= */
-:root {
-  --header-height: 120px;
-
-  /* ヘッダーの海グラデ */
-  --header-grad-left:  #12c2e9;
-  --header-grad-right: #0073ff;
-
-  /* ページ全体のベースカラー */
-  --bg-page-top:    #f5fbff;
-  --bg-page-mid:    #e8f4ff;
-  --bg-page-bottom: #f3f9ff;
-
-  /* カードなどの共通 */
-  --card-bg:       #ffffff;
-  --card-border:   rgba(0, 40, 80, 0.08);
-  --card-shadow:   rgba(0, 40, 80, 0.06);
-  --card-shadow-h: rgba(0, 40, 80, 0.12);
-
-  /* テキスト／アクセント */
-  --text-main:   #05334a;
-  --text-muted:  #5c7a92;
-  --accent:      #0088ff;
-  --accent-soft: #d3ecff;
-
-  /* モーダル系 */
-  --modal-bg:    #ffffff;
-  --modal-shadow: 0 4px 16px rgba(0, 40, 80, 0.18);
-
-  /* 追加：キャラページ用のメインカラー（デフォはアクセント） */
-  --char-main-color: var(--accent);
-}
-
-/* 本文をヘッダー高さ分押し下げ ＋ 全体フォント・背景 */
-body {
-  position: relative;
-  margin: 0;
-  padding-top: var(--header-height);
-
-  font-family: 'M PLUS Rounded 1c',
-               system-ui, -apple-system, BlinkMacSystemFont,
-               'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
-
-  color: var(--text-main);
-
-  background: linear-gradient(
-    180deg,
-    var(--bg-page-top) 0%,
-    var(--bg-page-mid) 40%,
-    var(--bg-page-bottom) 100%
-  );
-
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* =========================
-   ヘッダー本体
+   ヘッダー本体：左右3ブロックを並べる
    ========================= */
 .site-header {
   position: fixed;
@@ -71,6 +12,7 @@ body {
   box-sizing: border-box;
 
   display: flex;
+  justify-content: center; /* 真ん中基準 */
   align-items: center;
 
   background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
@@ -79,7 +21,7 @@ body {
   z-index: 2000;
 }
 
-/* PC 基準：ロゴ中央・ナビ左・アイコン右を絶対配置 */
+/* 左ブロック：左端に固定 */
 .header-left {
   position: absolute;
   left: 16px;
@@ -88,6 +30,7 @@ body {
   gap: 8px;
 }
 
+/* 右ブロック：右端に固定 */
 .header-right {
   position: absolute;
   right: 16px;
@@ -98,20 +41,26 @@ body {
 
 /* 中央ロゴは自然に中央へ */
 .header-center {
-  flex: 0 0 auto;
-  margin: 0 auto;
   display: flex;
   justify-content: center;
 }
 
-/* ロゴ */
+/* 横長ロゴ（PC基準） */
 .header-logo {
   max-height: 100px;
-  width: auto;
   height: auto;
+  width: auto;
 }
 
-/* 丸ロゴ（今後使うなら） */
+/* スマホ用ロゴ調整（さっき入れていたやつはそのまま再利用でOK） */
+@media (max-width: 768px) {
+  .header-logo {
+    max-height: 50px;
+    max-width: 140px;
+  }
+}
+
+/* 丸ロゴ */
 .brand-link {
   display: inline-flex;
   align-items: center;
@@ -158,24 +107,26 @@ body {
   color: inherit;
 }
 
-/* アイコンのサイズ */
+/* アイコンのサイズを少し大きくする */
 .header-icon-btn i,
 .header-menu-btn i {
   font-size: 24px;
 }
 
-/* 検索ボタン（デフォルト非表示 → INDEXだけ表示） */
+/* 検索ボタン（デフォルト非表示） */
 .header-search-btn {
   display: none !important;
 }
+/* 一覧ページだけ表示させる */
 .page-index .header-search-btn {
   display: inline-flex !important;
 }
 
-/* ヘルプボタン（デフォルト非表示 → INDEXだけ表示） */
+/* ヘルプボタン（デフォルト非表示） */
 .header-help-btn {
   display: none !important;
 }
+/* 一覧ページだけ表示させる */
 .page-index .header-help-btn {
   display: inline-flex !important;
 }
@@ -185,46 +136,21 @@ body {
    ========================= */
 @media (max-width: 768px) {
 
+  /* スマホ時はヘッダー少し低め ＋ ロゴ縮小 */
   :root {
     --header-height: 96px;
   }
 
   .site-header {
-    padding: 0 12px;
-    justify-content: space-between;   /* 左ロゴ／右アイコン */
-  }
-
-  /* ロゴを少し小さめに */
-  .header-logo {
-    max-height: 50px;
-    max-width: 140px;
-  }
-
-  /* PC用ナビは非表示にしてしまう（ハンバーガーで開く前提） */
-  .header-left {
-    display: none;
-  }
-
-  /* ロゴを左寄せ */
-  .header-center {
-    margin: 0;
-    justify-content: flex-start;
-  }
-
-  /* 右側アイコン群を通常フローに（絶対配置解除） */
-  .header-right {
-    position: static;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    padding: 0 8px;
   }
 
   /* ドロップダウンメニュー（ハンバーガーで開閉） */
   .header-nav {
     display: none;
     position: fixed;
-    top: var(--header-height);
-    right: 12px;
+    top: var(--header-height);    /* ヘッダーのすぐ下 */
+    left: 16px;
 
     min-width: 180px;
     padding: 12px 20px;
@@ -271,7 +197,6 @@ body {
     display: none;
   }
 }
-
 @media (min-width: 769px) and (hover:hover) and (pointer:fine) {
   .header-nav a {
     padding: 6px 12px;
