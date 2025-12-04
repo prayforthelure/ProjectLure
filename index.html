@@ -24,6 +24,61 @@
 
   <!-- フッター：★これを追加 -->
   <div id="footer-container"></div>
+<!-- ヘルプオーバーレイ（INDEX専用） -->
+<div id="help-overlay" aria-hidden="true">
+  <div id="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title">
+    <header id="help-header">
+      <h2 id="help-title">ぎじえPRJの見方ガイド</h2>
+      <button id="help-close" aria-label="ヘルプを閉じる">&times;</button>
+    </header>
+
+    <div id="help-body">
+      <!-- 1. カードの見方 -->
+      <section class="help-section">
+        <h3>1. キャラクターカードの見方</h3>
+        <ul>
+          <li><strong>左上：</strong> キャラクターコード（例：000_彩に蕩れる）</li>
+          <li><strong>右上：</strong> アーク（属性）アイコン</li>
+          <li><strong>左下：</strong> シリーズ（世界線）アイコン</li>
+          <li><strong>右下：</strong> テーマ・職業などのアイコン</li>
+        </ul>
+        <p class="help-note">
+          1枚のカードの中に、「色・テーマ・カルマ」が名刺のように凝縮されています。
+        </p>
+      </section>
+
+      <!-- 2. アークについて -->
+      <section class="help-section">
+        <h3>2. アーク（属性）とは？</h3>
+        <p>
+          アークはキャラクターの「外から見える性質」を表す分類です。
+          内面を動かすものがカルマだとすれば、
+          <strong>雰囲気や振る舞いの傾向</strong> を示すラベルです。
+        </p>
+        <p class="help-link">
+          詳しい一覧は <a href="about.html#about-arc">ABOUT &gt; アーク一覧</a> をご覧ください。
+        </p>
+      </section>
+
+      <!-- 3. シリーズ（世界線） -->
+      <section class="help-section">
+        <h3>3. シリーズ（世界線）について</h3>
+        <p>
+          すべてのキャラクターは、全10種のシリーズ（世界線）のどれかに属しています。
+          シリーズごとに「職業」「感情」「遊び」「季節」など、テーマの切り口が変わります。
+        </p>
+        <ul>
+          <li><strong>0_Occupation：</strong> そまりものがたり（職業）</li>
+          <li><strong>1_Instinct：</strong> こころものがたり（感情）</li>
+          <li><strong>…</strong> など</li>
+        </ul>
+        <p class="help-link">
+          詳しい一覧は <a href="about.html#about-theme">ABOUT &gt; シリーズ一覧</a> から。
+        </p>
+      </section>
+    </div>
+  </div>
+</div>
 
   <!-- 検索ポップアップ -->
   <div id="search-overlay">
