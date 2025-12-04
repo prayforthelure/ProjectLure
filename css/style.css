@@ -1432,6 +1432,104 @@ main {
   </div>
 </header>
 
+/* =========================
+   ヘルプ：カードの見方デモ
+   ========================= */
 
+.help-card-demo {
+  position: relative;
+  margin: 12px auto 8px;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;  /* カード比率 */
+}
+
+/* カードの枠（外側の縁） */
+.help-card-frame {
+  position: absolute;
+  inset: 18% 18%; /* 上下左右から少し余白 */
+  border-radius: 12px;
+  padding: 4px;
+  background: linear-gradient(
+    180deg,
+    #ff6ec4,
+    #7873f5,
+    #12c2e9
+  );
+  box-sizing: border-box;
+}
+
+/* カードの中身（白いエリア） */
+.help-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 40, 80, 0.12) inset;
+}
+
+/* 四隅のラベル共通 */
+.hc-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+/* 四隅の丸・角丸バッジ */
+.hc-badge {
+  min-width: 32px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #000000d0;
+  color: #ffffff;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* ラベルのテキスト */
+.hc-text {
+  white-space: nowrap;
+}
+
+/* 各位置（カードの四隅に対応） */
+.hc-series {
+  top: 4%;
+  left: 4%;
+}
+
+.hc-ex {
+  top: 4%;
+  right: 4%;
+  justify-content: flex-end;
+}
+
+.hc-code {
+  bottom: 4%;
+  left: 4%;
+}
+
+.hc-core {
+  bottom: 4%;
+  right: 4%;
+  justify-content: flex-end;
+}
+
+/* スマホでは少し小さめに */
+@media (max-width: 480px) {
+  .help-card-demo {
+    max-width: 260px;
+  }
+
+  .hc-label {
+    font-size: 11px;
+  }
+
+  .hc-badge {
+    min-width: 28px;
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+}
 
 
