@@ -112,6 +112,13 @@ body {
   width: auto;
 }
 
+@media (max-width: 768px) {
+  .header-logo {
+    max-height: 50px;
+    max-width: 140px;
+  }
+}
+
 /* 丸ロゴ */
 .brand-link {
   display: inline-flex;
