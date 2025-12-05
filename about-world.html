@@ -1,43 +1,91 @@
-<main class="l-main l-main--narrow about-page">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ABOUT | World / 世界観</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 
-  <section class="about-intro">
-    <p>
-      <a href="about.html" class="char-back-link">← ABOUTトップに戻る</a>
-    </p>
-    <h1>World</h1>
-    <p>
-      作品全体の「世界観」についてまとめたページです。<br>
-      完全な設定資料ではなく、「読者がなんとなく空気をつかめる」程度の情報量を想定しています。
-    </p>
-  </section>
+<body class="about-page about-world-page">
 
-  <!-- 世界の雰囲気 -->
-  <section class="section-card about-section">
-    <h2 class="section-card__title">世界の雰囲気</h2>
-    <p>
-      現代なのか、近未来なのか、異世界なのかといったざっくりした時代背景や、<br>
-      「どこか少しだけ非現実が混じっている世界」など、トーンを説明するスペースです。
-    </p>
-  </section>
+  <!-- ヘッダー -->
+  <div id="header-container"></div>
 
-  <!-- シリーズごとの位置づけ -->
-  <section class="section-card about-section" style="margin-top: 16px;">
-    <h2 class="section-card__title">シリーズごとの位置づけ</h2>
-    <p>
-      0_Occupation / 1_Instinct など、それぞれのシリーズがこの世界の中でどういう役割を持つのかを、
-      一覧的に整理しておく想定です。<br>
-      「そまりものがたり」はプロローグ寄り、「Instinct」は内面掘り下げ寄り…など。
-    </p>
-  </section>
+  <main class="l-main l-main--narrow about-page">
 
-  <!-- ルール・制約 -->
-  <section class="section-card about-section" style="margin-top: 16px;">
-    <h2 class="section-card__title">この世界のルール</h2>
-    <p>
-      色・アーク・コードといった要素が「世界の中でどう扱われているか」の前提を書いておくと、<br>
-      後から設定を増やすときの基準になります。（細かい用語の説明自体は Terms に回すイメージ）
-    </p>
-  </section>
+    <!-- 戻るリンク -->
+    <a href="about.html" class="char-back-link">&laquo; ABOUT に戻る</a>
 
-  <a href="about.html" class="char-back-btn bottom">ABOUTトップに戻る</a>
-</main>
+    <!-- 見出しブロック -->
+    <section class="about-intro">
+      <h1>World / どんな世界観なの？</h1>
+      <p>
+        ここでは、Project LURE の「世界観」についてゆるく整理します。<br>
+        ガチガチの設定集ではなく、キャラクターたちが生きている空気感や、
+        シリーズ同士の距離感をざっくり掴むためのページです。
+      </p>
+    </section>
+
+    <!-- 世界観のトーン -->
+    <section class="section-card about-section">
+      <h2 class="section-card__title">TONE &amp; MOOD</h2>
+      <p>
+        基本的なトーンは、<strong>現実寄りの日常と、すこし不思議な要素</strong>が混ざった世界です。<br>
+        魔法や超能力のような「なんでもアリ」ではなく、
+        キャラクターの内面や感情がメタファーとして視覚化されるような表現を好みます。
+      </p>
+      <p>
+        具体的な舞台（国・街・学校名など）は、シリーズや作品ごとに個別に設定しつつ、<br>
+        「全部まとめてひとつのマルチバース（多世界線）」として緩やかにつながっているイメージです。
+      </p>
+    </section>
+
+    <!-- シリーズ間の関係 -->
+    <section class="section-card about-section">
+      <h2 class="section-card__title">RELATION BETWEEN SERIES</h2>
+      <p>
+        シリーズごとは、<strong>「どんな側面を切り取った物語か」</strong>が異なります。<br>
+        例として：
+      </p>
+      <ul>
+        <li>0_Occupation …… 職業・役割・立場にまつわる物語</li>
+        <li>1_Instinct …… 感情・欲望・本能因子にまつわる物語</li>
+        <li>2_Zone …… 遊び・ゲーム・勝負ごとにまつわる物語</li>
+        <li>…など</li>
+      </ul>
+      <p>
+        同じ人物の「別世界線バージョン」が、シリーズごとに存在するケースもあります。<br>
+        たとえば、そまりものがたりのキャラクターが、別シリーズでは違う立場・コードで登場することもあります。
+      </p>
+    </section>
+
+    <!-- メタ要素（ルアーやアーク） -->
+    <section class="section-card about-section">
+      <h2 class="section-card__title">META ELEMENTS</h2>
+      <p>
+        Project LURE には、世界観全体を横断するメタ要素として、<strong>アーク（Arc）</strong> や
+        <strong>ルアー（擬似餌）モチーフ</strong>などがあります。
+      </p>
+      <p>
+        これらは「戦闘力」や「属性相性」を決めるためのものではなく、<br>
+        キャラクターの内側にある葛藤やテーマを、視覚的・象徴的に整理するためのラベルとして扱います。
+      </p>
+      <div class="info-card">
+        アークの一覧や意味、各キャラへの割り振りルールについては、<br>
+        <a href="about-terms.html">Terms / 用語説明</a> で詳しく解説する予定です。
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <div id="footer-container"></div>
+
+  <script src="js/loadHeader.js"></script>
+  <script src="js/loadFooter.js"></script>
+</body>
+</html>
