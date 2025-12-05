@@ -65,8 +65,9 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2000;
+  z-index: 2600; /* 2000 → 2600 */
 }
+
 
 /* =========================
    ヘッダー本体
@@ -88,7 +89,7 @@ body {
   background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
   color: #fff;
   border-bottom: 1px solid rgba(0,0,0,0.06);
-  z-index: 2100; /* navよりは下、overlayより上にしない */
+  z-index: 2610; /* navよりは下、overlayより上にしない */
 }
 
 /* 左・中央・右ブロック */
@@ -179,7 +180,7 @@ body {
   transform: translateX(-100%);
   transition: transform 0.2s ease-out;
 
-  z-index: 2500;
+  z-index: 2700;
 }
 
 /* スマホでは「画面のだいたい 8割幅」にする */
@@ -329,7 +330,7 @@ body {
   pointer-events: none;
 
   transition: opacity 0.18s ease;
-  z-index: 2400;
+  z-index: 2550;
 }
 
 .nav-overlay.is-active {
@@ -1442,7 +1443,7 @@ body {
 }
 
 .help-section h3 {
-  fontサイズ: 14px;
+  font-size: 14px;
   margin: 0 0 4px;
 }
 
