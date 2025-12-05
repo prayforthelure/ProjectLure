@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <title>ぎじえプロジェクト</title>
@@ -8,7 +8,8 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <!-- 共通スタイル -->
+  <link rel="stylesheet" href="css/style.css?v=4">
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -18,7 +19,7 @@
   <div id="header-container"></div>
 
   <!-- 本体 -->
-  <main class="l-main">
+  <main class="l-main page-index-main">
     <div id="card-list"></div>
   </main>
 
@@ -34,40 +35,46 @@
       </header>
 
       <div id="help-body">
-        <!-- 1. カードの見方（カード図版だけ） -->
         <section class="help-section">
-          <h3>1. キャラクターカードの見方</h3>
-
+          <h3>カード1枚に入っている情報</h3>
           <div class="help-card-demo">
-            <!-- 疑似カード本体 -->
             <div class="help-card-frame">
               <div class="help-card-inner"></div>
-            </div>
 
-            <!-- ラベルたち -->
-            <div class="hc-label hc-series">
-              <div class="hc-badge">∞</div>
-              <div class="hc-text">シリーズ</div>
-            </div>
-
-            <div class="hc-label hc-ex">
-              <div class="hc-badge">EX</div>
-              <div class="hc-text">エクスアーク</div>
-            </div>
-
-            <div class="hc-label hc-code">
-              <div class="hc-badge">000</div>
-              <div class="hc-text">コード</div>
-            </div>
-
-            <div class="hc-label hc-core">
-              <div class="hc-badge">CO</div>
-              <div class="hc-text">コアアーク</div>
+              <!-- ラベル例 -->
+              <div class="hc-label hc-series">
+                <span class="hc-badge">SERIES</span>
+                <span class="hc-text">シリーズ名</span>
+              </div>
+              <div class="hc-label hc-ex">
+                <span class="hc-badge">EX</span>
+                <span class="hc-text">アーク</span>
+              </div>
+              <div class="hc-label hc-code">
+                <span class="hc-badge">CODE</span>
+                <span class="hc-text">000</span>
+              </div>
+              <div class="hc-label hc-core">
+                <span class="hc-badge">CORE</span>
+                <span class="hc-text">アーク</span>
+              </div>
             </div>
           </div>
-
           <p class="help-note">
-            1枚のカードの四隅に「シリーズ」「エクスアーク」「コアアーク」「コード」が配置されています。
+            一覧では「タイトル」と「イラスト」を中心に眺め、
+            気になるキャラクターをクリックすると詳細ページが開きます。
+          </p>
+        </section>
+
+        <section class="help-section">
+          <h3>Coming Soon について</h3>
+          <p>
+            まだイラストが未公開のキャラクターは、  
+            「Coming Soon」と書かれたプレースホルダカードで表示されます。
+          </p>
+          <p class="help-note">
+            クリックしても詳細ページには移動しません。
+            公開準備中のキャラクターとしてお待ちください。
           </p>
         </section>
       </div>
@@ -79,7 +86,7 @@
     <div id="search-modal">
       <div id="search-header">
         <span>キャラクター検索</span>
-        <button id="search-close">×</button>
+        <button id="search-close" aria-label="検索を閉じる">×</button>
       </div>
 
       <div class="search-bar">
@@ -91,13 +98,12 @@
         >
       </div>
 
-      <!-- フィルタ（シリーズ） -->
+      <!-- ★ CSS に合わせて .filter-group / .filter-group-title を使用 -->
       <div class="filter-group">
         <div class="filter-group-title">シリーズ</div>
         <div class="filter-options" id="filter-series-options"></div>
       </div>
 
-      <!-- フィルタ（アーク） -->
       <div class="filter-group">
         <div class="filter-group-title">アーク</div>
         <div class="filter-options" id="filter-arc-options"></div>
