@@ -1,154 +1,72 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title>ぎじえプロジェクトとは？</title>
+<main class="l-main l-main--narrow about-page">
 
-  <!-- スマホ対応 -->
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- ABOUT の導入（ここが実質「はじめに」） -->
+  <section class="about-intro">
+    <h1>ABOUT</h1>
+    <p>
+      「ぎじえプロジェクト / Project LURE」の全体像を案内するページです。<br>
+      プロジェクトの成り立ちや世界観、制作者のこと、そして作中で使われる用語を、
+      4つの章に分けてまとめています。
+    </p>
+    <p>
+      詳しい内容は、それぞれの専用ページで解説しています。<br>
+      気になるところから読んでみてください。
+    </p>
+  </section>
 
-  <!-- 共通スタイル -->
-  <link rel="stylesheet" href="css/style.css?v=4">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+  <!-- 4つの章への誘導カード -->
+  <section class="section-card about-section">
+    <h2 class="section-card__title">CONTENTS</h2>
 
-<body class="page-about">
-
-  <!-- ヘッダー（共通） -->
-  <div id="header-container"></div>
-
-  <!-- 本体：幅狭レイアウト + ABOUT用 -->
-  <main class="l-main l-main--narrow about-page">
-
-    <!-- ① はじめに（導入：フラット） -->
-    <section class="about-intro" id="about-intro">
-      <h1>ぎじえプロジェクトとは？</h1>
-      <p>
-        ぎじえプロジェクト（Project LURE）は、
-        キャラクターカード・短いテキスト・音楽（キャラソン）を中心に構成される
-        “断片型” の創作企画です。
-      </p>
-      <p>
-        物語を一本の時間軸で語るのではなく、
-        キャラクターが持つ「色」「テーマ」「カルマ」を軸に、
-        さまざまな世界線（シリーズ）が並行して展開されます。
-        読者は提示される断片を自由に拾い、
-        自分なりの順番で世界を理解していく形式です。
-      </p>
-    </section>
-
-    <!-- ② 目次（導入と同じレベルでフラット） -->
-    <section class="about-toc" id="about-toc">
-      <h2>目次</h2>
+    <nav class="about-toc">
       <ul class="about-toc-list">
-        <li><a href="#about-guide">初めての方へ</a></li>
-        <li><a href="#about-series">シリーズについて</a></li>
-        <li><a href="#about-karma">カルマとは</a></li>
-        <li><a href="#about-media">テキストとキャラソンの関係</a></li>
-        <li><a href="#about-arc">アーク一覧</a></li>
-        <li><a href="#about-theme">シリーズ一覧</a></li>
+
+        <!-- Project -->
+        <li>
+          <a href="about-project.html">
+            <strong>Project / ぎじえプロジェクトとは</strong><br>
+            <span class="about-toc-desc">
+              シリーズ全体のコンセプト、軸になっている「色×キャラクター」の考え方、
+              今後の展開イメージなどをまとめたページです。
+            </span>
+          </a>
+        </li>
+
+        <!-- World -->
+        <li>
+          <a href="about-world.html">
+            <strong>World / どんな世界観なの？</strong><br>
+            <span class="about-toc-desc">
+              舞台となる世界の雰囲気やルール、シリーズごとの位置づけなど、
+              作品世界の「空気感」を紹介します。
+            </span>
+          </a>
+        </li>
+
+        <!-- Creator -->
+        <li>
+          <a href="about-creator.html">
+            <strong>Creator / 制作者について</strong><br>
+            <span class="about-toc-desc">
+              制作者のプロフィール、創作のスタンスや得意分野、
+              このプロジェクトに込めている個人的なテーマなどを記載します。
+            </span>
+          </a>
+        </li>
+
+        <!-- Terms -->
+        <li>
+          <a href="about-terms.html">
+            <strong>Terms / 用語説明</strong><br>
+            <span class="about-toc-desc">
+              「アーク」「コード」「そまりものがたり」など、
+              作品内で出てくる専門用語や略語を一覧で解説する用語集です。
+            </span>
+          </a>
+        </li>
+
       </ul>
-    </section>
+    </nav>
+  </section>
 
-    <!-- ③ 初めての方へ（カード形式） -->
-    <section class="section-card about-section" id="about-guide">
-      <h2 class="section-card__title">初めての方へ</h2>
-      <p>
-        ぎじえPRJは、断片を集めていくことで全体像が見えてくる構造です。
-        初めて触れる方は、以下の順で読むと理解しやすくなっています。
-      </p>
-
-      <h3>1. キャラクターカード</h3>
-      <p>1枚の中に「象徴・色・テーマ」が凝縮された名刺のような存在です。</p>
-
-      <h3>2. テキスト・小説</h3>
-      <p>キャラクターの“カルマ”や心の動きを描く断片的な文章です。</p>
-
-      <h3>3. キャラソン</h3>
-      <p>テキストで描かれた感情や衝動を音として翻訳した表現です。</p>
-    </section>
-
-    <!-- ④ シリーズ全体（世界線構造） -->
-    <section class="section-card about-section" id="about-series">
-      <h2 class="section-card__title">シリーズについて</h2>
-      <p>
-        ぎじえPRJには複数のシリーズ（世界線）が存在します。
-        各シリーズは、キャラクターの色・テーマ・カルマの見せ方が異なり、
-        “別の角度から同一人物を見る”ためのレイヤーとして機能します。
-      </p>
-      <p>
-        特に中心となる「そまりものがたり」は、
-        色やテーマをもとにキャラクターの世界線を描くメインシリーズです。
-      </p>
-    </section>
-
-    <!-- ⑤ カルマ -->
-    <section class="section-card about-section" id="about-karma">
-      <h2 class="section-card__title">カルマとは</h2>
-      <p>
-        カルマとは、キャラクターを動かす“根源的な動機”のことです。
-        願望・恐れ・歪み・諦念など、
-        「なぜそのキャラがその色で、そのテーマで生きているのか」を形づくります。
-      </p>
-      <p>
-        カルマは、カードタイトル・キャッチコピー・テキスト・キャラソンなど、
-        キャラクター表現すべてに影響する最重要設定です。
-      </p>
-    </section>
-
-    <!-- ⑥ メディア連動 -->
-    <section class="section-card about-section" id="about-media">
-      <h2 class="section-card__title">テキストとキャラソンの関係</h2>
-      <p>
-        ぎじえPRJでは、短いテキストで描かれる“カルマの物語”が、
-        そのままキャラソンへ感情として転写される構造になっています。
-      </p>
-      <ul>
-        <li><strong>テキスト：</strong> 出来事よりも「生き方や歪み」を描く断片</li>
-        <li><strong>キャラソン：</strong> その断片を内面の“音”として表現したもの</li>
-      </ul>
-      <p>
-        二つを合わせて読むことで、キャラクターの世界が立体的に理解できます。
-      </p>
-    </section>
-
-    <!-- ⑦ アーク一覧 -->
-    <section class="section-card about-section" id="about-arc">
-      <h2 class="section-card__title">アーク（属性）一覧</h2>
-      <p>
-        アークは、キャラクターが持つ“性質・傾向・分類”を視覚的に示すための要素です。
-        カルマが内面だとすれば、アークは <strong>外側から見える特徴</strong> を表します。
-      </p>
-
-      <div class="about-arc-list">
-        <!-- js/about.js がここに .info-card.about-arc-item を挿入 -->
-      </div>
-    </section>
-
-    <!-- ⑧ 大テーマ一覧（シリーズ一覧） -->
-    <section class="section-card about-section" id="about-theme">
-      <h2 class="section-card__title">シリーズ一覧</h2>
-      <p>
-        全キャラクターは全10種の「シリーズ」に属しています。
-        属性・季節・文化・感情などをもとに、
-        キャラクターの象徴や世界観を理解しやすくする分類です。
-      </p>
-
-      <div class="about-theme-grid">
-        <!-- js/about.js がここに .info-card.about-theme-item を挿入 -->
-      </div>
-    </section>
-
-  </main>
-
-  <!-- フッター（共通） -->
-  <div id="footer-container"></div>
-
-  <!-- JS（必ず最後にまとめて） -->
-  <script src="js/loadHeader.js"></script>
-  <script src="js/loadFooter.js"></script>
-  <script src="js/about.js"></script>
-</body>
-</html>
+</main>
