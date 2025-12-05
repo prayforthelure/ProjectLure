@@ -1175,11 +1175,6 @@ body {
    ヘッダー用の泡
    ------------------------- */
 
-/* ヘッダーの中に閉じ込める */
-.site-header {
-  overflow: hidden; /* 既存の .site-header に追加してOK */
-}
-
 /* ヘッダー内の泡コンテナ（loadHeader側で
    <div class="bubbles bubbles-header">…</div> を入れておく想定） */
 .site-header .bubbles-header {
