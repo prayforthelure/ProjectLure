@@ -1175,15 +1175,21 @@ body {
    ヘッダー用の泡
    ------------------------- */
 
-/* ヘッダー内の泡コンテナ（loadHeader側で
-   <div class="bubbles bubbles-header">…</div> を入れておく想定） */
+/* ヘッダーは中に閉じ込める */
+.site-header {
+  overflow: hidden;  /* 既存の .site-header に足してOK */
+  position: relative;
+}
+
+/* ヘッダー内の泡コンテナ
+   （HTML側で <div class="bubbles bubbles-header">…</div> を入れておく想定） */
 .site-header .bubbles-header {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-/* ヘッダー用の泡1粒 */
+/* ヘッダー用の泡1粒のベース */
 .site-header .bubbles-header span {
   position: absolute;
   bottom: -16px;
@@ -1191,7 +1197,10 @@ body {
   height: 8px;
   border-radius: 50%;
 
-  animation: bubble-header 6s linear infinite;
+  animation-name: bubble-header;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
   filter: blur(0.5px);
 
   /* グラデ由来のキラキラ色 */
@@ -1205,6 +1214,61 @@ body {
     0 0 10px rgba(255, 255, 255, 0.8);
 }
 
+/* ヘッダー用：位置＆時間ばらし */
+.site-header .bubbles-header span:nth-child(1) {
+  left: 8%;
+  animation-duration: 6s;
+  animation-delay: -0.5s;
+}
+
+.site-header .bubbles-header span:nth-child(2) {
+  left: 18%;
+  animation-duration: 7.2s;
+  animation-delay: -1.3s;
+}
+
+.site-header .bubbles-header span:nth-child(3) {
+  left: 30%;
+  animation-duration: 5.8s;
+  animation-delay: 0.2s;
+}
+
+.site-header .bubbles-header span:nth-child(4) {
+  left: 42%;
+  animation-duration: 6.7s;
+  animation-delay: -2s;
+}
+
+.site-header .bubbles-header span:nth-child(5) {
+  left: 55%;
+  animation-duration: 5.5s;
+  animation-delay: -0.8s;
+}
+
+.site-header .bubbles-header span:nth-child(6) {
+  left: 67%;
+  animation-duration: 7.5s;
+  animation-delay: -1.7s;
+}
+
+.site-header .bubbles-header span:nth-child(7) {
+  left: 78%;
+  animation-duration: 6.2s;
+  animation-delay: 0.4s;
+}
+
+.site-header .bubbles-header span:nth-child(8) {
+  left: 88%;
+  animation-duration: 7.8s;
+  animation-delay: -2.4s;
+}
+
+.site-header .bubbles-header span:nth-child(9) {
+  left: 95%;
+  animation-duration: 5.9s;
+  animation-delay: -1s;
+}
+
 /* -------------------------
    ボディ背景の泡（全ページ）
    ------------------------- */
@@ -1216,17 +1280,24 @@ body > .bubbles-body {
   z-index: 0;
 }
 
-/* 一覧など通常ページ：アクセント色ベース */
-body:not(.page-detail) > .bubbles-body span {
+/* 通常ページ：アクセント色ベース */
+body:not(.page-detail) > .bubbles-body span,
+.page-detail > .bubbles-body span {
   position: absolute;
   bottom: -60px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
 
-  animation: bubble-body 12s linear infinite;
-  filter: blur(1px);
+  animation-name: bubble-body;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 
+  filter: blur(1px);
+}
+
+/* 通常ページ用の色 */
+body:not(.page-detail) > .bubbles-body span {
   background: color-mix(
     in srgb,
     var(--accent) 80%,
@@ -1237,15 +1308,6 @@ body:not(.page-detail) > .bubbles-body span {
 
 /* キャラ詳細ページ：キャラ固有色ベース */
 .page-detail > .bubbles-body span {
-  position: absolute;
-  bottom: -60px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-
-  animation: bubble-body 12s linear infinite;
-  filter: blur(1px);
-
   background: color-mix(
     in srgb,
     var(--char-main-color) 80%,
@@ -1263,69 +1325,59 @@ body:not(.page-detail) #footer-container {
   z-index: 1;
 }
 
-/* -------------------------
-   バブルの位置・タイミングばらし（ヘッダー／ボディ共通）
-   → 横位置・時間・ディレイをかなりバラけさせる
-   ------------------------- */
-
-/* 位置・時間をいじるだけにするので、position はここで指定 */
-.bubbles span {
-  position: absolute;
-}
-
-/* 1〜9個前提（spanの数に合わせて調整） */
-.bubbles span:nth-child(1) {
-  left: 4%;
-  animation-duration: 9.5s;
-  animation-delay: -0.3s;
-}
-
-.bubbles span:nth-child(2) {
-  left: 13%;
-  animation-duration: 13s;
-  animation-delay: -2.1s;
-}
-
-.bubbles span:nth-child(3) {
-  left: 23%;
-  animation-duration: 8s;
-  animation-delay: 0.4s;
-}
-
-.bubbles span:nth-child(4) {
-  left: 37%;
-  animation-duration: 11.5s;
-  animation-delay: -1.2s;
-}
-
-.bubbles span:nth-child(5) {
-  left: 52%;
-  animation-duration: 10s;
-  animation-delay: -3.0s;
-}
-
-.bubbles span:nth-child(6) {
-  left: 61%;
-  animation-duration: 14s;
+/* ボディ用：位置＆時間ばらし（ヘッダーとは別パターン） */
+body > .bubbles-body span:nth-child(1) {
+  left: 5%;
+  animation-duration: 11s;
   animation-delay: -0.8s;
 }
 
-.bubbles span:nth-child(7) {
-  left: 73%;
-  animation-duration: 9s;
-  animation-delay: 1s;
+body > .bubbles-body span:nth-child(2) {
+  left: 16%;
+  animation-duration: 14s;
+  animation-delay: -2.3s;
 }
 
-.bubbles span:nth-child(8) {
-  left: 84%;
-  animation-duration: 12.5s;
-  animation-delay: -1.7s;
+body > .bubbles-body span:nth-child(3) {
+  left: 27%;
+  animation-duration: 9.5s;
+  animation-delay: 0.6s;
 }
 
-.bubbles span:nth-child(9) {
-  left: 93%;
+body > .bubbles-body span:nth-child(4) {
+  left: 39%;
+  animation-duration: 13s;
+  animation-delay: -1.5s;
+}
+
+body > .bubbles-body span:nth-child(5) {
+  left: 52%;
+  animation-duration: 10.2s;
+  animation-delay: -3.1s;
+}
+
+body > .bubbles-body span:nth-child(6) {
+  left: 63%;
   animation-duration: 15s;
-  animation-delay: -3.4s;
+  animation-delay: -0.4s;
+}
+
+body > .bubbles-body span:nth-child(7) {
+  left: 74%;
+  animation-duration: 11.8s;
+  animation-delay: 1.2s;
+}
+
+body > .bubbles-body span:nth-child(8) {
+  left: 86%;
+  animation-duration: 13.7s;
+  animation-delay: -2.0s;
+}
+
+body > .bubbles-body span:nth-child(9) {
+  left: 96%;
+  animation-duration: 16s;
+  animation-delay: -3.6s;
 }
 
 /* -------------------------
