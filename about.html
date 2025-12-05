@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>ぎじえプロジェクトとは？</title>
 
+  <!-- スマホ対応 -->
   <meta name="viewport"
         content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -18,10 +19,10 @@
   <!-- ヘッダー（共通） -->
   <div id="header-container"></div>
 
-  <!-- 本体 -->
-  <main class="about-page">
+  <!-- 本体：幅狭レイアウト + ABOUT用 -->
+  <main class="l-main l-main--narrow about-page">
 
-    <!-- ① 導入 -->
+    <!-- ① はじめに（導入：フラット） -->
     <section class="about-intro" id="about-intro">
       <h1>ぎじえプロジェクトとは？</h1>
       <p>
@@ -33,10 +34,12 @@
         物語を一本の時間軸で語るのではなく、
         キャラクターが持つ「色」「テーマ」「カルマ」を軸に、
         さまざまな世界線（シリーズ）が並行して展開されます。
+        読者は提示される断片を自由に拾い、
+        自分なりの順番で世界を理解していく形式です。
       </p>
     </section>
 
-    <!-- ② 目次 -->
+    <!-- ② 目次（導入と同じレベルでフラット） -->
     <section class="about-toc" id="about-toc">
       <h2>目次</h2>
       <ul class="about-toc-list">
@@ -45,103 +48,107 @@
         <li><a href="#about-karma">カルマとは</a></li>
         <li><a href="#about-media">テキストとキャラソンの関係</a></li>
         <li><a href="#about-arc">アーク一覧</a></li>
-        <li><a href="#about-theme">大テーマ一覧</a></li>
+        <li><a href="#about-theme">シリーズ一覧</a></li>
       </ul>
     </section>
 
-    <!-- ③ 初めての方へ -->
-    <section class="about-section" id="about-guide">
-      <h2>初めての方へ</h2>
+    <!-- ③ 初めての方へ（カード形式） -->
+    <section class="section-card about-section" id="about-guide">
+      <h2 class="section-card__title">初めての方へ</h2>
       <p>
-        ぎじえPRJは、断片を集めることで全体像が見えてくる構造です。
-        初めて触れる方は、以下の順で読むと理解がスムーズです。
+        ぎじえPRJは、断片を集めていくことで全体像が見えてくる構造です。
+        初めて触れる方は、以下の順で読むと理解しやすくなっています。
       </p>
 
       <h3>1. キャラクターカード</h3>
-      <p>1枚に「象徴・色・テーマ」が凝縮された名刺のような存在です。</p>
+      <p>1枚の中に「象徴・色・テーマ」が凝縮された名刺のような存在です。</p>
 
       <h3>2. テキスト・小説</h3>
       <p>キャラクターの“カルマ”や心の動きを描く断片的な文章です。</p>
 
       <h3>3. キャラソン</h3>
-      <p>テキストの感情や衝動を音として翻訳した表現です。</p>
+      <p>テキストで描かれた感情や衝動を音として翻訳した表現です。</p>
     </section>
 
-    <!-- ④ シリーズについて -->
-    <section class="about-section" id="about-series">
-      <h2>シリーズについて</h2>
+    <!-- ④ シリーズ全体（世界線構造） -->
+    <section class="section-card about-section" id="about-series">
+      <h2 class="section-card__title">シリーズについて</h2>
       <p>
         ぎじえPRJには複数のシリーズ（世界線）が存在します。
-        各シリーズは、キャラクターの「色・テーマ・カルマ」の見せ方が異なり、
-        “別角度から同一人物を見る”ためのレイヤーとして機能します。
+        各シリーズは、キャラクターの色・テーマ・カルマの見せ方が異なり、
+        “別の角度から同一人物を見る”ためのレイヤーとして機能します。
       </p>
       <p>
-        中心となる「そまりものがたり」は、
-        色やテーマをもとにしたキャラ世界線の基本軸となります。
+        特に中心となる「そまりものがたり」は、
+        色やテーマをもとにキャラクターの世界線を描くメインシリーズです。
       </p>
     </section>
 
     <!-- ⑤ カルマ -->
-    <section class="about-section" id="about-karma">
-      <h2>カルマとは</h2>
+    <section class="section-card about-section" id="about-karma">
+      <h2 class="section-card__title">カルマとは</h2>
       <p>
-        カルマとは、キャラクターを動かす“根源的な動機”です。
+        カルマとは、キャラクターを動かす“根源的な動機”のことです。
         願望・恐れ・歪み・諦念など、
-        「なぜそのキャラがその色で、そのテーマで生きているのか」を規定します。
+        「なぜそのキャラがその色で、そのテーマで生きているのか」を形づくります。
       </p>
       <p>
-        カルマは、カードのタイトル・テキスト・キャラソンすべてに影響する
-        最重要設定です。
+        カルマは、カードタイトル・キャッチコピー・テキスト・キャラソンなど、
+        キャラクター表現すべてに影響する最重要設定です。
       </p>
     </section>
 
     <!-- ⑥ メディア連動 -->
-    <section class="about-section" id="about-media">
-      <h2>テキストとキャラソンの関係</h2>
+    <section class="section-card about-section" id="about-media">
+      <h2 class="section-card__title">テキストとキャラソンの関係</h2>
       <p>
         ぎじえPRJでは、短いテキストで描かれる“カルマの物語”が、
-        キャラソンにそのまま感情として転写されます。
+        そのままキャラソンへ感情として転写される構造になっています。
       </p>
       <ul>
-        <li><strong>テキスト：</strong> 出来事よりも内面を描く断片</li>
-        <li><strong>キャラソン：</strong> その断片を“音”として翻訳したもの</li>
+        <li><strong>テキスト：</strong> 出来事よりも「生き方や歪み」を描く断片</li>
+        <li><strong>キャラソン：</strong> その断片を内面の“音”として表現したもの</li>
       </ul>
+      <p>
+        二つを合わせて読むことで、キャラクターの世界が立体的に理解できます。
+      </p>
     </section>
 
     <!-- ⑦ アーク一覧 -->
-    <section class="about-section" id="about-arc">
-      <h2>アーク（属性）一覧</h2>
+    <section class="section-card about-section" id="about-arc">
+      <h2 class="section-card__title">アーク（属性）一覧</h2>
       <p>
-        アークはキャラクターの“外側から見える性質”を示す分類です。
+        アークは、キャラクターが持つ“性質・傾向・分類”を視覚的に示すための要素です。
+        カルマが内面だとすれば、アークは <strong>外側から見える特徴</strong> を表します。
       </p>
 
       <div class="about-arc-list">
-        <!-- JS about.js がここへ挿入 -->
+        <!-- js/about.js がここに .info-card.about-arc-item を挿入 -->
       </div>
     </section>
 
-    <!-- ⑧ 大テーマ一覧 -->
-    <section class="about-section" id="about-theme">
-      <h2>大テーマ一覧</h2>
+    <!-- ⑧ 大テーマ一覧（シリーズ一覧） -->
+    <section class="section-card about-section" id="about-theme">
+      <h2 class="section-card__title">シリーズ一覧</h2>
       <p>
-        キャラクターはすべて全10種のシリーズのいずれかに分類されます。
-        世界観の理解を助けるためのカテゴリです。
+        全キャラクターは全10種の「シリーズ」に属しています。
+        属性・季節・文化・感情などをもとに、
+        キャラクターの象徴や世界観を理解しやすくする分類です。
       </p>
 
       <div class="about-theme-grid">
-        <!-- JS about.js がここへ挿入 -->
+        <!-- js/about.js がここに .info-card.about-theme-item を挿入 -->
       </div>
     </section>
 
   </main>
 
-  <!-- フッター -->
+  <!-- フッター（共通） -->
   <div id="footer-container"></div>
 
-  <!-- JS -->
+  <!-- JS（必ず最後にまとめて） -->
   <script src="js/loadHeader.js"></script>
   <script src="js/loadFooter.js"></script>
   <script src="js/about.js"></script>
-
 </body>
 </html>
