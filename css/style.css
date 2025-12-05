@@ -210,10 +210,22 @@ body {
   border: none;
   background: transparent;
   color: #05334a;
-  font-size: 24px;
+  font-size: 32px;
   line-height: 1;
   cursor: pointer;
-  padding: 4px;
+  padding: 10px;
+  
+  border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .nav-close-btn {
+    font-size: 36px;   /* ← スマホはさらに大きく */
+    padding: 12px;     /* ← タップしやすい */
+    top: 8px;          /* ← ヘッダーの余白調整 */
+    left: 10px;
+  }
 }
 
 /* ナビリンク全体（英語＋日本語2行セット） */
@@ -301,8 +313,10 @@ body {
 
 /* 今いるページ（メイン項目） */
 .header-nav-link.is-current {
-  border-color: rgba(0, 80, 140, 0.4);
-  box-shadow: 0 0 0 1px rgba(0, 80, 140, 0.35);
+  background: rgba(0, 136, 255, 0.15);         /* 淡い青でハイライト */
+  border-color: rgba(0, 80, 140, 0.6);
+  box-shadow: 0 0 0 2px rgba(0, 80, 140, 0.35);
+  color: #05334a;
 }
 
 /* 今いるページ（サブ項目） */
@@ -310,6 +324,8 @@ body {
   background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
   color: #ffffff;
   box-shadow: 0 1px 5px rgba(0, 40, 80, 0.25);
+  padding-left: 12px;            /* ← 少し大きめに */
+  border-left: 4px solid #fff;   /* ← 白い帯で強調 */
 }
 
 /* PCでもスマホでも同じ挙動：ハンバーガーで開閉 */
@@ -399,7 +415,8 @@ body {
       border-color 0.15s ease;
   }
 
-  .header-nav-link:hover {
+  /* 今いるページ以外だけホバー反応 */
+  .header-nav-link:not(.is-current):hover {
     background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
     color: #ffffff;
     border-color: transparent;
@@ -415,7 +432,8 @@ body {
       transform 0.12s ease-out;
   }
 
-  .header-subnav-link:hover {
+  /* サブメニューも同様に、is-current だけは固定表示 */
+  .header-subnav-link:not(.is-current):hover {
     background: rgba(0, 136, 255, 0.08);
     transform: translateX(2px);
   }
