@@ -1,43 +1,83 @@
-<main class="l-main l-main--narrow about-page">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ABOUT | Creator / 制作者について</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 
-  <section class="about-intro">
-    <p>
-      <a href="about.html" class="char-back-link">← ABOUTトップに戻る</a>
-    </p>
-    <h1>Creator</h1>
-    <p>
-      「ぎじえプロジェクト / Project LURE」を制作している人についてのページです。<br>
-      プロフィールや創作のスタンスなど、必要な範囲だけを簡潔にまとめます。
-    </p>
-  </section>
+<body class="about-page about-creator-page">
 
-  <!-- プロフィール -->
-  <section class="section-card about-section">
-    <h2 class="section-card__title">プロフィール</h2>
-    <p>
-      ハンドルネーム、活動名義、主な活動領域（イラスト / 作曲 / 小説 / デザイン など）を、
-      公開しても問題ない範囲で記載する想定です。
-    </p>
-  </section>
+  <!-- ヘッダー -->
+  <div id="header-container"></div>
 
-  <!-- 創作スタンス -->
-  <section class="section-card about-section" style="margin-top: 16px;">
-    <h2 class="section-card__title">創作のスタンス</h2>
-    <p>
-      作品との距離感、得意なジャンル、こだわっているポイントなどを整理します。<br>
-      「キャラデザを軸にIP全体を組み立てる」「色と物語の対応関係を大事にしている」など、
-      自分用のメモにもなります。
-    </p>
-  </section>
+  <main class="l-main l-main--narrow about-page">
 
-  <!-- Project LUREに込めているテーマ -->
-  <section class="section-card about-section" style="margin-top: 16px;">
-    <h2 class="section-card__title">Project LUREに込めているテーマ</h2>
-    <p>
-      個人的な経験や感情から、このプロジェクトにどんなテーマを反映させているのかを書いておくスペースです。<br>
-      重くなりすぎない範囲で、「こういう視点で作品を見てもらえると嬉しい」といった補足を書く想定です。
-    </p>
-  </section>
+    <!-- 戻るリンク -->
+    <a href="about.html" class="char-back-link">&laquo; ABOUT に戻る</a>
 
-  <a href="about.html" class="char-back-btn bottom">ABOUTトップに戻る</a>
-</main>
+    <!-- 見出しブロック -->
+    <section class="about-intro">
+      <h1>Creator / 制作者について</h1>
+      <p>
+        ここでは、Project LURE を制作している人間について簡単にまとめます。<br>
+        個人情報を細かく出す場ではなく、「こういうスタンスで作っています」という
+        創作プロフィールを置いておくイメージです。
+      </p>
+    </section>
+
+    <!-- プロフィール -->
+    <section class="section-card about-section">
+      <h2 class="section-card__title">PROFILE</h2>
+      <p>
+        ・名前（活動名）：<br>
+        ・主な活動分野：イラスト / 作曲 / 小説・テキスト / ロゴ・作字 など<br>
+        ・好きなモチーフ：色、職業、言葉遊び、ちょっとひねくれたキャラクター　など
+      </p>
+      <p>
+        ここには、外向けに公開しても良い範囲で、<br>
+        「どんなことをしている人か」「何を作るのが得意か」を簡潔に書いておきます。
+      </p>
+    </section>
+
+    <!-- 創作スタンス -->
+    <section class="section-card about-section">
+      <h2 class="section-card__title">CREATIVE STANCE</h2>
+      <p>
+        Project LURE では、すべてを一気に完璧に仕上げるのではなく、<br>
+        <strong>「キャラクターを軸に、要素ごとに少しずつ育てていく」</strong> ことを大切にしています。
+      </p>
+      <p>
+        たとえば、あるキャラクターについて、<br>
+        まずは立ち絵、次にキャラソンの仮歌、あとから設定資料や短いテキスト……というように、<br>
+        断片を積み上げながら、時間をかけて「好きな世界」を形にしていく方針です。
+      </p>
+    </section>
+
+    <!-- このプロジェクトに込めていること -->
+    <section class="section-card about-section">
+      <h2 class="section-card__title">PERSONAL THEME</h2>
+      <p>
+        Project LURE は、創作活動そのものと、自分自身の感情や価値観を、<br>
+        少し距離をおいて眺め直すための「装置」のような位置づけでもあります。
+      </p>
+      <p>
+        色やキャラクターというフィルターを通すことで、<br>
+        直接言葉にするにはむずかしい気持ちや、うまく整理できない経験を、<br>
+        物語やビジュアルとして安全に外側に出すことを目指しています。
+      </p>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <div id="footer-container"></div>
+
+  <script src="js/loadHeader.js"></script>
+  <script src="js/loadFooter.js"></script>
+</body>
+</html>
