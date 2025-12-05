@@ -1340,6 +1340,58 @@ body {
     padding: 14px 14px;
   }
 }
+/* ABOUT：カード間のダブル▽デザイン */
+.about-toc-list li.with-arrow {
+  position: relative;
+  padding-bottom: 40px; /* 下に余白を作って▽を配置 */
+}
+
+/* ダブル▽の共通部分 */
+.about-toc-list li.with-arrow::before,
+.about-toc-list li.with-arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  width: 14px;
+  height: 10px;
+
+  /* 三角形のスタイル（上向きにする） */
+  border-left: 1.8px solid transparent;
+  border-right: 1.8px solid transparent;
+  border-top: 1.8px solid;
+
+  /* グラデの線を適用 */
+  border-image: linear-gradient(
+    90deg,
+    var(--header-grad-left),
+    var(--header-grad-right)
+  ) 1;
+
+  opacity: 0.85;
+}
+
+/* 上側の▽（薄く、小さく） */
+.about-toc-list li.with-arrow::before {
+  bottom: 18px;
+  opacity: 0.45;
+  transform: translateX(-50%) rotate(180deg) scale(0.9);
+}
+
+/* 下側の▽（濃く、くっきり） */
+.about-toc-list li.with-arrow::after {
+  bottom: 2px;
+  opacity: 0.9;
+}
+
+/* スマホ微調整 */
+@media (max-width: 768px) {
+  .about-toc-list li.with-arrow::before,
+  .about-toc-list li.with-arrow::after {
+    width: 12px;
+    height: 9px;
+  }
+}
 
 /* =========================
    LINKS / OFFICIAL ページ
