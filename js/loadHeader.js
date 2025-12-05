@@ -1,29 +1,29 @@
-// loadHeader.js
+// js/loadHeader.js
 
-// ヘッダーを読み込んでから初期化する
+// 1. header.html を読み込んで #header-container に挿入
 document.addEventListener('DOMContentLoaded', async () => {
   const headerContainer = document.getElementById('header-container');
 
-  // 1) 共通ヘッダー読み込み（header.html を <div id="header-container"> に挿入）
-  if (headerContainer) {
-    try {
-      const res = await fetch('header.html');  // header.html と同じ階層に各ページがある想定
-      if (!res.ok) {
-        throw new Error('header.html の読み込みに失敗しました');
-      }
-      const html = await res.text();
-      headerContainer.innerHTML = html;
-    } catch (err) {
-      console.error('ヘッダー読み込みエラー:', err);
-      // 読み込みに失敗した場合はこれ以上やることがないので return
-      return;
-    }
-  } else {
-    // headerContainer 自体がないページでは何もしない
+  if (!headerContainer) {
+    // ヘッダーを置かないページなら何もしない
     return;
   }
 
-  // 2) ヘッダーの各種イベントを設定
+  try {
+    // index.html と同じ階層に header.html がある前提
+    const res = await fetch('header.html');
+    if (!res.ok) {
+      throw new Error('header.html の読み込みに失敗しました');
+    }
+    const html = await res.text();
+    headerContainer.innerHTML = html;
+  } catch (err) {
+    console.error('ヘッダー読み込みエラー:', err);
+    // ここで終わる＝ヘッダーが無いままになる
+    return;
+  }
+
+  // HTMLを挿入してから、イベント類を設定
   initHeader();
 });
 
@@ -31,18 +31,18 @@ function initHeader() {
   // ==========
   // 要素取得
   // ==========
-  const menuToggle   = document.getElementById('menu-toggle');
-  const nav          = document.getElementById('site-nav');
-  const navOverlay   = document.getElementById('nav-overlay');
-  const navCloseBtn  = nav ? nav.querySelector('.nav-close-btn') : null;
+  const menuToggle  = document.getElementById('menu-toggle');
+  const nav         = document.getElementById('site-nav');
+  const navOverlay  = document.getElementById('nav-overlay');
+  const navCloseBtn = nav ? nav.querySelector('.nav-close-btn') : null;
 
-  const searchOpenBtn   = document.getElementById('search-open');
-  const searchOverlay   = document.getElementById('search-overlay');
-  const searchCloseBtn  = searchOverlay ? document.getElementById('search-close') : null;
+  const searchOpenBtn  = document.getElementById('search-open');
+  const searchOverlay  = document.getElementById('search-overlay');
+  const searchCloseBtn = searchOverlay ? document.getElementById('search-close') : null;
 
-  const helpOpenBtn   = document.getElementById('help-open');
-  const helpOverlay   = document.getElementById('help-overlay');
-  const helpCloseBtn  = helpOverlay ? document.getElementById('help-close') : null;
+  const helpOpenBtn  = document.getElementById('help-open');
+  const helpOverlay  = document.getElementById('help-overlay');
+  const helpCloseBtn = helpOverlay ? document.getElementById('help-close') : null;
 
   // ==========
   // サイドナビ開閉
@@ -69,7 +69,7 @@ function initHeader() {
     document.body.dataset.navOpen = 'false';
   };
 
-  // ハンバーガーで開く（トグル）
+  // ハンバーガー（トグル）
   if (menuToggle) {
     menuToggle.addEventListener('click', (e) => {
       e.preventDefault();
@@ -82,7 +82,7 @@ function initHeader() {
     });
   }
 
-  // ×ボタンで閉じる
+  // ×ボタン
   if (navCloseBtn) {
     navCloseBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -90,7 +90,7 @@ function initHeader() {
     });
   }
 
-  // オーバーレイクリックで閉じる
+  // オーバーレイクリック
   if (navOverlay) {
     navOverlay.addEventListener('click', () => {
       closeNav();
@@ -177,7 +177,6 @@ function initHeader() {
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
 
-    // 優先順位：検索 → ヘルプ → ナビ
     if (searchOverlay && searchOverlay.classList.contains('is-open')) {
       closeSearch();
       return;
@@ -205,7 +204,6 @@ function initHeader() {
     navLinks.forEach((link) => {
       const href = link.getAttribute('href');
       if (!href) return;
-
       const linkFile = href.split('/').pop().split('#')[0].split('?')[0];
       if (linkFile === currentPage) {
         link.classList.add('is-current');
@@ -217,7 +215,6 @@ function initHeader() {
     subnavLinks.forEach((link) => {
       const href = link.getAttribute('href');
       if (!href) return;
-
       const linkFile = href.split('/').pop().split('#')[0].split('?')[0];
       if (linkFile === currentPage) {
         link.classList.add('is-current');
