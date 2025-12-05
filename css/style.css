@@ -347,14 +347,47 @@ body {
   }
 
   .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;  /* 左詰めで並べる */
     padding: 0 8px;
   }
 
+  /* 絶対配置をやめて、普通に横並びにする */
+  .header-left,
+  .header-center,
+  .header-right {
+    position: static;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;          /* ハンバーガーとロゴの間 */
+    flex: 0 0 auto;
+  }
+
+  .header-center {
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;    /* ロゴは必要に応じて縮む */
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto; /* ここから右端まで飛ばす */
+    flex: 0 0 auto;
+  }
+
   .header-logo {
-    max-height: 60px;
+    max-height: 40px;
+    max-width: 48vw;   /* ロゴがアイコン側にはみ出さないよう制限 */
+    height: auto;
+    width: auto;
   }
 }
-
 /* PC ホバー時の装飾 */
 @media (min-width: 769px) and (hover:hover) and (pointer:fine) {
   .header-nav-link {
