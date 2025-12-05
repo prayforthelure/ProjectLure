@@ -1234,35 +1234,92 @@ body {
   letter-spacing: 0.12em;
 }
 
+/* 目次（ABOUT） */
+.about-toc {
+  margin: 0 0 24px;
+}
+
+.about-toc h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+}
+
+/* リスト本体 */
 .about-toc-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 12px; /* ボタン間の余白 */
 }
 
+/* a はフレーム。中身のカードをクリック範囲に */
 .about-toc-list a {
   text-decoration: none;
-  font-size: 13px;
-  color: #005a9c;
-  padding: 3px 4px;
-  border-radius: 4px;
+  color: inherit;
+  display: block;
+}
+
+/* ボタン風カード本体 */
+.about-toc-card {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #f5fbff;
+  border: 1px solid rgba(0, 80, 140, 0.10);
+  box-shadow: 0 1px 3px rgba(0, 40, 80, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
   transition:
     background-color 0.15s ease,
-    transform 0.12s ease-out;
+    box-shadow 0.15s ease,
+    transform 0.12s ease-out,
+    border-color 0.15s ease;
 }
 
-.about-toc-list a:hover {
-  background: #e5f3ff;
-  transform: translateX(2px);
+/* タイトル行 */
+.about-toc-title {
+  font-size: 13px;
+  font-weight: 600;
 }
 
+/* 説明文 */
 .about-toc-desc {
   font-size: 12px;
   color: var(--text-muted);
   line-height: 1.6;
+}
+
+/* ホバー時：ぷち浮き＋グラデ */
+.about-toc-card:hover {
+  background: linear-gradient(
+    90deg,
+    var(--header-grad-left),
+    var(--header-grad-right)
+  );
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 40, 80, 0.25);
+  transform: translateY(-1px);
+}
+
+/* スマホ微調整 */
+@media (max-width: 768px) {
+  .about-toc-card {
+    padding: 9px 12px;
+  }
+
+  .about-toc-title {
+    font-size: 12px;
+  }
+
+  .about-toc-desc {
+    font-size: 11px;
+  }
 }
 
 /* ABOUT内の section は .section-card を併用する想定 */
