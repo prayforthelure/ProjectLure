@@ -28,7 +28,8 @@
         まとめて確認できる用語集です。
       </p>
       <p>
-        情報が増えてきたら、ここを見れば最低限の意味が追えるように整えていきます。
+        アーク（Arc）やシリーズ（大テーマ）の一覧は、<br>
+        JSONデータ（<code>arcList.json</code> / <code>series.json</code>）から自動生成しています。
       </p>
     </section>
 
@@ -41,30 +42,18 @@
         そのキャラがどんな方向の「物語」を持っているかを整理するための分類として使います。
       </p>
 
-      <div class="about-arc-list">
-        <div class="info-card about-arc-item">
-          <div class="about-arc-item-header">
-            <span class="arc-icon">🔥</span>
-            <span class="arc-name">ブレイズ（Blaze）</span>
-          </div>
-          <div class="about-arc-keywords">
-            <span class="about-arc-tag">情熱</span>
-            <span class="about-arc-tag">衝動</span>
-            <span class="about-arc-tag">燃え広がる</span>
-            <!-- 必要に応じて調整 -->
-          </div>
-        </div>
-
-        <!-- 他のアークも同様に並べていく想定 -->
+      <!-- ここに arcList.json から生成したカードを流し込む -->
+      <div id="arc-list" class="about-arc-list">
+        <!-- JSにより .info-card.about-arc-item が並ぶ -->
       </div>
 
       <p style="margin-top:8px; font-size:12px; color:var(--text-muted);">
-        ※ 実際のアーク一覧・絵文字セット・略号（B / F / G …など）は、<br>
-        データが固まり次第ここに追記していきます。
+        ※ アークは <code>arcList.json</code> の内容をもとに自動表示しています。
+        キーワードを変更したい場合は、JSON側を編集してください。
       </p>
     </section>
 
-    <!-- コード体系 -->
+    <!-- コード体系（説明文だけ静的） -->
     <section class="section-card about-section">
       <h2 class="section-card__title">CODE / コード</h2>
       <p>
@@ -78,26 +67,22 @@
       </p>
       <div class="info-card">
         そまりものがたり（0_Occupation）など、シリーズごとのコードルールは、<br>
-        ある程度固まった段階でここにまとめていきます。
+        データが固まり次第、別途まとめていきます。
       </div>
     </section>
 
-    <!-- シリーズ名・総称 -->
+    <!-- シリーズ名・総称（series.jsonから自動生成） -->
     <section class="section-card about-section">
       <h2 class="section-card__title">SERIES / シリーズと総称</h2>
       <p>
         Project LURE の中には、いくつかの大きなシリーズ（大テーマ）が存在します。<br>
-        例：
+        下のリストは <code>series.json</code> の内容から自動で生成しています。
       </p>
-      <ul>
-        <li>0_Occupation …… そまりものがたり</li>
-        <li>1_Instinct …… こころものがたり</li>
-        <li>2_Zone …… あそびものがたり（仮）</li>
-        <!-- 必要に応じて追記 -->
-      </ul>
-      <p>
-        ここには、「日本語タイトル」「英語タイトル」「略称」などを一覧で整理していきます。
-      </p>
+
+      <!-- ここに series.json から生成したカードを流し込む -->
+      <div id="series-list" class="about-theme-grid">
+        <!-- JSにより .info-card.about-theme-item が並ぶ -->
+      </div>
     </section>
 
   </main>
@@ -107,5 +92,7 @@
 
   <script src="js/loadHeader.js"></script>
   <script src="js/loadFooter.js"></script>
+  <!-- Terms専用：JSONから用語リストを生成するスクリプト -->
+  <script src="js/terms.js"></script>
 </body>
 </html>
