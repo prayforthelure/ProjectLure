@@ -95,79 +95,71 @@ document.addEventListener("DOMContentLoaded", () => {
       const container = document.getElementById("character-content");
       if (!container) return;
 
-      container.innerHTML = `
-        <article class="char-page">
+    container.innerHTML = `
+      <article class="char-page">
 
-          <!-- 上部：一覧に戻るボタン -->
-          <a href="index.html" class="char-back-btn">一覧に戻る</a>
+        <!-- 上部：一覧に戻るボタン -->
+        <a href="index.html" class="char-back-btn">一覧に戻る</a>
 
-          <!-- 上段：カード ＋ 基本情報 -->
-          <section class="char-hero">
-            <div class="char-hero-card">
-              <img src="${imgPath}"
-                   alt="${c.title}"
-                   class="char-hero-image">
-            </div>
+        <!-- 上段：カード ＋ 基本情報 -->
+        <section class="char-hero">
+          <div class="char-hero-card">
+            <img src="${imgPath}"
+                 alt="${c.title}"
+                 class="char-hero-image">
+          </div>
 
-            <div class="char-hero-meta">
-              <div class="char-hero-code">No.${c.code}</div>
-              <h1 class="char-hero-title">${c.title}</h1>
-              ${c.titleYomi ? `<div class="char-hero-yomi">${c.titleYomi}</div>` : ""}
+          <div class="char-hero-meta">
+            <div class="char-hero-code">No.${c.code}</div>
+            <h1 class="char-hero-title">${c.title}</h1>
+            ${c.titleYomi ? `<div class="char-hero-yomi">${c.titleYomi}</div>` : ""}
 
+            ${c.catchcopy ? `
+              <p class="char-hero-catch">〝${c.catchcopy}〟</p>
+            ` : ""}
+
+            <div class="char-hero-tags">
+              ${series ? `<span class="char-tag">シリーズ：${series.nameJa}</span>` : ""}
+              ${c.theme ? `<span class="char-tag">テーマ：${c.theme}</span>` : ""}
               ${
-                c.catchcopy
-                  ? `<p class="char-hero-catch">〝${c.catchcopy}〟</p>`
+                c.mainColorLabel
+                  ? `
+                    <span class="char-tag char-tag-maincolor">
+                      メインカラー：${c.mainColorLabel}
+                    </span>
+                    `
                   : ""
               }
-
-              <div class="char-hero-tags">
-                ${
-                  series
-                    ? `<span class="char-tag">シリーズ：${series.nameJa}</span>`
-                    : ""
-                }
-                ${
-                  c.theme
-                    ? `<span class="char-tag">テーマ：${c.theme}</span>`
-                    : ""
-                }
-                ${
-                  c.mainColorLabel
-                    ? `<span class="char-tag char-tag-maincolor">
-                         メインカラー：${c.mainColorLabel}
-                       </span>`
-                    : ""
-                }
-              </div>
-
-              <!-- STORY ブロック（タイトルブロックと分割） -->
-              ${hasStoryBlock ? `
-                <div class="char-story-block">
-                  <h3 class="char-story-title">STORY</h3>
-                  ${summaryHtml ? `<p class="char-story-text">${summaryHtml}</p>` : ""}
-                  ${keywordsHtml}
-                </div>
-              ` : ""}
             </div>
-          </section>
 
-          <!-- 中段：INFORMATION -->
-          <section class="char-section">
-            <h2 class="char-section-title">INFORMATION</h2>
-            <div class="char-info-grid"></div>
-          </section>
+            <!-- STORY ブロック（タイトルブロックと分割） -->
+            ${hasStoryBlock ? `
+              <div class="char-story-block">
+                <h3 class="char-story-title">STORY</h3>
+                ${summaryHtml ? `<p class="char-story-text">${summaryHtml}</p>` : ""}
+                ${keywordsHtml}
+              </div>
+            ` : ""}
+          </div>
+        </section>
 
-          <!-- 下段：GALLERY -->
-          <section class="char-section">
-            <h2 class="char-section-title">GALLERY</h2>
-            ${galleryHtml}
-          </section>
+        <!-- 中段：INFORMATION（★カード枠を付与） -->
+        <section class="section-card char-section">
+          <h2 class="char-section-title">INFORMATION</h2>
+          <div class="char-info-grid"></div>
+        </section>
 
-          <!-- 下部：一覧に戻るボタン -->
-          <a href="index.html" class="char-back-btn bottom">一覧に戻る</a>
+        <!-- 下段：GALLERY（★同じくカード枠を付与） -->
+        <section class="section-card char-section">
+          <h2 class="char-section-title">GALLERY</h2>
+          ${galleryHtml}
+        </section>
 
-        </article>
-      `;
+        <!-- 下部：一覧に戻るボタン -->
+        <a href="index.html" class="char-back-btn bottom">一覧に戻る</a>
+
+      </article>
+    `;
 
       // 立ち絵画像の 404 対応（プレースホルダに差し替え）
       const heroImg = container.querySelector(".char-hero-image");
