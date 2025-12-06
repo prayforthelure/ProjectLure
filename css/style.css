@@ -1174,13 +1174,6 @@ body {
 /* -------------------------
    ヘッダー用の泡
    ------------------------- */
-
-/* ヘッダーは中に閉じ込める */
-.site-header {
-  overflow: hidden;  /* 既存の .site-header に足してOK */
-  position: relative;
-}
-
 /* ヘッダー内の泡コンテナ
    （HTML側で <div class="bubbles bubbles-header">…</div> を入れておく想定） */
 .site-header .bubbles-header {
@@ -1436,12 +1429,6 @@ body > .bubbles-body span:nth-child(9) {
 /* 目次 */
 .about-toc {
   margin: 0 0 24px;
-}
-
-.about-toc h2 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  letter-spacing: 0.12em;
 }
 
 .about-toc h2 {
@@ -1912,20 +1899,23 @@ body > .bubbles-body span:nth-child(9) {
   color: var(--text-muted);
 }
 
-/* ヘルプ：カードの見方デモ */
+/* =========================
+   ヘルプ：カード見本（四隅番号）
+   ========================= */
+
 .help-card-demo {
   position: relative;
-  margin: 10px auto 6px;
-  width: 150px;
-  aspect-ratio: 3 / 4;
+  margin: 12px auto 10px;
+  width: 160px;          /* カードの幅 */
+  aspect-ratio: 3 / 4;   /* カード比率 */
 }
 
-/* 外枠 */
+/* 外枠（グラデ付き） */
 .help-card-frame {
   position: absolute;
-  inset: 12%;
-  border-radius: 10px;
-  padding: 2px;
+  inset: 0;
+  border-radius: 12px;
+  padding: 3px;
   background: linear-gradient(
     180deg,
     #ff6ec4,
@@ -1935,170 +1925,86 @@ body > .bubbles-body span:nth-child(9) {
   box-sizing: border-box;
 }
 
-/* カード中身 */
+/* カード中身（白） */
 .help-card-inner {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
-  background: #ffffffdd;
-  box-shadow: none;
+  border-radius: 9px;
+  background: #ffffffee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  position: relative;    /* 四隅番号の基準にする */
 }
 
-/* ラベル */
-.hc-label {
+/* 四隅の番号バッジ（カード内側） */
+.help-corner-num {
   position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #05334a;
+  color: #ffffff;
+  font-size: 11px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 11px;
+  justify-content: center;
 }
 
-.hc-text {
-  white-space: nowrap;
+/* 左下 → ① */
+.help-corner-1 {
+  left: 4px;
+  bottom: 4px;
 }
-/* ヘルプ：カード凡例（SERIES / EX / CODE / CORE） */
-.help-card-legend {
+
+/* 左上 → ② */
+.help-corner-2 {
+  left: 4px;
+  top: 4px;
+}
+
+/* 右上 → ③ */
+.help-corner-3 {
+  right: 4px;
+  top: 4px;
+}
+
+/* 右下 → ④ */
+.help-corner-4 {
+  right: 4px;
+  bottom: 4px;
+}
+
+/* 凡例リスト（①〜④の説明） */
+.help-legend-list {
+  margin: 8px 0 0;
+  padding-left: 0;
   list-style: none;
-  padding: 6px 0 0;
-  margin: 4px 0 0;
-  display: flex;
-  flex-direction: column;   /* 縦並び */
-  gap: 4px;
   font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-/* 1行ずつ：バッジ + 説明テキスト */
-.help-card-legend li {
+.help-legend-list li {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-/* 左側のラベルバッジ（SERIES / EX / CODE / CORE） */
-.legend-badge {
-  min-width: 64px;
-  padding: 2px 8px;
+.help-legend-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
   border-radius: 999px;
   background: #05334a;
-  color: #ffffff;
-  font-size: 10px;
-  text-align: center;
-  letter-spacing: 0.08em;
-}
-
-/* 右側の説明テキスト */
-.legend-text {
-  font-size: 12px;
-  color: var(--text-main);
-}
-
-/* スマホ：少し詰める */
-@media (max-width: 480px) {
-  .help-card-legend {
-    gap: 3px;
-  }
-  .legend-badge {
-    min-width: 56px;
-    font-size: 9px;
-    padding: 2px 6px;
-  }
-  .legend-text {
-    font-size: 11px;
-  }
-}
-/* バッジ */
-.hc-badge {
-  min-width: 26px;
-  padding: 2px 6px;
-  border-radius: 999px;
-  background: #000000cc;
-  color: #ffffff;
-  font-size: 10px;
-  text-align: center;
-}
-
-/* ラベル位置 */
-.hc-series { top: 2%; left: 2%; }
-.hc-ex     { top: 2%; right: 2%; }
-.hc-code   { bottom: 2%; left: 2%; }
-.hc-core   { bottom: 2%; right: 2%; }
-
-/* =========================
-   ヘルプ：カード四隅ラベル（修正版）
-   ========================= */
-
-.help-card-demo.help-card-quad {
-  position: relative;       /* ← これが必須！ */
-  width: 200px;
-  height: 300px;
-  margin: 0 auto 1.5rem;
-}
-
-/* カード枠 */
-.help-card-frame {
-  width: 100%;
-  height: 100%;
-  border: 3px solid #ccc;
-  border-radius: 12px;
-  background: linear-gradient(#f8f8f8, #f0f0f0);
-}
-
-/* ---- 四隅共通 ---- */
-.help-corner {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  pointer-events: none;
-}
-
-.help-corner-box {
-  padding: 3px 8px;
-  background: #1a3b5b;
   color: #fff;
-  font-size: 0.7rem;
-  border-radius: 4px;
-}
-
-.help-corner-desc {
-  font-size: 0.65rem;
-  color: #333;
-}
-
-/* ---- 四隅の位置指定 ---- */
-.help-corner.help-tl { /* 左上 */
-  top: -14px;
-  left: -14px;
-}
-
-.help-corner.help-tr { /* 右上 */
-  top: -14px;
-  right: -14px;
-}
-
-.help-corner.help-bl { /* 左下 */
-  bottom: -14px;
-  left: -14px;
-}
-
-.help-corner.help-br { /* 右下 */
-  bottom: -14px;
-  right: -14px;
+  font-size: 11px;
 }
 
 /* スマホ向け調整 */
 @media (max-width: 480px) {
   .help-card-demo {
     width: 130px;
-  }
-
-  .hc-label {
-    font-size: 10px;
-  }
-
-  .hc-badge {
-    min-width: 24px;
-    font-size: 9px;
   }
 }
