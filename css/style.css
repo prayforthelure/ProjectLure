@@ -1185,7 +1185,7 @@ body {
 /* ヘッダー用の泡1粒のベース */
 .site-header .bubbles-header span {
   position: absolute;
-  bottom: -16px;
+  bottom: 0px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -1379,13 +1379,13 @@ body > .bubbles-body span:nth-child(9) {
 @keyframes bubble-header {
   0% {
     transform: translateY(0) scale(0.8);
-    opacity: 0.4;
+    opacity: 0;
   }
   40% {
-    opacity: 1;
+    opacity: 0.8;
   }
   100% {
-    transform: translateY(-120px) scale(1.2);
+    transform: translateY(-120px) scale(1.6);
     opacity: 0;
   }
 }
