@@ -1783,73 +1783,75 @@ body > .bubbles-body span:nth-child(9) {
   }
 }
 
-/* =========================
-   ABOUT：番号付きセクション（Projectページ用）
-   ========================= */
-
-/* Projectページでは、about-section を自動で 01,02,03... と振る */
-body.about-project-page {
+/* ABOUT の下層ページだけ番号カウンターを使う */
+.about-project-page,
+.about-world-page,
+.about-creator-page {
   counter-reset: about-step;
 }
 
-/* 番号ブロックぶん左に余白を空ける */
-.about-project-page .section-card.about-section {
+.about-project-page .section-card.about-section:first-of-type,
+.about-world-page .section-card.about-section:first-of-type,
+.about-creator-page .section-card.about-section:first-of-type {
+  margin-top: 16px; /* もしくは 0 など好みで */
+}
+
+/* 対象：section-card.about-section のみに番号バッジ */
+.about-project-page .section-card.about-section,
+.about-world-page .section-card.about-section,
+.about-creator-page .section-card.about-section {
   position: relative;
-  padding-left: 110px;  /* 数字ブロックの幅＋余白 */
+  padding-left: 120px;
   margin-top: 24px;
 }
 
-/* 左側のグラデ四角＋番号 */
-.about-project-page .section-card.about-section::before {
+.about-project-page .section-card.about-section::before,
+.about-world-page .section-card.about-section::before,
+.about-creator-page .section-card.about-section::before {
   counter-increment: about-step;
-  content: counter(about-step, decimal-leading-zero);  /* 01,02,03... */
+  content: counter(about-step, decimal-leading-zero);
 
   position: absolute;
   top: 18px;
   left: 18px;
+  min-width: 72px;
+  height: 48px;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 
-  min-width: 72px;
-  height: 48px;
-  padding: 4px 10px;
-
-  border-radius: 10px;
+  border-radius: 12px;
   background: linear-gradient(
     180deg,
     var(--header-grad-left),
     var(--header-grad-right)
   );
   color: #ffffff;
-
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-
+  letter-spacing: 0.18em;
   box-shadow: 0 2px 6px rgba(0, 40, 80, 0.26);
 }
 
-/* 見出しとのバランス微調整 */
-.about-project-page .section-card.about-section .section-card__title {
-  margin-top: 0;
-}
-
-/* スマホ向け（少しコンパクトに） */
 @media (max-width: 768px) {
-  .about-project-page .section-card.about-section {
-    padding-left: 92px;
+  .about-project-page .section-card.about-section,
+  .about-world-page .section-card.about-section,
+  .about-creator-page .section-card.about-section {
+    padding-left: 110px;
   }
 
-  .about-project-page .section-card.about-section::before {
-    min-width: 60px;
-    height: 40px;
-    left: 14px;
+  .about-project-page .section-card.about-section::before,
+  .about-world-page .section-card.about-section::before,
+  .about-creator-page .section-card.about-section::before {
     top: 16px;
-    font-size: 18px;
+    left: 14px;
+    min-width: 66px;
+    height: 44px;
+    font-size: 16px;
   }
 }
+
 /* =========================
    LINKS / OFFICIAL ページ
    ========================= */
