@@ -1,4 +1,39 @@
 // js/character.js
+
+// YouTube の URL から動画 ID を抜き出すユーティリティ
+function extractYouTubeId(url) {
+  if (!url) return "";
+
+  try {
+    const u = new URL(url);
+
+    // youtu.be/XXXXXXXXXXX
+    if (u.hostname.includes("youtu.be")) {
+      return u.pathname.replace("/", "") || "";
+    }
+
+    // youtube.com/watch?v=XXXXXXXXXXX
+    if (u.hostname.includes("youtube.com")) {
+      const v = u.searchParams.get("v");
+      if (v) return v;
+
+      // youtube.com/embed/XXXXXXXXXXX など
+      const segments = u.pathname.split("/").filter(Boolean);
+      const embedIndex = segments.indexOf("embed");
+      if (embedIndex >= 0 && segments[embedIndex + 1]) {
+        return segments[embedIndex + 1];
+      }
+    }
+
+    // うまくいかなかったとき用の簡易正規表現
+    const m = url.match(/(?:v=|youtu\.be\/|embed\/)([0-9A-Za-z_-]{6,})/);
+    return m ? m[1] : "";
+  } catch (e) {
+    const m = String(url).match(/(?:v=|youtu\.be\/|embed\/)([0-9A-Za-z_-]{6,})/);
+    return m ? m[1] : "";
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
@@ -38,8 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // シリーズ
       const series = seriesMap[c.series];
 
-      // GALLERY 用リンク
+      // GALLERY / MV 用リンク
       const linkData = linksMap[c.code] || {};
+      const videoArr = Array.isArray(linkData.video) ? linkData.video : [];
 
       // ===== STORY（あらすじ＋キーワード） =====
       const syn = synopsisMap[c.code] || {};
@@ -91,11 +127,46 @@ document.addEventListener("DOMContentLoaded", () => {
         galleryHtml = `<p class="char-gallery-empty">関連コンテンツは準備中です。</p>`;
       }
 
+      // ===== MV 埋め込み用 HTML（video 配列の中から embed:true を 1本だけ拾う） =====
+      let mvSectionHtml = "";
+      if (videoArr.length) {
+        const mvItem = videoArr.find(v => v.embed) || null;
+
+        if (mvItem && mvItem.url) {
+          const mvId = extractYouTubeId(mvItem.url);
+
+          if (mvId) {
+            const caption = mvItem.label || `${c.title} - Music Video`;
+
+            mvSectionHtml = `
+<section class="section-card char-section char-mv-section">
+  <h2 class="char-section-title">MUSIC VIDEO</h2>
+  <div class="char-mv-body">
+    <div class="char-mv-frame">
+      <iframe
+        src="https://www.youtube.com/embed/${mvId}"
+        title="${caption}"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p class="char-mv-caption">
+      「${caption}」の MV です。<br>
+      フルサイズは YouTube でもご覧いただけます。
+    </p>
+  </div>
+</section>
+`;
+          }
+        }
+      }
+
       // ===== ページ本体描画 =====
       const container = document.getElementById("character-content");
       if (!container) return;
 
-    container.innerHTML = `
+      container.innerHTML = `
       <article class="char-page">
 
         <!-- 上部：一覧に戻るボタン -->
@@ -148,6 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <h2 class="char-section-title">INFORMATION</h2>
           <div class="char-info-grid"></div>
         </section>
+
+        <!-- MV セクション（あれば挿入） -->
+        ${mvSectionHtml}
 
         <!-- 下段：GALLERY（★同じくカード枠を付与） -->
         <section class="section-card char-section">
