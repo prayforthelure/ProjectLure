@@ -823,6 +823,181 @@ body {
 }
 
 /* =========================
+   HOME用：ピックアップカード
+   ========================= */
+
+.pickup-section {
+  margin-bottom: 16px;
+  position: relative;
+  padding-right: 18px; /* ×ボタン分の余白 */
+}
+
+/* ラベル（本日のピックアップ） */
+.pickup-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+/* 中身のレイアウト */
+.pickup-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* サムネ：小さめ縦長 */
+.pickup-thumb {
+  flex: 0 0 72px;
+  max-width: 72px;
+}
+
+.pickup-thumb-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 40, 80, 0.12);
+  background: #fff;
+}
+
+/* テキスト側 */
+.pickup-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* タイトル行 */
+.pickup-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.pickup-code {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.pickup-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.pickup-title:hover {
+  text-decoration: underline;
+}
+
+/* シリーズ・テーマ */
+.pickup-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.pickup-series,
+.pickup-theme {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #f5fbff;
+  border: 1px solid rgba(0, 80, 140, 0.08);
+}
+
+/* アーク表示行（emoji + name(eng)）*/
+.pickup-arc-row {
+  font-size: 12px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+/* 説明文：2行まででカットして圧迫感を減らす */
+.pickup-summary {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;      /* 2行で切る */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 詳細へボタン（既存のグラデボタンを少し小さめに） */
+.pickup-cta {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--header-grad-left), var(--header-grad-right));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pickup-cta:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+/* 閉じるボタン（右上の×） */
+.pickup-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-main);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pickup-close-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* スマホ時：横幅が狭いので少しゆるめに */
+@media (max-width: 768px) {
+  .pickup-section {
+    margin-bottom: 12px;
+  }
+
+  .pickup-inner {
+    gap: 10px;
+  }
+
+  .pickup-thumb {
+    flex: 0 0 64px;
+    max-width: 64px;
+  }
+
+  .pickup-title {
+    font-size: 13px;
+  }
+
+  .pickup-summary {
+    font-size: 11.5px;
+  }
+
+  .pickup-cta {
+    font-size: 11.5px;
+    padding: 5px 12px;
+  }
+}
+
+/* =========================
    全ページ共通：メインレイアウト
    ========================= */
 /* ベース */
