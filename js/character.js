@@ -163,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <p class="char-mv-caption">
       「${caption}」の MV です。<br>
-      フルサイズは YouTube でもご覧いただけます。
     </p>
   </div>
 </section>
