@@ -1,7 +1,7 @@
 {
   "000": {
     "music": [
-      { "label": "彩に蕩れる - Full ver.", "url": "https://youtu.be/Fj8RrRTHguM?si=44V3zoeMXLE21ipj" },
+      { "label": "彩に蕩れる - Full ver.", "url": "https://youtu.be/Fj8RrRTHguM?si=44V3zoeMXLE21ipj", "embed": true },
       { "label": "彩に蕩れる - Short ver.", "url": "https://www.youtube.com/shorts/2-WDFQ7pmLI" }
     ],
     "novel": [
