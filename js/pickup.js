@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ${arcLine ? `<div class="pickup-arc-row">${arcLine}</div>` : ''}
 
-      ${summary ? `<p class="pickup-summary">${summary}</p>` : ''}
+      ${summary ? `<p class="pickup-summary">〝${summary.replace(/[〝〟]/g, '')}〟</p>` : ''}
 
       <a href="${detailUrl}" class="pickup-cta">キャラ詳細を見る</a>
     </div>
