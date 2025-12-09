@@ -758,6 +758,48 @@ body {
   gap: 6px;
 }
 
+/* ============================
+   色系統フィルタ（3×3 グリッド）
+   ============================ */
+
+.color-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid transparent;
+  background: #f3f6fa;
+  transition: 0.2s ease;
+}
+
+.color-option.active {
+  border-color: var(--accent);
+  background: #e9f4ff;
+}
+
+/* バッジの見た目（絵文字 or 記号） */
+.color-badge {
+  font-size: 22px;
+  margin-right: 6px;
+}
+
+/* 無彩色だけグレー背景 */
+.color-option.gray-tone {
+  background: #efefef;
+}
+
 /* チップ */
 .filter-chip {
   display: inline-flex;
