@@ -859,9 +859,14 @@ body {
   scroll-snap-align: center;
   flex: 0 0 100%;
   box-sizing: border-box;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  /*transition: transform 0.2s ease, opacity 0.2s ease;*/
   transform: scale(0.97);
   opacity: 0.9;
+}
+
+/* ★準備完了後だけアニメーションさせる */
+.pickup-section.pickup-ready .pickup-card {
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 /* カード全体をリンクにする */
