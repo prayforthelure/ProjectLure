@@ -758,47 +758,68 @@ body {
   gap: 6px;
 }
 
-/* ============================
-   色系統フィルタ（3×3 グリッド）
-   ============================ */
+/* =========================
+   色フィルタ（3×3 グリッド）
+   ========================= */
 
 .color-filter-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
 }
 
+/* 個々の色ボタン */
 .color-option {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 10px 0;
-  font-size: 14px;
-  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 40, 80, 0.12);
+  font-size: 12px;
   cursor: pointer;
-  user-select: none;
-  border: 2px solid transparent;
-  background: #f3f6fa;
-  transition: 0.2s ease;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.color-option:hover {
+  background: #f5fbff;
+  box-shadow: 0 0 0 1px rgba(0, 120, 220, 0.15);
 }
 
 .color-option.active {
-  border-color: var(--accent);
-  background: #e9f4ff;
+  background: rgba(0, 120, 220, 0.06);
+  box-shadow: 0 0 0 1px rgba(0, 120, 220, 0.5);
+  transform: translateY(-1px);
 }
 
-/* バッジの見た目（絵文字 or 記号） */
+/* 小さな正方形バッジ（◾️） */
 .color-badge {
-  font-size: 22px;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px; /* 角丸ほぼ無し → ◾️ */
   margin-right: 6px;
+  background: #d0d0d0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
-/* 無彩色だけグレー背景 */
-.color-option.gray-tone {
-  background: #efefef;
+/* ラベル文字 */
+.color-label {
+  font-size: 12px;
 }
+
+/* === 色ごとのバッジ色指定 === */
+
+.color-option.color-red    .color-badge { background: #ff6b6b; }
+.color-option.color-orange .color-badge { background: #ff9b42; }
+.color-option.color-yellow .color-badge { background: #ffd93b; }
+.color-option.color-green  .color-badge { background: #7bd88f; }
+.color-option.color-cyan   .color-badge { background: #4fd2ff; }
+.color-option.color-blue   .color-badge { background: #4d88ff; }
+.color-option.color-purple .color-badge { background: #b28cff; }
+.color-option.color-pink   .color-badge { background: #ff8acb; }
+.color-option.color-mono   .color-badge { background: #c4c4c4; }
 
 /* チップ */
 .filter-chip {
