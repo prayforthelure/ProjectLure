@@ -222,12 +222,21 @@ document.addEventListener('DOMContentLoaded', () => {
       setActive(closestIndex);
     }
 
+    // 無限ループ処理を有効にして良いかどうかのフラグ
+    let warpReady = false;
+
     // 初期状態：0番目を中央寄せ＆アクティブ
     if (cards[0]) {
       setActive(0);
       setTimeout(() => {
-        cards[0].scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+        cards[0].scrollIntoView({
+          behavior: 'auto',
+          inline: 'center',
+          block: 'nearest'
+        });
         updateActiveByScroll();
+        // 初期レイアウト調整が終わったあとでワープを許可
+        warpReady = true;
       }, 0);
     }
 
@@ -236,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     track.addEventListener('scroll', () => {
       const max = track.scrollWidth - track.clientWidth;
 
-      if (max > 0) {
+      if (warpReady && max > 0) {
         // 右端 → 左端へワープ
         if (track.scrollLeft >= max - 5) {
           track.scrollLeft = 1;
@@ -258,7 +267,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const idx = Number(dot.dataset.index || '0') || 0;
       dot.addEventListener('click', () => {
         if (!cards[idx]) return;
-        cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        cards[idx].scrollIntoView({
+          behavior: 'smooth',
+          inline: 'center',
+          block: 'nearest'
+        });
       });
     });
 
