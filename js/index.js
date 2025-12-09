@@ -12,15 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // 色系統定義（9グループ）
   // ========================
   const COLOR_GROUPS = [
+    { key: "pink",   label: "桃"   },
     { key: "red",    label: "赤"   },
     { key: "orange", label: "橙"   },
-    { key: "yellow", label: "黄"   },
-    { key: "green",  label: "緑"   },
-    { key: "mono",   label: "白黒" }, // 真ん中に置きたい無彩色
-    { key: "cyan",   label: "水"   },
-    { key: "blue",   label: "青"   },
     { key: "purple", label: "紫"   },
-    { key: "pink",   label: "桃"   }
+    { key: "mono",   label: "白黒" }, // 真ん中に置きたい無彩色
+    { key: "yellow", label: "黄"   },
+    { key: "blue",   label: "青"   },
+    { key: "cyan",   label: "水"   },
+    { key: "green",  label: "緑"   }
+
+
   ];
 
   // ========================
