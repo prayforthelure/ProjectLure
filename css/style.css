@@ -823,7 +823,7 @@ body {
 }
 
 /* =========================
-   HOME用：ピックアップカード（複数枚横スクロール）
+   HOME用：ピックアップカード（複数枚＋ドット）
    ========================= */
 
 .pickup-section {
@@ -832,7 +832,7 @@ body {
   padding-right: 24px; /* ×ボタン分の余白 */
 }
 
-/* ラベル（本日のピックアップ） */
+/* ラベル（PICKUP） */
 .pickup-label {
   font-size: 11px;
   letter-spacing: 0.18em;
@@ -844,28 +844,38 @@ body {
 /* 横スクロールのレール */
 .pickup-track {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
+  padding: 8px 4px 10px;
 }
 
 /* 1枚ぶんのカードコンテナ */
 .pickup-card {
   scroll-snap-align: center;
-  flex: 0 0 100%;        /* スマホでは1画面 = 1枚 */
+  flex: 0 0 80%;         /* PCでは 80% 幅 → 両サイドが少し見える */
+  max-width: 360px;
   box-sizing: border-box;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform: scale(0.9); /* デフォルトは小さめ＝サイド用 */
+  opacity: 0.6;
 }
 
-/* カード中身のレイアウト（従来の .pickup-inner を流用） */
+/* アクティブ（中央）カードだけ大きく・はっきり */
+.pickup-card.is-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* カード中身レイアウト（従来の .pickup-inner を流用） */
 .pickup-inner {
   display: flex;
   align-items: flex-start;
   gap: 12px;
 }
 
-/* サムネ：小さめ縦長（スマホ基準） */
+/* サムネ（スマホ基準のサイズ） */
 .pickup-thumb {
   flex: 0 0 72px;
   max-width: 72px;
@@ -936,13 +946,13 @@ body {
   white-space: normal;
 }
 
-/* 説明文：2行まででカットして圧迫感を減らす */
+/* 説明文：2行でカット */
 .pickup-summary {
   font-size: 12px;
   line-height: 1.7;
   margin: 0 0 8px;
   display: -webkit-box;
-  -webkit-line-clamp: 2;      /* 2行で切る */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -985,103 +995,40 @@ body {
   background: rgba(0, 0, 0, 0.08);
 }
 
-/* =========================
-   PC向け調整
-   ========================= */
-@media (min-width: 769px) {
-
-  /* セクション全体：少し余白を増やす */
-  .pickup-section {
-    margin-top: 20px;
-    margin-bottom: 24px;
-    padding-right: 32px; /* 閉じるボタン分 + 余白 */
-  }
-
-  /* トラックは中央寄せ＋左右に少し余白を足す */
-  .pickup-track {
-    gap: 16px;
-    padding: 8px 64px 12px;   /* 左右 64px で、中央カードの横にチラ見えを作る */
-    justify-content: center;
-  }
-
-  /* 1枚＝全幅の 60% 程度にして、左右のカードが覗く */
-  .pickup-card {
-    flex: 0 0 60%;
-    max-width: 520px;
-    scroll-snap-align: center;
-  }
-
-  .pickup-inner {
-    align-items: center;
-    gap: 18px;
-  }
-
-  /* サムネを少しだけ大きくしつつ、高さを抑えめに */
-  .pickup-thumb {
-    flex: 0 0 96px;
-    max-width: 96px;
-  }
-
-  .pickup-thumb-img {
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0, 40, 80, 0.14);
-  }
-
-  .pickup-main {
-    flex: 1 1 auto;
-  }
-
-  .pickup-code {
-    font-size: 12px;
-    letter-spacing: 0.08em;
-  }
-
-  .pickup-title {
-    font-size: 18px;
-  }
-
-  .pickup-meta {
-    font-size: 12px;
-    gap: 6px 10px;
-  }
-
-  .pickup-series,
-  .pickup-theme {
-    font-size: 12px;
-    padding: 3px 8px;
-  }
-
-  .pickup-arc-row {
-    font-size: 13px;
-    margin-bottom: 4px;
-  }
-
-  .pickup-summary {
-    font-size: 13px;
-    margin: 4px 0 8px;
-  }
-
-  .pickup-cta {
-    font-size: 13px;
-    padding: 6px 16px;
-    margin-top: 2px;
-  }
+/* 下のドットインジケータ */
+.pickup-dots {
+  margin-top: 4px;
+  text-align: center;
 }
 
-/* =========================
-   スマホ（〜768px）：1画面に1枚だけ見せる
-   ========================= */
+.pickup-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  margin: 0 3px;
+  background: rgba(0, 40, 80, 0.2);
+  cursor: pointer;
+  transition: width 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.5;
+}
+
+.pickup-dot.is-active {
+  width: 18px;
+  background: var(--accent);
+  opacity: 1;
+}
+
+/* スマホ：横カードは見えなくてOK（1画面1枚） */
 @media (max-width: 768px) {
   .pickup-section {
     margin-bottom: 12px;
   }
 
-  .pickup-track {
-    padding-inline: 0;   /* 画面いっぱいに1枚見せる */
-  }
-
   .pickup-card {
-    flex: 0 0 100%;      /* 常に1枚 = 画面幅 */
+    flex: 0 0 100%;
+    max-width: none;
   }
 
   .pickup-inner {
@@ -1107,112 +1054,24 @@ body {
   }
 }
 
-/* =========================
-   PC（769px〜）：中央カード＋左右チラ見せ
-   ========================= */
+/* PC向け：少し余白を増やすだけ（サイズ感は上記のまま） */
 @media (min-width: 769px) {
-
-  /* セクション全体：高さ控えめ＋左右に余白 */
   .pickup-section {
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 10px 0 14px;
-  }
-
-  .pickup-label {
-    max-width: 960px;
-    margin: 0 auto 6px;
-  }
-
-  .pickup-track {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-inline: 10vw;   /* 中央に1枚＋左右が少し見える程度 */
-    gap: 16px;
-  }
-
-  /* 真ん中がメイン、左右が半分見えるくらいの幅 */
-  .pickup-card {
-    flex: 0 0 340px;       /* カード幅：調整ポイント */
+    padding-bottom: 18px;
   }
 
   .pickup-inner {
     align-items: center;
-    gap: 18px;
-  }
-
-  /* 左：サムネエリア（少しだけ大きめ） */
-  .pickup-thumb {
-    flex: 0 0 140px;
-    max-width: 140px;
-  }
-
-  .pickup-thumb-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 40, 80, 0.12);
-    box-shadow: 0 3px 8px rgba(0, 40, 80, 0.12);
-    object-fit: contain;
-  }
-
-  /* 右：本文エリア */
-  .pickup-main {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 0;
-  }
-
-  .pickup-title-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 2px;
-  }
-
-  .pickup-code {
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    opacity: 0.7;
   }
 
   .pickup-title {
-    font-size: 18px;      /* PCでは文字大きめ */
-    font-weight: 700;
-  }
-
-  .pickup-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 10px;
-    font-size: 12px;
-    margin-bottom: 2px;
-  }
-
-  .pickup-arc-row {
-    font-size: 13px;
-    margin-bottom: 4px;
+    font-size: 16px;
   }
 
   .pickup-summary {
     font-size: 13px;
-    line-height: 1.7;
-    margin: 2px 0 6px;
-  }
-
-  .pickup-cta {
-    align-self: flex-start;
-    margin-top: 2px;
-    padding: 6px 14px;
-    font-size: 12.5px;
-  }
-
-  .pickup-close-btn {
-    top: 6px;
-    right: 10px;
   }
 }
 
