@@ -1059,44 +1059,46 @@ body {
    ========================= */
 @media (min-width: 769px) {
 
-  /* セクション全体：少し余白を広めに */
+  /* セクション全体：左右にも余白を足す */
   .pickup-section {
     margin-top: 20px;
-    margin-bottom: 24px;
-    padding-right: 32px; /* ×ボタン分＋少し余裕 */
+    margin-bottom: 28px;
+    padding: 16px 40px 20px;  /* 左右40pxくらい空ける */
+    padding-right: 56px;      /* 右は×ボタンぶん少し追加 */
   }
 
   /* 横レール：中央寄せ */
   .pickup-track {
-    max-width: 980px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 8px 0 14px;
+    padding: 10px 0 16px;
     overflow-x: auto;
+    display: flex;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
   }
 
-  /* 左右に“見えないカード”を置いて、端のカードも中央に寄せられるようにする */
+  /* 左右の“見えない余白”をもっと増やす */
   .pickup-track::before,
   .pickup-track::after {
     content: "";
-    flex: 0 0 10%;   /* 画面幅の 10% をダミー余白として確保 */
+    flex: 0 0 28%;  /* ここが左右の余白。さらに増やしたければ 30% くらいまで可 */
   }
 
-  /* 1枚ぶん：
-     - PC では 画面幅の 80% くらい
-     - 非アクティブは少し小さく＆薄く
-   */
+  /* 1枚ぶんのカード：幅を広く（ほぼ画面いっぱい） */
   .pickup-card {
-    flex: 0 0 80%;
+    flex: 0 0 96%;   /* ← 1枚の横幅。もっと広くなら 98% とかでもOK */
     box-sizing: border-box;
+
+    opacity: 0.45;
+    transform: scale(0.94);
     transition:
       transform 0.25s ease,
       opacity 0.25s ease,
       box-shadow 0.25s ease;
-    opacity: 0.5;
-    transform: scale(0.95);
   }
 
-  /* 中央カード（.is-active）は強調 */
+  /* 中央カードだけ強調 */
   .pickup-card.is-active {
     opacity: 1;
     transform: scale(1.02);
@@ -1104,15 +1106,16 @@ body {
     z-index: 1;
   }
 
+  /* カード中身レイアウト */
   .pickup-inner {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
   }
 
   .pickup-thumb {
-    flex: 0 0 220px;
-    max-width: 220px;
+    flex: 0 0 240px;
+    max-width: 240px;
   }
 
   .pickup-thumb-img {
@@ -1138,7 +1141,7 @@ body {
   }
 
   .pickup-title {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .pickup-meta {
@@ -1162,6 +1165,7 @@ body {
     padding: 7px 16px;
   }
 
+  /* ドット位置 */
   .pickup-dots {
     display: flex;
     justify-content: center;
@@ -1176,10 +1180,13 @@ body {
     border: none;
     background: rgba(0, 80, 160, 0.25);
     cursor: pointer;
+    opacity: 0.5;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
   }
 
   .pickup-dot.is-active {
     background: rgba(0, 120, 220, 1);
+    opacity: 1;
   }
 }
 
