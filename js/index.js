@@ -112,77 +112,105 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ========================
-  // 色系統をキャラから取得
-  // ========================
-  function getColorGroupForChar(c) {
-    // 1. JSON に colorGroup があるならそれをそのまま使う
-    if (c.colorGroup) return String(c.colorGroup);
+// ========================
+// 色系統をキャラから取得（複数対応）
+// ========================
+function getColorGroupsForChar(c) {
+  const groups = new Set();
 
-    // 2. mainColor があれば hex から自動判定（#rrggbb 想定）
-    if (c.mainColor && typeof c.mainColor === "string") {
-      return detectColorGroupFromHex(c.mainColor);
-    }
-
-    return null;
-  }
-
-  // 16進カラー → 9グループ（かなりラフな判定）
-  function detectColorGroupFromHex(hex) {
-    let h, s, l;
-
-    // #fff / #ffffff 両対応
-    let c = hex.trim().replace("#", "");
-    if (c.length === 3) {
-      c = c.split("").map(ch => ch + ch).join("");
-    }
-    if (c.length !== 6) return null;
-
-    const r = parseInt(c.slice(0, 2), 16) / 255;
-    const g = parseInt(c.slice(2, 4), 16) / 255;
-    const b = parseInt(c.slice(4, 6), 16) / 255;
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    const d = max - min;
-
-    l = (max + min) / 2;
-
-    if (d === 0) {
-      s = 0;
-      h = 0;
-    } else {
-      s = d / (1 - Math.abs(2 * l - 1));
-      switch (max) {
-        case r:
-          h = ((g - b) / d) % 6;
-          break;
-        case g:
-          h = (b - r) / d + 2;
-          break;
-        default:
-          h = (r - g) / d + 4;
+  // 1. JSON に colorGroup があれば優先
+  //   - 文字列 / 配列どちらも許容
+  if (Array.isArray(c.colorGroup)) {
+    c.colorGroup.forEach(g => {
+      if (g && String(g).trim() !== "") {
+        groups.add(String(g).trim());
       }
-      h *= 60;
-      if (h < 0) h += 360;
-    }
-
-    // 無彩色判定：彩度が低い or 明度がかなり極端
-    if (s < 0.12 || l < 0.08 || l > 0.92) {
-      return "mono";
-    }
-
-    // hue でざっくり割り振り（赤は両端をまたぐので2分割）
-    if (h >= 345 || h < 10) return "red";
-    if (h >= 10 && h < 35) return "orange";      // 赤〜橙
-    if (h >= 35 && h < 65) return "yellow";
-    if (h >= 65 && h < 150) return "green";
-    if (h >= 150 && h < 195) return "cyan";      // 水色
-    if (h >= 195 && h < 240) return "blue";
-    if (h >= 240 && h < 285) return "purple";    // 青紫寄り
-    if (h >= 285 && h < 345) return "pink";      // ピンク〜マゼンタ
-
-    return null;
+    });
+  } else if (typeof c.colorGroup === "string" && c.colorGroup.trim() !== "") {
+    groups.add(c.colorGroup.trim());
   }
+
+  // 2. colors 配列 (#rrggbb) から自動判定
+  if (Array.isArray(c.colors)) {
+    c.colors.forEach(hex => {
+      const g = detectColorGroupFromHex(hex);
+      if (g) groups.add(g);
+    });
+  }
+
+  return Array.from(groups);
+}
+
+// 互換用：1つだけ欲しい場合はこちらを呼ぶ
+function getColorGroupForChar(c) {
+  const list = getColorGroupsForChar(c);
+  return list.length ? list[0] : null;
+}
+
+// ========================
+// 16進カラー → 9グループ（かなりラフな判定）
+// ========================
+function detectColorGroupFromHex(hex) {
+  if (!hex) return null;
+
+  let c = String(hex).trim();
+  if (!c) return null;
+
+  // #fff / #ffffff 両対応
+  if (c[0] === "#") c = c.slice(1);
+  if (c.length === 3) {
+    c = c.split("").map(ch => ch + ch).join("");
+  }
+  if (c.length !== 6 || /[^0-9a-f]/i.test(c)) return null;
+
+  const r = parseInt(c.slice(0, 2), 16) / 255;
+  const g = parseInt(c.slice(2, 4), 16) / 255;
+  const b = parseInt(c.slice(4, 6), 16) / 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const d   = max - min;
+
+  let h, s, l;
+  l = (max + min) / 2;
+
+  if (d === 0) {
+    s = 0;
+    h = 0;
+  } else {
+    s = d / (1 - Math.abs(2 * l - 1));
+    switch (max) {
+      case r:
+        h = ((g - b) / d) % 6;
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      default:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h *= 60;
+    if (h < 0) h += 360;
+  }
+
+  // 無彩色判定：彩度が低い or 明度がかなり極端
+  if (s < 0.12 || l < 0.08 || l > 0.92) {
+    return "mono";
+  }
+
+  // hue でざっくり割り振り（赤は両端をまたぐ）
+  if (h >= 345 || h < 10)  return "red";
+  if (h >= 10  && h < 35)  return "orange";
+  if (h >= 35  && h < 65)  return "yellow";
+  if (h >= 65  && h < 150) return "green";
+  if (h >= 150 && h < 195) return "cyan";   // 水
+  if (h >= 195 && h < 240) return "blue";
+  if (h >= 240 && h < 285) return "purple";
+  if (h >= 285 && h < 345) return "pink";
+
+  return null;
+}
 
   // ========================
   // 検索 UI ＋ 絞り込み
