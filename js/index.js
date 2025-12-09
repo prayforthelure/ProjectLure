@@ -113,55 +113,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 // ========================
-// 色系統をキャラから取得（複数対応）
+// 色系統をキャラから取得（colors だけを見る）
 // ========================
 function getColorGroupsForChar(c) {
   const groups = new Set();
 
-  // 1. JSON に colorGroup があれば優先
-  //   - 文字列 / 配列どちらも許容
-  if (Array.isArray(c.colorGroup)) {
-    c.colorGroup.forEach(g => {
-      if (g && String(g).trim() !== "") {
-        groups.add(String(g).trim());
+  if (Array.isArray(c.colors) && c.colors.length > 0) {
+    let hasValidHex = false;
+
+    c.colors.forEach(hex => {
+      if (typeof hex !== "string") return;
+      const trimmed = hex.trim();
+      if (!trimmed) return;              // 空文字はスキップ（後で mono 扱い）
+
+      const g = detectColorGroupFromHex(trimmed);
+      if (g) {
+        groups.add(g);
+        hasValidHex = true;
       }
     });
-  } else if (typeof c.colorGroup === "string" && c.colorGroup.trim() !== "") {
-    groups.add(c.colorGroup.trim());
-  }
 
-  // 2. colors 配列 (#rrggbb) から自動判定
-  if (Array.isArray(c.colors)) {
-    c.colors.forEach(hex => {
-      const g = detectColorGroupFromHex(hex);
-      if (g) groups.add(g);
-    });
+    // colors はあるが、全部空文字 or 不正 → mono 扱い
+    if (!hasValidHex) {
+      groups.add("mono");
+    }
+  } else {
+    // colors 自体がない or 空配列 → 透明扱いで mono
+    groups.add("mono");
   }
 
   return Array.from(groups);
 }
 
-// 互換用：1つだけ欲しい場合はこちらを呼ぶ
-function getColorGroupForChar(c) {
-  const list = getColorGroupsForChar(c);
-  return list.length ? list[0] : null;
-}
-
-// ========================
-// 16進カラー → 9グループ（かなりラフな判定）
-// ========================
+// 16進カラー → 9グループ
 function detectColorGroupFromHex(hex) {
-  if (!hex) return null;
-
-  let c = String(hex).trim();
-  if (!c) return null;
-
-  // #fff / #ffffff 両対応
-  if (c[0] === "#") c = c.slice(1);
+  let c = hex.trim().replace("#", "");
   if (c.length === 3) {
     c = c.split("").map(ch => ch + ch).join("");
   }
-  if (c.length !== 6 || /[^0-9a-f]/i.test(c)) return null;
+  if (c.length !== 6) return null;
 
   const r = parseInt(c.slice(0, 2), 16) / 255;
   const g = parseInt(c.slice(2, 4), 16) / 255;
@@ -188,23 +178,22 @@ function detectColorGroupFromHex(hex) {
         break;
       default:
         h = (r - g) / d + 4;
-        break;
     }
     h *= 60;
     if (h < 0) h += 360;
   }
 
-  // 無彩色判定：彩度が低い or 明度がかなり極端
+  // 無彩色判定：かなり彩度が低い or 極端に暗い/明るい
   if (s < 0.12 || l < 0.08 || l > 0.92) {
     return "mono";
   }
 
-  // hue でざっくり割り振り（赤は両端をまたぐ）
+  // hue でざっくり 8分割
   if (h >= 345 || h < 10)  return "red";
   if (h >= 10  && h < 35)  return "orange";
   if (h >= 35  && h < 65)  return "yellow";
   if (h >= 65  && h < 150) return "green";
-  if (h >= 150 && h < 195) return "cyan";   // 水
+  if (h >= 150 && h < 195) return "cyan";
   if (h >= 195 && h < 240) return "blue";
   if (h >= 240 && h < 285) return "purple";
   if (h >= 285 && h < 345) return "pink";
@@ -333,13 +322,16 @@ function detectColorGroupFromHex(hex) {
           }
         }
 
-        // 色フィルタ
-        if (activeColors.length > 0) {
-          const group = getColorGroupForChar(c);
-          if (!group || !activeColors.includes(group)) {
-            return false;
-          }
+      // 色フィルタ
+      if (activeColors.length > 0) {
+        // 複数色に対応：["red","green"] など複数グループを返す
+        const groups = getColorGroupsForChar(c);
+
+        // どれか1つでも一致していれば通す
+        if (!groups || !groups.some(g => activeColors.includes(g))) {
+          return false;
         }
+      }
 
         return true;
       });
