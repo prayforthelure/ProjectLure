@@ -66,73 +66,73 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!picks.length) return;
 
     // 1件分のカード HTML を組み立てるヘルパー
-function buildCardHtml(c) {
-  const series = seriesMap[c.series];
+    function buildCardHtml(c) {
+      const series = seriesMap[c.series];
 
-  const exArc   = c.arc && c.arc.ex   ? arcMap[c.arc.ex]   : null;
-  const coreArc = c.arc && c.arc.core ? arcMap[c.arc.core] : null;
+      const exArc   = c.arc && c.arc.ex   ? arcMap[c.arc.ex]   : null;
+      const coreArc = c.arc && c.arc.core ? arcMap[c.arc.core] : null;
 
-  const formatArc = (a) =>
-    a ? `${a.icon || ''} ${a.name || ''}` : '';
+      const formatArc = (a) =>
+        a ? `${a.icon || ''} ${a.name || ''}` : '';
 
-  let arcLine = '';
-  if (exArc && coreArc) {
-    arcLine = `${formatArc(exArc)} / ${formatArc(coreArc)}`;
-  } else if (exArc) {
-    arcLine = formatArc(exArc);
-  } else if (coreArc) {
-    arcLine = formatArc(coreArc);
-  }
+      let arcLine = '';
+      if (exArc && coreArc) {
+        arcLine = `${formatArc(exArc)} / ${formatArc(coreArc)}`;
+      } else if (exArc) {
+        arcLine = formatArc(exArc);
+      } else if (coreArc) {
+        arcLine = formatArc(coreArc);
+      }
 
-  let summary = '';
-  if (c.catchcopy && String(c.catchcopy).trim() !== '') {
-    summary = String(c.catchcopy).trim();
-  } else {
-    const syn = synopsisMap[c.code];
-    if (syn && syn.summary) {
-      summary = String(syn.summary).split('\n')[0].trim();
-    }
-  }
+      let summary = '';
+      if (c.catchcopy && String(c.catchcopy).trim() !== '') {
+        summary = String(c.catchcopy).trim();
+      } else {
+        const syn = synopsisMap[c.code];
+        if (syn && syn.summary) {
+          summary = String(syn.summary).split('\n')[0].trim();
+        }
+      }
 
-  const summaryForDisplay = summary
-    ? `〝${summary.replace(/[〝〟]/g, '')}〟`
-    : '';
+      const summaryForDisplay = summary
+        ? `〝${summary.replace(/[〝〟]/g, '')}〟`
+        : '';
 
-  const detailUrl = `character.html?code=${encodeURIComponent(c.code)}`;
-  const thumbPath = `images/characters/${c.code}.png`;
+      const detailUrl = `character.html?code=${encodeURIComponent(c.code)}`;
+      const thumbPath = `images/characters/${c.code}.png`;
 
-  return `
-    <div class="pickup-card">
-      <a href="${detailUrl}" class="pickup-card-link">
-        <div class="pickup-inner">
-          <div class="pickup-thumb">
-            <img src="${thumbPath}" alt="${c.title}" class="pickup-thumb-img">
-          </div>
+      return `
+        <div class="pickup-card">
+          <a href="${detailUrl}" class="pickup-card-link">
+            <div class="pickup-inner">
+              <div class="pickup-thumb">
+                <img src="${thumbPath}" alt="${c.title}" class="pickup-thumb-img">
+              </div>
 
-          <div class="pickup-main">
-            <div class="pickup-title-row">
-              <span class="pickup-code">No.${c.code}</span>
-              <span class="pickup-title">${c.title}</span>
+              <div class="pickup-main">
+                <div class="pickup-title-row">
+                  <span class="pickup-code">No.${c.code}</span>
+                  <span class="pickup-title">${c.title}</span>
+                </div>
+
+                <div class="pickup-meta">
+                  ${series ? `<span class="pickup-series">シリーズ：${series.nameJa}</span>` : ''}
+                  ${c.theme ? `<span class="pickup-theme">テーマ：${c.theme}</span>` : ''}
+                </div>
+
+                ${arcLine ? `<div class="pickup-arc-row">${arcLine}</div>` : ''}
+
+                ${
+                  summaryForDisplay
+                    ? `<p class="pickup-summary">${summaryForDisplay}</p>`
+                    : ''
+                }
+              </div>
             </div>
-
-            <div class="pickup-meta">
-              ${series ? `<span class="pickup-series">シリーズ：${series.nameJa}</span>` : ''}
-              ${c.theme ? `<span class="pickup-theme">テーマ：${c.theme}</span>` : ''}
-            </div>
-
-            ${arcLine ? `<div class="pickup-arc-row">${arcLine}</div>` : ''}
-
-            ${
-              summaryForDisplay
-                ? `<p class="pickup-summary">${summaryForDisplay}</p>`
-                : ''
-            }
-          </div>
+          </a>
         </div>
-      </a>
-    </div>
-  `;
-}
+      `;
+    }
 
     // 全カード HTML
     const cardsHtml = picks.map(buildCardHtml).join('');
@@ -212,9 +212,9 @@ function buildCardHtml(c) {
       setActive(closestIndex);
     }
 
-    // 初期状態：真ん中のカードを中央付近に寄せる（縦スクロールはいじらない）
+    // 初期状態：1枚目を基準にして、横方向だけ中央寄せ
     if (cards.length > 0 && track) {
-      const initialIndex = Math.floor(cards.length / 2);
+      const initialIndex = 0;   // ★ 1枚目を初期アクティブ
       setActive(initialIndex);
 
       setTimeout(() => {
@@ -223,12 +223,15 @@ function buildCardHtml(c) {
 
         const trackCenter = trackRect.left + trackRect.width / 2;
         const cardCenter  = cardRect.left  + cardRect.width  / 2;
-
         const delta = cardCenter - trackCenter;
 
-        // 横方向だけ調整
+        // 横方向だけ調整（縦スクロールはいじらない）
         track.scrollLeft += delta;
+
         updateActiveByScroll();
+
+        // ★ ここで ready フラグを付ける → CSS 側で拡大演出を有効化
+        section.classList.add('pickup-ready');
       }, 0);
     }
 
