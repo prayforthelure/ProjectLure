@@ -225,17 +225,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // 初期状態：0番目を中央寄せ＆アクティブ
     if (cards[0]) {
       setActive(0);
-      // 少し遅らせて中央にスクロール（PCで左右が少し見えるように）
       setTimeout(() => {
         cards[0].scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
         updateActiveByScroll();
       }, 0);
     }
 
-    // スクロール時にアクティブ更新
+    // スクロール時：無限ループ処理＋アクティブ更新
     let scrollTimer = null;
     track.addEventListener('scroll', () => {
-      // スクロール中に何度も計算しないよう軽くディレイ
+      const max = track.scrollWidth - track.clientWidth;
+
+      if (max > 0) {
+        // 右端 → 左端へワープ
+        if (track.scrollLeft >= max - 5) {
+          track.scrollLeft = 1;
+        }
+        // 左端 → 右端へワープ
+        else if (track.scrollLeft <= 0) {
+          track.scrollLeft = max - 2;
+        }
+      }
+
       if (scrollTimer) clearTimeout(scrollTimer);
       scrollTimer = setTimeout(() => {
         updateActiveByScroll();
