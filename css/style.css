@@ -1052,7 +1052,7 @@ body {
 
   .pickup-section {
     margin-top: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     padding: 14px 20px 14px;
     width: 80%;              /* ← 90% → 80%（左右余白を広げる） */
   }
