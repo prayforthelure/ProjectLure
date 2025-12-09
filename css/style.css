@@ -1048,57 +1048,76 @@ body {
   .pickup-section {
     margin-top: 20px;
     margin-bottom: 24px;
-    padding: 10px 24px 12px;
+    padding: 14px 28px 14px;
     padding-right: 40px;
   }
 
-  /* トラックをページ中央に寄せる */
   .pickup-track {
     max-width: 900px;
     margin: 0 auto;
-    padding: 6px 4px 8px;
-    gap: 16px;
+    padding: 8px 4px 10px;
+    gap: 18px;
   }
 
-  /* 1枚のカード幅を広めにしてカード感を出す。
-     両脇はうっすら見える程度。 */
   .pickup-card {
     flex: 0 0 78%;
-    max-width: 640px;
+    max-width: 680px;
     transform: scale(0.96);
     opacity: 0.65;
   }
 
   .pickup-card.is-active {
-    transform: scale(1.0);
+    transform: scale(1.02);
     opacity: 1;
+    box-shadow: 0 8px 22px rgba(0, 40, 80, 0.16);
   }
 
+  /* サムネサイズも少し大きく */
   .pickup-thumb {
-    flex: 0 0 160px;
-    max-width: 160px;
+    flex: 0 0 190px;
+    max-width: 190px;
   }
 
   .pickup-inner {
-    gap: 16px;
+    gap: 20px;
   }
 
+  /* --- 文字を全体的に+2px〜+3px --- */
+
   .pickup-title {
-    font-size: 16px;
+    font-size: 19px;
+    font-weight: 700;
   }
 
   .pickup-code {
-    font-size: 12px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
   }
 
   .pickup-meta {
-    font-size: 12px;
+    font-size: 13.5px;
+    gap: 6px 10px;
+    margin-bottom: 4px;
   }
 
-  .pickup-arc-row,
-  .pickup-summary {
-    font-size: 12px;
+  .pickup-series,
+  .pickup-theme {
+    font-size: 13px;
+    padding: 2px 8px;
   }
+
+  .pickup-arc-row {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .pickup-summary {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 4px 0 6px;
+  }
+
+  /* PCではボタンなしなのでCTAなし */
 }
 
 /* =========================
