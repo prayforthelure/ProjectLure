@@ -1048,8 +1048,8 @@ body {
   .pickup-section {
     margin-top: 20px;
     margin-bottom: 24px;
-    padding: 14px 28px 14px;
-    padding-right: 40px;
+    padding: 14px 20px 14px;
+    /*padding-right: 40px;*/
     width: 90%;
   }
 
@@ -1075,7 +1075,7 @@ body {
 
   /* サムネサイズも少し大きく */
   .pickup-thumb {
-    flex: 0 0 190px;
+    flex: 0 0 160px;
     max-width: 190px;
   }
 
