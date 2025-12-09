@@ -1065,6 +1065,7 @@ body {
     margin-bottom: 32px;
     padding: 16px 48px 20px;  /* 左右に余裕を追加 */
     padding-right: 56px;      /* 右は × ボタン分だけ多め */
+    width: 85%;
   }
 
   /* 横レール：ページ中央に細めで配置 */
