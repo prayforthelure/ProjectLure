@@ -1065,6 +1065,7 @@ body {
     margin-bottom: 28px;
     padding: 16px 40px 20px;  /* 左右40pxくらい空ける */
     padding-right: 56px;      /* 右は×ボタンぶん少し追加 */
+    width: 90%;
   }
 
   /* 横レール：中央寄せ */
@@ -1082,7 +1083,7 @@ body {
   .pickup-track::before,
   .pickup-track::after {
     content: "";
-    flex: 0 0 28%;  /* ここが左右の余白。さらに増やしたければ 30% くらいまで可 */
+    flex: 0 0 30%;  /* ここが左右の余白。さらに増やしたければ 30% くらいまで可 */
   }
 
   /* 1枚ぶんのカード：幅を広く（ほぼ画面いっぱい） */
