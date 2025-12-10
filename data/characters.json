@@ -18,7 +18,7 @@
     "arc": { "ex": "B", "core": "F" },
     "theme": "探偵",
     "mainColorLabel": "緋色",
-    "colors": ["#bb0a26"],
+    "colors": ["#AB1C2B"],
     "catchcopy": "刺さねば終わらない"
   },
   {
@@ -29,7 +29,7 @@
     "arc": { "ex": "R", "core": "S" },
     "theme": "墓守",
     "mainColorLabel": "鈍色",
-    "colors": ["#747a81"],
+    "colors": ["#878889"],
     "catchcopy": "死んでも忘れない"
   },
   {
@@ -40,7 +40,7 @@
     "arc": { "ex": "P", "core": "V" },
     "theme": "気象予報士",
     "mainColorLabel": "水色",
-    "colors": ["#a4ddff"],
+    "colors": ["#56CCEE"],
     "catchcopy": "読めない雨はない"
   },
   {
@@ -51,7 +51,7 @@
     "arc": { "ex": "P", "core": "F" },
     "theme": "占い師",
     "mainColorLabel": "紫苑",
-    "colors": ["#cf66ff"],
+    "colors": ["#C98EF5"],
     "catchcopy": "見えるのに触れられない"
   },
   {
@@ -62,7 +62,7 @@
     "arc": { "ex": "M", "core": "V" },
     "theme": "錬金術師",
     "mainColorLabel": "金色",
-    "colors": ["#ffcb58"],
+    "colors": ["#EBC353"],
     "catchcopy": "存在か損害か、後悔か崩壊か"
   },
   {
@@ -73,7 +73,7 @@
     "arc": { "ex": "M", "core": "B" },
     "theme": "ギタリスト",
     "mainColorLabel": "緑",
-    "colors": ["#11e60a"],
+    "colors": ["#35A16C"],
     "catchcopy": "届け、歌声"
   },
   {
@@ -84,7 +84,7 @@
     "arc": { "ex": "B", "core": "V" },
     "theme": "吸血鬼",
     "mainColorLabel": "真紅",
-    "colors": ["#e6384e"],
+    "colors": ["#EE3244"],
     "catchcopy": "燃え盛り、踊り狂う"
   },
   {
@@ -95,7 +95,7 @@
     "arc": { "ex": "P", "core": "S" },
     "theme": "華道家",
     "mainColorLabel": "縹色",
-    "colors": ["#4a7ee6"],
+    "colors": ["#588AB7"],
     "catchcopy": "生かすも殺すも私次第"
   },
   {
@@ -117,7 +117,7 @@
     "arc": { "ex": "R", "core": "K" },
     "theme": "考古学者",
     "mainColorLabel": "鴇色",
-    "colors": ["#e6a7dc"],
+    "colors": ["#F9D9E6"],
     "catchcopy": "失ったものを、まだ探してる"
   },
   {
@@ -128,7 +128,7 @@
     "arc": { "ex": "M", "core": "V" },
     "theme": "妖精",
     "mainColorLabel": "ライムグリーン",
-    "colors": [""],
+    "colors": ["#E1FE1F"],
     "catchcopy": "いつまでも踊り続ける"
   },
   {
@@ -139,7 +139,7 @@
     "arc": { "ex": "O", "core": "B" },
     "theme": "皇帝",
     "mainColorLabel": "ロイヤルパープル",
-    "colors": [""],
+    "colors": ["#914EC8"],
     "catchcopy": "全て肯定、全て挑戦"
   },
   {
@@ -150,7 +150,7 @@
     "arc": { "ex": "S", "core": "B" },
     "theme": "神",
     "mainColorLabel": "黄金",
-    "colors": [""],
+    "colors": ["#FDE79C"],
     "catchcopy": "私はここにいる"
   },
   {
@@ -161,7 +161,7 @@
     "arc": { "ex": "F", "core": "S" },
     "theme": "白雪姫",
     "mainColorLabel": "雪色",
-    "colors": [""],
+    "colors": ["#FAFBFA"],
     "catchcopy": "呑まれることはわかってた"
   },
   {
@@ -172,7 +172,7 @@
     "arc": { "ex": "M", "core": "Q" },
     "theme": "量産系",
     "mainColorLabel": "ピンク",
-    "colors": [""],
+    "colors": ["#FB9EC7"],
     "catchcopy": "私だけを見て"
   },
   {
@@ -183,7 +183,7 @@
     "arc": { "ex": "G", "core": "P" },
     "theme": "不老不死",
     "mainColorLabel": "瞑色",
-    "colors": [""],
+    "colors": ["#3B415B"],
     "catchcopy": "行く先は冥土だけ"
   },
   {
@@ -194,7 +194,7 @@
     "arc": { "ex": "Q", "core": "O" },
     "theme": "魔法少女",
     "mainColorLabel": "白銀",
-    "colors": [""],
+    "colors": ["#F4F6F6"],
     "catchcopy": "天国ってあると思う？"
   },
   {
@@ -205,7 +205,7 @@
     "arc": { "ex": "M", "core": "Q" },
     "theme": "渇望",
     "mainColorLabel": "ネイビー",
-    "colors": [""],
+    "colors": ["#3B3D71"],
     "catchcopy": "恋は盲目"
   },
   {
@@ -216,7 +216,7 @@
     "arc": { "ex": "K", "core": "Q" },
     "theme": "恍惚",
     "mainColorLabel": "サンライト",
-    "colors": [""],
+    "colors": ["#F3D289"],
     "catchcopy": "見て、魅入って"
   },
   {
@@ -227,7 +227,7 @@
     "arc": { "ex": "P", "core": "S" },
     "theme": "リバーシ",
     "mainColorLabel": "白黒",
-    "colors": [""],
+    "colors": ["#000000", "#FFFFFF"],
     "catchcopy": "秩序の名の下に"
   },
   {
@@ -238,7 +238,7 @@
     "arc": { "ex": "K", "core": "S" },
     "theme": "9月",
     "mainColorLabel": "サファイアブルー",
-    "colors": [""],
+    "colors": ["#0068B7"],
     "catchcopy": "「また来てね」「また遊ぼうね」"
   },
   {
@@ -249,7 +249,7 @@
     "arc": { "ex": "S", "core": "M" },
     "theme": "10月",
     "mainColorLabel": "トルマリンピンク",
-    "colors": [""],
+    "colors": ["#DA5486"],
     "catchcopy": ""
   },
   {
@@ -260,7 +260,7 @@
     "arc": { "ex": "S", "core": "O" },
     "theme": "11月",
     "mainColorLabel": "アンバートパーズ",
-    "colors": [""],
+    "colors": ["#EED97B"],
     "catchcopy": ""
   },
   {
@@ -271,7 +271,7 @@
     "arc": { "ex": "B", "core": "M" },
     "theme": "オムライス",
     "mainColorLabel": "卵色",
-    "colors": [""],
+    "colors": ["#F9DE96"],
     "catchcopy": "世界は包まれた"
   },
   {
@@ -282,7 +282,7 @@
     "arc": { "ex": "B", "core": "F" },
     "theme": "うさぎ",
     "mainColorLabel": "ゴールデンハニー",
-    "colors": [""],
+    "colors": ["#DAA520"],
     "catchcopy": "蜂の巣にしちゃうぞっ！"
   },
   {
@@ -293,7 +293,7 @@
     "arc": { "ex": "N", "core": "V" },
     "theme": "ねこ",
     "mainColorLabel": "ネオンパープル",
-    "colors": [""],
+    "colors": ["#DF36D8"],
     "catchcopy": "朝だニャ！起きるニャ！"
   },
   {
@@ -304,7 +304,7 @@
     "arc": { "ex": "G", "core": "V" },
     "theme": "観測者",
     "mainColorLabel": "虹色",
-    "colors": [""],
+    "colors": ["#DA3044", "#F05B2F", "#F7C731", "#3FCC8B", "#2767B9", "#9751CF", "#F18CB9" ],
     "catchcopy": "私が知らない私を見つける"
   }
 ]
