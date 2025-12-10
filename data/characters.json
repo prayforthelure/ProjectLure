@@ -264,6 +264,17 @@
     "catchcopy": "秩序の名の下に"
   },
   {
+    "code": "401",
+    "title": "Mood of Dawn",
+    "titleYomi": "むーどおぶどーん",
+    "series": "4",
+    "arc": { "ex": "", "core": "" },
+    "theme": "1月",
+    "mainColorLabel": "ガーネットレッド",
+    "colors": [""],
+    "catchcopy": ""
+  },
+  {
     "code": "409",
     "title": "Night of Serenity",
     "titleYomi": "ないとおぶせれにてぃ",
@@ -294,6 +305,17 @@
     "theme": "11月",
     "mainColorLabel": "アンバートパーズ",
     "colors": ["#EED97B"],
+    "catchcopy": ""
+  },
+  {
+    "code": "40C",
+    "title": "Secret of Snow",
+    "titleYomi": "しーくれっとおぶすのー",
+    "series": "4",
+    "arc": { "ex": "", "core": "" },
+    "theme": "12月",
+    "mainColorLabel": "ラピスブルー",
+    "colors": [""],
     "catchcopy": ""
   },
   {
