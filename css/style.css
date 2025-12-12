@@ -947,7 +947,6 @@ body {
 /* =========================
    HOME用：PICKUP（予告編特化・強め）
    表示：画像／タイトル／キャッチコピーのみ
-   そのまま全行コピペで上書き用
    ========================= */
 
 .pickup-section{
@@ -1229,13 +1228,19 @@ body {
     letter-spacing: .02em;
   }
 
-  /* キャッチコピー：読む気になる */
+  /* キャッチコピー：主役級に引き上げる */
   .pickup-summary{
-    font-size: 20px;
-    line-height: 1.75;
-    margin-top: 14px;
+    font-size: 24px;          /* ← 20px → 24px */
+    line-height: 1.7;
+    margin-top: 16px;
+    font-weight: 500;         /* 少しだけ芯を足す */
+    letter-spacing: .02em;
     opacity: 1;
+
+    display: -webkit-box;
     -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* 主役の予告編ライン */
