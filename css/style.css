@@ -1112,6 +1112,44 @@ body {
   background: var(--accent);
   opacity:1;
 }
+/* =========================
+   チラ見せを「装飾」→「次の作品」に見せる調整
+   ========================= */
+
+/* 非アクティブでもカード感は残す */
+.pickup-card{
+  background: transparent;
+}
+
+.pickup-card:not(.is-active) .pickup-card-link{
+  background: rgba(255,255,255,.85); /* ★ 白すぎ防止 */
+  box-shadow: 0 6px 14px rgba(0,40,80,.08);
+  border-color: rgba(0,40,80,.06);
+}
+
+/* チラ見せ側をフェードアウトさせるマスク */
+.pickup-track{
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 88%,
+    transparent 100%
+  );
+}
+
+/* 非アクティブは「見えるが主張しない」 */
+.pickup-card:not(.is-active){
+  opacity: .6;          /* ★ 0.45〜0.6 が適正 */
+  transform: scale(.95);
+}
 
 /* =========================
    スマホ（〜768px）
