@@ -1170,7 +1170,7 @@ body {
 
   /* チラ見せの原因を潰す：カードは100%固定 */
   .pickup-card{
-    flex: 0 0 100%;
+    flex: 0 0 90%;
     scroll-snap-align: center;
   }
 
