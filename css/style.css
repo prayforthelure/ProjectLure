@@ -1089,9 +1089,6 @@ body {
   box-shadow: 0 10px 22px rgba(0,40,80,.12);
   transform: translateY(-1px);
 }
-.pickup-card-link:hover .pickup-title{
-  text-decoration: underline;
-}
 
 /* ×ボタン */
 .pickup-close-btn{
