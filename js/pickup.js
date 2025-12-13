@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const CHAR_JSON_URL = 'data/characters.json';
 
   // ===== 自動送り設定 =====
-  const AUTO_ADVANCE_MS = 6000;     // 何msごとに次へ進めるか
+  const AUTO_ADVANCE_MS = 10000;     // 何msごとに次へ進めるか
   const AUTO_RESUME_MS  = 8000;     // ユーザー操作後、何msで自動再開するか
   const SMOOTH_SCROLL   = true;     // true: なめらかスクロール
 
