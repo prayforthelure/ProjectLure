@@ -1192,7 +1192,7 @@ body {
     margin-bottom: 2px;
     padding: 14px 16px 12px;    /* 縦を少し締める */
     padding-right: 40px;
-    overflow: visible;          /* ★PCはチラ見せ許可 */
+    overflow: hidden;          /* ★PCはチラ見せ許可 */
   }
 
   .pickup-label{
