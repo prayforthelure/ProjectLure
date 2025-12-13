@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // 必要JSONパス（synopsis は使わない）
   const CHAR_JSON_URL = 'data/characters.json';
 
+  // ===== 自動送り設定 =====
+  const AUTO_ADVANCE_MS = 6000;     // 何msごとに次へ進めるか
+  const AUTO_RESUME_MS  = 8000;     // ユーザー操作後、何msで自動再開するか
+  const SMOOTH_SCROLL   = true;     // true: なめらかスクロール
+
   // 共通 fetch ヘルパー
   async function fetchJson(url) {
     try {
@@ -114,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards   = Array.from(section.querySelectorAll('.pickup-card'));
     const dots    = Array.from(section.querySelectorAll('.pickup-dot'));
 
+    if (!track || !cards.length) return;
+
     // 画像404時はプレースホルダに差し替え（リンクは残す方針）
     const imgs = section.querySelectorAll('.pickup-thumb-img');
     imgs.forEach(img => {
@@ -122,14 +129,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // アクティブ更新
+    // ===== アクティブ状態管理 =====
+    let activeIndex = 0;
+
     function setActive(index) {
+      activeIndex = index;
       cards.forEach((card, i) => card.classList.toggle('is-active', i === index));
       dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
     }
 
+    // スクロール位置から「中央のカード」を判定（現行ロジックを維持）
     function updateActiveByScroll() {
-      if (!track) return;
       const trackRect = track.getBoundingClientRect();
       const centerX = trackRect.left + trackRect.width / 2;
 
@@ -149,57 +159,117 @@ document.addEventListener('DOMContentLoaded', () => {
       setActive(closestIndex);
     }
 
-    // 初期状態：1枚目を基準にして、横方向だけ中央寄せ（縦スクロールはいじらない）
-    if (cards.length > 0 && track) {
-      const initialIndex = 0;
-      setActive(initialIndex);
+    // 指定indexのカードを「今の基準（中央）」へ寄せる（ドット/自動送り共通）
+    function scrollToIndex(idx, smooth = true) {
+      if (!cards[idx]) return;
 
-      requestAnimationFrame(() => {
-        const trackRect = track.getBoundingClientRect();
-        const cardRect  = cards[initialIndex].getBoundingClientRect();
+      const trackRect = track.getBoundingClientRect();
+      const cardRect  = cards[idx].getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      const cardCenter  = cardRect.left  + cardRect.width  / 2;
+      const delta = cardCenter - trackCenter;
 
-        const trackCenter = trackRect.left + trackRect.width / 2;
-        const cardCenter  = cardRect.left  + cardRect.width  / 2;
-        const delta = cardCenter - trackCenter;
+      // prefers-reduced-motion を尊重
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const behavior = (smooth && !reduce && SMOOTH_SCROLL) ? 'smooth' : 'auto';
 
-        track.scrollLeft += delta;
-
-        updateActiveByScroll();
-
-        // ready フラグ：CSS側で拡大演出などをここから許可
-        section.classList.add('pickup-ready');
-      });
+      // scrollBy が安定（既存と同じ思想）
+      track.scrollBy({ left: delta, top: 0, behavior });
     }
+
+    // 初期状態：1枚目を基準にして、横方向だけ中央寄せ（縦スクロールはいじらない）
+    const initialIndex = 0;
+    setActive(initialIndex);
+
+    requestAnimationFrame(() => {
+      scrollToIndex(initialIndex, false);
+      updateActiveByScroll();
+      section.classList.add('pickup-ready');
+    });
 
     // スクロール時：中央カードを更新
     let scrollTimer = null;
     track.addEventListener('scroll', () => {
       if (scrollTimer) clearTimeout(scrollTimer);
       scrollTimer = setTimeout(updateActiveByScroll, 80);
-    });
+    }, { passive: true });
 
-    // ドットクリック：対応カードを中央に
+    // ドットクリック：対応カードへ
     dots.forEach(dot => {
       const idx = Number(dot.dataset.index || '0') || 0;
       dot.addEventListener('click', () => {
-        if (!cards[idx]) return;
-
-        const trackRect = track.getBoundingClientRect();
-        const cardRect  = cards[idx].getBoundingClientRect();
-        const trackCenter = trackRect.left + trackRect.width / 2;
-        const cardCenter  = cardRect.left  + cardRect.width  / 2;
-        const delta = cardCenter - trackCenter;
-
-        track.scrollLeft += delta;
+        stopAutoTemporarily();     // ユーザー操作なので一旦止める
+        scrollToIndex(idx, true);
       });
     });
 
     // 閉じる
     const closeBtn = section.querySelector('.pickup-close-btn');
+
+    // ===== 自動送り（3枚目→1枚目へループ） =====
+    let autoTimer = null;
+    let resumeTimer = null;
+
+    function startAuto() {
+      if (autoTimer) return;
+      if (cards.length <= 1) return;
+
+      autoTimer = setInterval(() => {
+        // タブ非表示中は動かさない
+        if (document.hidden) return;
+
+        const next = (activeIndex + 1) % cards.length; // 3枚目の次は1枚目
+        scrollToIndex(next, true);
+      }, AUTO_ADVANCE_MS);
+    }
+
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+
+    function stopAutoTemporarily() {
+      stopAuto();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        startAuto();
+      }, AUTO_RESUME_MS);
+    }
+
+    // ユーザーが触ったら止める（スクロール/タップ/ホイール等）
+    const userStopEvents = ['pointerdown', 'touchstart', 'wheel', 'keydown'];
+    userStopEvents.forEach(ev => {
+      track.addEventListener(ev, stopAutoTemporarily, { passive: true });
+    });
+
+    // リンククリックも「触った扱い」で一旦止める（遷移するので実質意味は薄いが安全）
+    section.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a');
+      if (a) stopAuto();
+    });
+
+    // タブが戻ったら再開
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAuto();
+      } else {
+        // すぐ再開すると鬱陶しいので少し間を置く
+        stopAutoTemporarily();
+      }
+    });
+
+    // 閉じる時にタイマー掃除
     if (closeBtn) {
       closeBtn.addEventListener('click', () => {
+        stopAuto();
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = null;
         section.remove();
       });
     }
+
+    // 自動送り開始
+    startAuto();
+
   })();
 });
