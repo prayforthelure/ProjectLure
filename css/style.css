@@ -947,48 +947,6 @@ body {
 /* =========================
    HOME用：PICKUP（予告編特化・強め）
    表示：画像／タイトル／キャッチコピーのみ
-   ========================= */
-
-.pickup-section{
-  position: relative;
-  margin: 12px auto 16px;
-  width: 90%;
-  max-width: 1100px;
-  padding: 10px 12px 10px;
-  padding-right: 34px;
-  overflow: hidden;
-}
-
-/* ラベル */
-.pickup-label{
-  font-size: 12px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  opacity: .85;
-  margin: 0 0 8px;
-}
-
-/* =========================
-   レール（共通）
-   ========================= */
-.pickup-track{
-  display:flex;
-  gap: 12px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-
-  /* ★左右対称の内側余白（短辺カット防止） */
-  padding: 8px 14px 12px;
-
-  /* ★スナップも左右対称に */
-  scroll-padding-left: 14px;
-  scroll-padding-right: 14px;
-}
-
-/* =========================
-   HOME用：PICKUP（予告編特化・強め）
-   表示：画像／タイトル／キャッチコピーのみ
    そのまま全行コピペで上書き用
    ========================= */
 
@@ -1150,6 +1108,7 @@ body {
   line-height:1;
   cursor:pointer;
   padding:0;
+  z-index: 3; /* ★消失防止（前面に固定） */
 }
 .pickup-close-btn:hover{
   background: rgba(0,0,0,.10);
@@ -1159,6 +1118,8 @@ body {
 .pickup-dots{
   margin-top: 6px;
   text-align:center;
+  position: relative;
+  z-index: 2; /* ★消失防止（レールより前） */
 }
 .pickup-dot{
   width: 7px;
@@ -1242,25 +1203,29 @@ body {
     margin-bottom: 12px;
   }
 
-　 .pickup-track{
+  .pickup-track{
     max-width: none;
     width: 100%;
     margin: 0;
 
-    /* ★追加：左端の“逃げ代” */
-    padding: 10px 0 12px 18px;
+    /* ★左寄りの基準位置：左端が隠れない＋“理想の1枚目”の位置を固定 */
+    padding: 10px 12px 12px 18px;
 
     gap: 24px;
 
-    /* ★追加：スナップ基準も左余白に合わせる */
+    /* ★左寄りスナップの基準をここに合わせる */
     scroll-padding-left: 18px;
-    scroll-padding-right: 0;
+    scroll-padding-right: 12px;
   }
 
   .pickup-card{
     flex: 0 0 82%;
     opacity: .28;
     transform: scale(.93);
+
+    /* ★中央ではなく「左寄りで止める」 */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .pickup-card.is-active{
@@ -1314,12 +1279,14 @@ body {
     padding-left: 10px;
   }
 
-  /* 次カードチラ見せ用の“余白” */
+  /* ★3枚目でも同じ左位置で止めるための“最後の余白”
+     82%の残り＝18%を確保（6%だと最後が揃わない） */
   .pickup-track::after{
     content: "";
-    flex: 0 0 6%;
+    flex: 0 0 18%;
   }
 }
+
 /* =========================
    全ページ共通：メインレイアウト
    ========================= */
