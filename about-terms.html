@@ -35,6 +35,7 @@
         専門用語や略語を確認できる用語集です。
       </p>
     </section>
+
     <!-- キャラクター構造（メインカラー・テーマ・コード・タイトル） -->
     <section class="section-card about-section">
       <h2 class="section-card__title">CHARACTER / キャラクターの構造</h2>
@@ -67,11 +68,38 @@
     <!-- 代表的な用語：アーク -->
     <section class="section-card about-section">
       <h2 class="section-card__title">ARC / アーク</h2>
+
       <p>
-        アーク（Arc）は、キャラクターの内面や役割を象徴する<strong>属性</strong>です。<br>
-        そのキャラがどんな方向の「物語」を持っているかを整理するための分類として使います。<br>
-        記載してあるキーワードはアークが示す性格の一例です。
+        アーク（Arc）は、キャラクターの<strong>外に見える姿</strong>と<strong>内に抱えているもの</strong>を整理するための<strong>属性</strong>です。<br>
+        そのキャラがどんな方向の「物語」を持っているかを読み解く手がかりとして使います。
       </p>
+
+      <p>
+        <strong>エクスアーク（ExArc）</strong>は外から見えやすい性格や振る舞い、<br>
+        <strong>コアアーク（CoreArc）</strong>は内心にある価値観や葛藤の方向性を表します。
+      </p>
+
+      <p>
+        記載してあるキーワードは、あくまで傾向の目安です。
+      </p>
+
+      <div class="info-card">
+        <p><strong>【アークの組み合わせ例】</strong></p>
+
+        <p>
+          <strong>エクスアーク：🔥ブレイズ（Blaze）</strong><br>
+          外からは、熱い正義感と行動力を持つ人物に見える。
+        </p>
+
+        <p>
+          <strong>コアアーク：🎭フォグ（Fog）</strong><br>
+          しかし内心では、善悪の境界が曖昧に揺れ続けており、「本当に正しいのか？」という迷いを抱えている。
+        </p>
+
+        <p>
+          <strong>▶︎ 外の熱さと内の曇りが共存し、その矛盾そのものがキャラクターの物語を深くしていく。</strong>
+        </p>
+      </div>
 
       <!-- ここに arcList.json から生成したカードを流し込む -->
       <div id="arc-list" class="about-arc-list">
@@ -79,27 +107,10 @@
       </div>
 
       <p style="margin-top:8px; font-size:12px; color:var(--text-muted);">
+        ※キーワードは傾向の一例です。キャラクターごとに出方は変化します。
       </p>
 
-      <div class="info-card">
-        <p><strong>【アークの例】</strong></p>
-
-        <p>
-          <strong>エクス：🔥ブレイズ（Blaze）</strong><br>
-          外からは、熱い正義感と行動力を持つ人物に見える。
-        </p>
-
-        <p>
-          <strong>コア：🎭フォグ（Fog）</strong><br>
-          しかし内心では、善悪の境界が曖昧に揺れ続けており、「本当に正しいのか？」という霧のような迷いを抱えている。
-        </p>
-
-        <p>
-          <strong>→ 外の熱さと内の曇りが共存し、その矛盾そのものがキャラクターの物語を深くしていく。</strong>
-        </p>
-      </div>
     </section>
-
 
     <!-- シリーズ名・総称（series.jsonから自動生成） -->
     <section class="section-card about-section">
@@ -114,7 +125,6 @@
         <!-- JSにより .info-card.about-theme-item が並ぶ -->
       </div>
     </section>
-
 
   </main>
 
