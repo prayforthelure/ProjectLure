@@ -1320,6 +1320,7 @@ body {
 }
 
 .section-card__title {
+  display: flex;
   font-size: 16px;
   margin: 0 0 12px;
   letter-spacing: 0.12em;
